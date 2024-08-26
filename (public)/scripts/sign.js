@@ -31,6 +31,7 @@ const auth = getAuth();
 let isSignedIn = false;
 const showName = document.getElementById("whesin");
 const signDrp = document.querySelector(".signdrp");
+const signInWithG = document.getElementById("siwg");
 
 onAuthStateChanged(auth, (user) => {
   showName.innerHTML = "";
@@ -46,7 +47,7 @@ onAuthStateChanged(auth, (user) => {
 
 // showSignIn();
 
-document.getElementById("siwg").addEventListener("click", () => {
+signInWithG.addEventListener("click", () => {
   signInWithPopup(auth, provider)
     .then((response) => {
       // console.log(response);
@@ -64,11 +65,13 @@ const password = document.getElementById("pass");
 const confPass = document.getElementById("cnfpass");
 const lgEmail = document.getElementById("lgemail");
 const lgPass = document.getElementById("lgpass");
+const signIn = document.getElementById("login");
+const signUp = document.getElementById("signup");
 const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passReg =
   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*_^#?&]{8,}$/;
 
-document.getElementById("signup").addEventListener("click", () => {
+signUp.addEventListener("click", () => {
   if (
     name.value.trim() === "" ||
     email.value.trim() === "" ||
@@ -107,7 +110,7 @@ document.getElementById("signup").addEventListener("click", () => {
   }
 });
 
-document.getElementById("login").addEventListener("click", () => {
+signIn.addEventListener("click", () => {
   signInWithEmailAndPassword(auth, lgEmail.value, lgPass.value)
     .then((userCredential) => {
       // Signed in
@@ -124,8 +127,6 @@ document.getElementById("login").addEventListener("click", () => {
       console.log(error);
     });
 });
-
-function showSignIn(user) {}
 
 const slideRight = document.getElementById("slirgt");
 const slideLeft = document.getElementById("slilft");
@@ -183,7 +184,6 @@ function setSignOut() {
       signOut(auth)
         .then((res) => {
           alert("logout successful");
-          // isSignedIn = false;
         })
         .catch((error) => {
           console.log(error);
@@ -215,3 +215,14 @@ function showMod() {
     fullmod.classList.add("dnone");
   }
 }
+
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".tnav");
+  if (window.scrollY > 150) {
+    nav.classList.add("bgcsc");
+  } else {
+    if (nav.classList.contains("bgcsc")) {
+      nav.classList.remove("bgcsc");
+    }
+  }
+});

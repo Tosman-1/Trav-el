@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tours</title>
+    <link rel="stylesheet" href="../styles/tour.css" />
+    <link rel="stylesheet" href="../styles/landpage.css" />
+    <link rel="stylesheet" href="../styles/sign.css" />
+    <link
+      rel="shortcut icon"
+      href="../images/trav-el-favicon-color.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="main">
+      <nav class="tnav">
+        <div class="logo">
+          <img src="../images/trav-el-colored-png.png" alt="" />
+        </div>
+        <div class="mdtxt">
+          <div class="hmm">
+            <a href="index.html">
+              <p>Home</p>
+            </a>
+          </div>
+          <div class="tour bactive">
+            <a href="tour.html">
+              <p>Tours</p>
+            </a>
+          </div>
+          <div class="htl">
+            <a href="">
+              <p>Flights</p>
+            </a>
+          </div>
+          <div class="htl">
+            <a href="">
+              <p>Hotels</p>
+            </a>
+          </div>
+          <div class="blg">
+            <a href="">
+              <p>Blog</p>
+            </a>
+          </div>
+          <div class="cntc">
+            <a href="">
+              <p>Contact us</p>
+            </a>
+          </div>
+        </div>
+        <div class="sign">
+          <button id="whesin">Account</button>
+          <div class="signdrp"></div>
+        </div>
+      </nav>
+      <section class="topsec">
+        <div class="tbgimg">
+          <div class="tbitxt">
+            <h2>Attractions, activities and experiences</h2>
+            <p>
+              Discover new attractions and experiences to match your interests
+              and travel style
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- second section -->
+      <section style="display: grid; place-items: center">
+        <div class="lddm">
+          <div class="dest">
+            <label for="destination">Destination</label>
+            <input type="text" placeholder="Country,city or region" />
+          </div>
+          <div class="arrd">
+            <div class="dest">
+              <label>Date</label>
+              <div class="ardr">
+                <span>Arrival</span>
+                <input type="date" name="arrival" id="arr" />
+              </div>
+              <div class="ardr">
+                <span>Depature</span>
+                <input type="date" name="depature" id="dep" />
+              </div>
+            </div>
+          </div>
+          <div class="dest">
+            <label>Max Budget</label>
+            <input type="number" placeholder="USD" />
+          </div>
+          <div class="buut">
+            <button id="">Search</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- third section -->
+      <section class="thrdsec">
+        <div class="bstoff">
+          <div class="toursdiv" id="midovr">
+            <!-- <div class="trimg">
+              <img src="images/amsterdam.jpeg" alt="" />
+              <div class="boictr">
+                <div class="leftc">
+                  <p class="bocon">ITALY</p>
+                  <p class="boturn">Grand Italy</p>
+                </div>
+                <div class="rightc">
+                  <p class="bocon">12DAYS</p>
+                  <p class="boturn">$4000</p>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <!-- <div class="flightdiv"></div> -->
+      </section>
+    </div>
+    <!-- sign-in modal -->
+    <div class="stpp dnone">
+      <div class="mod">
+        <div class="sign-in">
+          <div class="hsnn ssinp">
+            <h1>Sign in</h1>
+          </div>
+          <div class="sinic">
+            <button>
+              <img src="images/f-fb.png" alt="" />
+            </button>
+            <button id="siwg">
+              <img src="images/g-faded-size.png" alt="" />
+            </button>
+            <button>
+              <img src="images/a-faded.png" alt="" />
+            </button>
+          </div>
+          <div class="or">
+            <span>or</span>
+          </div>
+          <div class="sin-inp">
+            <input type="email" id="lgemail" placeholder="Email" />
+            <input type="password" id="lgpass" placeholder="Password" />
+            <span>Forgot your password?</span>
+          </div>
+          <div class="snbtn" id="login">
+            <button>SIGN IN</button>
+          </div>
+        </div>
+        <div class="sign-up">
+          <div class="hsnn ssinp">
+            <h1>Create Account</h1>
+          </div>
+          <div class="sinic">
+            <button>
+              <img src="images/f-fb.png" alt="" />
+            </button>
+            <button>
+              <img src="images/g-faded-size.png" alt="" />
+            </button>
+            <button>
+              <img src="images/a-faded.png" alt="" />
+            </button>
+          </div>
+          <div class="or">
+            <span>or</span>
+          </div>
+          <div class="sin-inp">
+            <input type="text" placeholder="Full-name" id="usrn" />
+            <input type="email" placeholder="Email" id="em" />
+            <input type="password" placeholder="Password" id="pass" />
+            <input
+              type="password"
+              placeholder="Confirm password"
+              id="cnfpass"
+            />
+          </div>
+          <div class="snbtn">
+            <button id="signup">SIGN UP</button>
+          </div>
+        </div>
+        <div class="scover">
+          <div class="scwrp">
+            <div class="siptxt dnone">
+              <div class="hsnn">
+                <h1>Welcome!</h1>
+              </div>
+              <div class="sgtxt">
+                <p>
+                  Enter your details to create an account and start your journey
+                  with us.
+                </p>
+              </div>
+              <div class="scnbtn">
+                <span>Already have an account?</span>
+                <button id="slirgt">Sign in</button>
+              </div>
+            </div>
+            <div class="sintxt">
+              <div class="hsnn">
+                <h1>Welcome back!</h1>
+              </div>
+              <div class="sgtxt">
+                <p>
+                  Enter your details to login your account and continue your
+                  journey with us.
+                </p>
+              </div>
+              <div class="scnbtn">
+                <span>Don't have an account?</span>
+                <button id="slilft">Sign up</button>
+              </div>
+            </div>
+            <div class="closvg" id="clsmod">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="28px"
+                viewBox="0 -960 960 960"
+                width="28px"
+                fill="#e8eaed"
+              >
+                <path
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="../scripts/tour.js"></script>
+  <!-- <script type="module" src="scripts/landpage.js"></script> -->
+  <script type="module" src="../scripts/sign.js"></script>
+</html>

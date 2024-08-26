@@ -1,6 +1,7 @@
 *{
   margin: 0;
   padding: 0; 
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -20,7 +21,7 @@ body{
 .main{
   position: relative;
   width: inherit;
-}
+}  
 
 nav{
   z-index: 20;
@@ -47,9 +48,13 @@ nav{
 .mdtxt{
   display: inherit;
   align-items: inherit;
-  font-size: 18px;
+  font-size: 1.125rem;
   gap: 30px;
   cursor: pointer;
+}
+.mdtxt a{
+  text-decoration: none;
+  color: #f8f8f8;
 }
 .mdtxt div{
   /* background-color: aqua; */
@@ -114,9 +119,11 @@ nav{
   padding: 5px 0;
 }
 
-.bactive{
-  color: #d8e1ff;
+.bactive{ 
   border-bottom: 2px solid #fff;
+}
+.bactive a{
+  color: #9ba4c4;
 }
 
 .first-sec{
@@ -154,6 +161,10 @@ nav{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+/* .bgprop{
+
+} */
 
 .fsc-slide.active {
   opacity: 0;
@@ -373,7 +384,7 @@ label{
 }
 
 .bsoftxt p{
-  color: #838daf;
+  color: #6e80bb;
 }
 
 .bocon{

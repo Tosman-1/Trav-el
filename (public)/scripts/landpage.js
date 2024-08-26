@@ -299,7 +299,7 @@ let tours = [
   },
 ];
 
-tours.forEach((tour) => {
+tours.forEach((tour, index) => {
   if (tour.bestOffer) {
     const imgDiv = document.createElement("div");
     imgDiv.classList.add("imgdiv");
@@ -315,16 +315,5 @@ tours.forEach((tour) => {
                           </div>
                         </div>`;
     document.getElementById("midovr").appendChild(imgDiv);
-  }
-});
-
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector(".tnav");
-  if (window.scrollY > 150) {
-    nav.classList.add("bgcsc");
-  } else {
-    if (nav.classList.contains("bgcsc")) {
-      nav.classList.remove("bgcsc");
-    }
   }
 });
