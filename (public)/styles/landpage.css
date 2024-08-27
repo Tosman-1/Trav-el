@@ -21,7 +21,8 @@ body{
 .main{
   position: relative;
   width: inherit;
-}  
+} 
+
 
 nav{
   z-index: 20;
@@ -39,6 +40,30 @@ nav{
 .tnav.bgcsc{
   backdrop-filter: blur(8px);
   background-color: #323957c5;
+}
+
+.topsec{
+  overflow: hidden;
+  height: 620px;
+}
+
+.milsy{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-position:top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+}
+
+.tbitxt{
+  width: 50%;
+  height: fit-content;
+  align-self: center;
+  justify-self: center;
+  padding: 30px 0;
 }
 
 .logo img{
@@ -293,7 +318,7 @@ label{
  margin-top: 30px;
 }
 .buut button{
-  font-size: 15px;
+  font-size: 1rem;
   font-family: myfont;
   border: none;
   border-radius: 30px;
