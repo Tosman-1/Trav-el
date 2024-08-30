@@ -135,6 +135,8 @@ const mSlide = document.querySelector(".scover");
 const signinTxt = document.querySelector(".sintxt");
 const closmod = document.getElementById("clsmod");
 const fullmod = document.querySelector(".stpp");
+const shDrop = document.getElementById("whesin");
+let isShow = true;
 
 slideLeft.addEventListener("click", () => {
   mSlide.classList.add("slide");
@@ -213,6 +215,20 @@ function showMod() {
     }
   } else {
     fullmod.classList.add("dnone");
+  }
+}
+
+shDrop.addEventListener("click", showDrop);
+
+function showDrop() {
+  if (isShow) {
+    signDrp.classList.remove("dnone");
+    isShow = false;
+  } else {
+    if (!shDrop.classList.contains("dnone")) {
+      signDrp.classList.add("dnone");
+      isShow = true;
+    }
   }
 }
 

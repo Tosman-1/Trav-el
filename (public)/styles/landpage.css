@@ -26,7 +26,6 @@ body{
 
 nav{
   z-index: 20;
-  /* width: ; */
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -64,6 +63,96 @@ nav{
   align-self: center;
   justify-self: center;
   padding: 30px 0;
+}
+
+.srcinpdiv{
+  width: 100%;
+  max-width: 90%;
+  place-self: center;
+  padding: 30px 5px;
+}
+
+.srciinp{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sfinp{
+  flex: 1 1;
+  max-width: 422px;
+  /* background-color: #303347; */
+}
+
+.sfinp input{
+  flex: 1 1;
+  width: auto;
+  font-size: 1rem;
+  padding: 15px 20px;
+  margin: 0 10px;
+  border: 3px solid #6571999d;
+}
+.sfinp input::placeholder{
+  font-family: myfont;
+}
+
+.srcinf{
+  gap: 2%;
+  padding: 5px 0 12px 6px;
+  margin: 0 10px;
+}
+
+/* .srciddv{
+  background-color: aqua;
+} */
+.srciddv p{
+  font-size: 1rem;
+  font-weight: 600;
+  color: #303347;
+  margin-right: 4px;
+}
+
+.drpic{
+  width: 24px;
+  height: 24px;
+  fill: #303347;
+}
+
+.sfbtn{
+  flex: 1 1;
+  max-width: 150px;
+  margin: 0 5px;
+}
+.sfbtn button{
+  font-size: 1.1rem;
+  font-family: myfont;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 30px;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  transition: color 0.3s ease;
+  background-color: #13141a;
+}
+.sfbtn button:hover {
+  color: #000;
+}
+.sfbtn button::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  left: -50px;
+  height: 100%;
+  border-radius: 30px;
+  z-index: -1;
+  background-color: #6b78a7;
+  transition: width 0.3s ease;
+}
+.sfbtn button:hover::before{
+  width: 180%;
 }
 
 .logo img{
@@ -116,6 +205,7 @@ nav{
   padding: 10px;
   border-radius: 6px;
   color: #0d0e13;
+  transition: display 0.3s linear
 }
 
 .signdrp span{
