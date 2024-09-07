@@ -48,3 +48,43 @@ const test = async () => {
 };
 
 sFligt.addEventListener("click", test);
+
+const showflidrp = document.querySelectorAll(".shfldp");
+const dropPick = document.querySelectorAll(".flspan");
+let fliSvg;
+let fPicked;
+
+showflidrp.forEach((drop) => {
+  drop.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    closeAllDrops();
+
+    this.nextElementSibling.classList.remove("dnone");
+
+    fPicked = this.querySelector("p");
+
+    fliSvg = this.querySelector("svg");
+    fliSvg.classList.add("dwop");
+  });
+});
+
+window.addEventListener("click", function () {
+  closeAllDrops();
+});
+
+dropPick.forEach((pick) => {
+  pick.addEventListener("click", () => {
+    fPicked.innerText = pick.textContent;
+    pick.classList.add("factive");
+  });
+});
+
+function closeAllDrops() {
+  document.querySelectorAll(".fldp").forEach((content) => {
+    content.classList.add("dnone");
+  });
+  if (fliSvg) {
+    fliSvg.classList.remove("dwop");
+  }
+}

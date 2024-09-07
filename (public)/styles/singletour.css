@@ -106,11 +106,6 @@
   right: 0;
 }
 
-.updw{
-  width: 30px;
-  height: 30px;
-  fill: #000;
-}
 
 .wtexp{
   text-align: start;
@@ -135,7 +130,5 @@
   font-weight: 500;
 }
 
-/* .dwop{
-  transform: rotateX(180deg);
-} */
+
 

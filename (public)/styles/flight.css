@@ -10,4 +10,138 @@
   border-top: 1px solid #484c63ab;
   width: 100%;
   min-height: 200px;
+  padding: 20px;
+}
+
+.srciddv{
+  position: relative;
+}
+.flidrp span{
+  color: #18181d;
+}
+.flidrp{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #edeefa;
+  width: 220px;
+  height: fit-content;
+  padding: 15px;
+
+  position: absolute;
+  top: 25px;
+  box-shadow: 0 0 10px 0 #50506357;
+  transition: all 0.3s ease-in-out;
+}
+.flspan{
+  padding: 6px;
+  cursor: pointer;
+}
+.factive{
+  background-color: #b3dafd;
+}
+.fdaci{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fladmi span{
+  margin: 0 5px;
+}
+.fladmi{
+  width: 100px;
+}
+.fldan{
+  width: 70px;
+}
+.shfldp{
+  cursor: pointer;
+  padding: 3px 6px;
+width: 115px;
+}
+.shfldp:hover{
+  background-color: #5e5e6e60;
+}
+
+.num{
+  display: inline-block;
+  text-align: center;
+  width: 10px;
+}
+.plus, .minus{
+  font-size: 1.2rem;
+  padding: 3px 8px;
+  background-color: #b3dafd;
+}
+
+.flidtls{
+  max-width: 1050px;
+  margin: auto;
+  padding: 10px 25px;
+}
+.flitit{
+  margin: 0 0 20px;
+}
+.flianod{
+  border-bottom: 1px solid #3b3e4791;
+  padding: 10px 15px;
+  background-color: #e9e7ffad;
+  overflow-y: hidden;
+  height: 74px;
+}
+.flianod, .flitit p{
+  font-size: 0.9rem;
+  color: #2d2c36ce;
+}
+.arrbig{
+  font-size: 1.1rem;
+  color: #18181d;
+}
+.flidcon{
+  justify-content: space-between;
+}
+.flileft, .fliright{
+  flex: 1 1;
+  align-items: center;
+  justify-content: space-between;
+}
+.flileft{
+  max-width: 300px;
+}
+.fliright{
+  max-width: 550px;
+}
+
+.arlogo img{
+  width: 50px;
+  height: 50px;
+}
+
+.flidconts{
+  padding: 16px 50px;
+}
+.fdot{
+  font-size: 17px;
+  margin: 0 4px;
+}
+.aarprt{
+  position: relative;
+}
+.aaric{
+  position: absolute;
+  top: 0;
+  left: -35px;
+}
+.aadur{
+  margin: 10px 0;
+}
+.aardtl{
+  padding: 14px 0 0 0;
+}
+.aarbtm{
+  padding: 20px 0 0 0;
+}
+.aarbtm, .aardtl span{
+  font-size: 0.9rem;
+  color: #2d2c36ce;
 }
