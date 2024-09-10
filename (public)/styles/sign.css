@@ -175,12 +175,16 @@
 }
 .dflex{
   display: flex;
+  /* align-items: center; */
 }
 .dblock{
   display: block;
 }
 .dgrid{
   display: grid;
+}
+.jbtw{
+  justify-content: space-between;
 }
 
 /* mediaquery */

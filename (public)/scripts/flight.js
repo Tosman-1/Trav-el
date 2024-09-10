@@ -50,7 +50,13 @@ const test = async () => {
 sFligt.addEventListener("click", test);
 
 const showflidrp = document.querySelectorAll(".shfldp");
-const dropPick = document.querySelectorAll(".flspan");
+const fliType = document.querySelectorAll(".fltype");
+const fliClass = document.querySelectorAll(".flclass");
+const addPass = document.querySelectorAll(".plus");
+const remPass = document.querySelectorAll(".minus");
+const eachTotalPass = document.querySelectorAll(".ttnu");
+const totalPass = document.querySelector(".tolnum");
+const passTotal = document.querySelector(".alldn");
 let fliSvg;
 let fPicked;
 
@@ -58,7 +64,7 @@ showflidrp.forEach((drop) => {
   drop.addEventListener("click", function (event) {
     event.stopPropagation();
 
-    closeAllDrops();
+    picking(showflidrp, drop);
 
     this.nextElementSibling.classList.remove("dnone");
 
@@ -71,14 +77,101 @@ showflidrp.forEach((drop) => {
 
 window.addEventListener("click", function () {
   closeAllDrops();
+  getPassTotal();
 });
 
-dropPick.forEach((pick) => {
-  pick.addEventListener("click", () => {
-    fPicked.innerText = pick.textContent;
-    pick.classList.add("factive");
+fliType.forEach((type) => {
+  type.addEventListener("click", () => {
+    picking(fliType, type);
+    if (fPicked) {
+      fPicked.innerText = type.textContent;
+    }
   });
 });
+
+remPass.forEach((pass) => {
+  pass.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const parentDiv = pass.parentElement;
+    const passNum = parentDiv.querySelector(".num");
+    const adultNum = parentDiv.querySelector(".anum");
+
+    if (adultNum) {
+      let adult = parseInt(adultNum.textContent);
+
+      if (adult > 1) {
+        adult--;
+
+        adultNum.innerText = adult;
+      }
+    } else {
+      let passenger = parseInt(passNum.textContent);
+
+      if (passenger > 0) {
+        passenger--;
+
+        passNum.innerText = passenger;
+      }
+    }
+  });
+});
+
+addPass.forEach((pass) => {
+  pass.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const parentDiv = pass.parentElement;
+    const passNum = parentDiv.querySelector(".num");
+    const adultNum = parentDiv.querySelector(".anum");
+
+    if (adultNum) {
+      let adult = parseInt(adultNum.textContent);
+
+      if (adult < 9) {
+        adult++;
+
+        adultNum.innerText = adult;
+      }
+    } else {
+      let passenger = parseInt(passNum.textContent);
+
+      if (passenger < 9) {
+        passenger++;
+
+        passNum.innerText = passenger;
+      }
+    }
+  });
+});
+
+// passTotal.addEventListener("click", (event) => {
+//   event.stopPropagation();
+//   getPassTotal();
+// });
+
+fliClass.forEach((classes) => {
+  classes.addEventListener("click", () => {
+    picking(fliClass, classes);
+    if (fPicked) {
+      fPicked.innerText = classes.textContent;
+    }
+  });
+});
+
+function getPassTotal() {
+  let totalSum = 0;
+
+  eachTotalPass.forEach((eachTolNum) => {
+    totalSum += parseInt(eachTolNum.textContent);
+
+    totalPass.innerText = totalSum;
+  });
+}
+
+function picking(param1, param2) {
+  param1.forEach((prevPick) => prevPick.classList.remove("factive"));
+
+  param2.classList.add("factive");
+}
 
 function closeAllDrops() {
   document.querySelectorAll(".fldp").forEach((content) => {

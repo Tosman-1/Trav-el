@@ -4,3 +4,80 @@
 .tbcl{
   background-color:  #5e59536e;
 }
+
+.htlwrap{
+  border-top: 1px solid #6571997e;
+  width: 100%;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.htcondiv{
+  max-width: 1250px;
+  padding: 10px 0;
+  margin: auto;
+}
+
+.htlimgs{
+  width: 50%;
+  height: 300px;
+}
+.htlimgs img{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.htltxts{
+  background-color: #f0f3ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1;
+  padding: 20px;
+}
+
+.htlnp p{
+  font-size: 1.5rem;
+}
+.htltxts span{
+  font-size: 0.85rem;
+  color: #393a42;
+}
+
+.htlft, .htecam{
+  align-items: center;
+  gap: 7px;
+}
+
+.htamen{
+  grid-template-columns: 200px 200px;
+  row-gap: 20px;
+  width: 420px;
+  padding: 20px 10px;
+}
+
+.htecam{
+  display: flex;
+  background-color: rgba(141, 141, 145, 0.212);
+}
+.htlaic{
+  width: 18px;
+  height: 18px;
+  fill: #26272c;
+}
+
+.htlros button{
+  font-size: .9rem;
+  font-weight: 600;
+  padding: 10px 25px;
+  border: none;
+  box-shadow: 0 0 15px 0 #26272c5e;
+  background-color: #868ca8;
+}
+.htlros button:hover{
+  background-color: #a1a8c9;
+}
+.htlros button:active{
+  transform: scale(0.96);
+}

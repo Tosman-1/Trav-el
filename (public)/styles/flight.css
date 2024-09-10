@@ -7,7 +7,7 @@
 }
 
 .flthsec{
-  border-top: 1px solid #484c63ab;
+  border-top: 1px solid #6571997e;
   width: 100%;
   min-height: 200px;
   padding: 20px;
@@ -22,23 +22,23 @@
 .flidrp{
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   background-color: #edeefa;
   width: 220px;
   height: fit-content;
   padding: 15px;
 
   position: absolute;
-  top: 25px;
+  top: 30px;
   box-shadow: 0 0 10px 0 #50506357;
   transition: all 0.3s ease-in-out;
 }
-.flspan{
+.fltype, .flclass{
   padding: 6px;
   cursor: pointer;
 }
 .factive{
-  background-color: #b3dafd;
+  background-color: #4f4f5f83;
 }
 .fdaci{
   display: flex;
@@ -57,13 +57,12 @@
 .shfldp{
   cursor: pointer;
   padding: 3px 6px;
-width: 115px;
 }
 .shfldp:hover{
-  background-color: #5e5e6e60;
+  background-color: #cfcfee60;
 }
 
-.num{
+.num, .anum{
   display: inline-block;
   text-align: center;
   width: 10px;
@@ -71,9 +70,19 @@ width: 115px;
 .plus, .minus{
   font-size: 1.2rem;
   padding: 3px 8px;
-  background-color: #b3dafd;
+  background-color: #b3dafd; 
+  cursor: pointer;
 }
-
+.donebtn{
+  text-align: end;
+  padding: 5px;
+}
+.donebtn span{
+  color: #1e619b;
+  cursor: pointer;
+  background-color: #18181d;
+  padding: 4px;
+}
 .flidtls{
   max-width: 1050px;
   margin: auto;

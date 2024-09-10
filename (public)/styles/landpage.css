@@ -106,7 +106,7 @@ input::placeholder{
 }
 
 .srcinf{
-  gap: 2%;
+  gap: 4px;
   padding: 5px 0 12px 6px;
   margin: 0 10px;
 }
@@ -162,6 +162,10 @@ input::placeholder{
 }
 .sfbtn button:hover::before{
   width: 180%;
+}
+
+.thrdsec{
+  padding:0 20px;
 }
 
 .logo img{
