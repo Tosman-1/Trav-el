@@ -4,6 +4,8 @@ const prev = document.getElementById("prlft");
 const next = document.getElementById("nxrgt");
 const totalSlides = slides.length;
 
+const tourDel = document.querySelectorAll(".whte");
+
 function updateSlidePosition() {
   const carouselInner = document.querySelector(".trcrinner");
   carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -26,3 +28,23 @@ function prevSlide() {
   }
   updateSlidePosition();
 }
+
+tourDel.forEach((toDels) => {
+  let showtDel = true;
+
+  toDels.addEventListener("click", () => {
+    const toSvg = toDels.querySelector("svg");
+
+    if (showtDel) {
+      toSvg.classList.add("dwop");
+      toDels.classList.remove("whhgt");
+
+      showtDel = false;
+    } else {
+      toSvg.classList.remove("dwop");
+      toDels.classList.add("whhgt");
+
+      showtDel = true;
+    }
+  });
+});

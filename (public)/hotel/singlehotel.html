@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hotel</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/singlehotel.css" />
     <link rel="stylesheet" href="../styles/landpage.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
-    <link rel="stylesheet" href="../styles/hotel.css" />
     <link
       rel="shortcut icon"
       href="../images/trav-el-favicon-color.png"
@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="main">
-      <nav class="tnav">
+      <nav class="bgcsc">
         <div class="logo">
           <img src="../images/trav-el-colored-png.png" alt="" />
         </div>
@@ -26,7 +26,7 @@
             </a>
           </div>
           <div class="tour">
-            <a href="../tour/tour.html">
+            <a href="../tour.html">
               <p>Tours</p>
             </a>
           </div>
@@ -56,156 +56,110 @@
           <div class="signdrp dnone"></div>
         </div>
       </nav>
-      <section class="topsec">
-        <div class="hbgimg milsy">
-          <div class="tbitxt tbcl">
-            <h2>A whole world of hotels</h2>
-            <p>
-              Book the perfect room in the best hotel, wherever it is you're
-              heading
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class="dgrid">
-        <div class="srcinpdiv">
-          <div class="srciinp dflex">
-            <div class="sfinp dflex">
-              <input type="text" placeholder="City or hotel name" />
+      <section class="trfsec">
+        <div class="trtpimg">
+          <div class="htlltpd">
+            <div class="htlname">
+              <span>Paris, france</span>
+              <p>Saint lama depre</p>
             </div>
-            <div class="sfinp dflex">
-              <input type="text" placeholder="1 Room, 1 Guest" />
-            </div>
-            <div class="sfinp dflex">
-              <input type="date" name="Depature" id="" />
-              <input type="date" name="Return" id="" />
-            </div>
-            <div class="sfbtn dflex">
-              <button id="sflgt">Search</button>
+            <div class="htlprice">
+              <span>Price per night from</span>
+              <p>$661</p>
             </div>
           </div>
         </div>
       </section>
-      <section class="thrdsec" style="color: black">
-        <div class="htlwrap">
-          <div class="flitit">
-            <h3>All flights</h3>
-            <p>
-              Prices include required taxes + fees for 1 adult. Optional charges
-              and bag fees may apply. Passenger assistance info.
-            </p>
+      <section class="trssec">
+        <div class="ssecdiv">
+          <div class="trlidt">
+            <p>Overview</p>
           </div>
-          <div class="htcondiv dflex">
-            <div class="htlimgs">
-              <img src="../images/hotel-paris.webp" alt="" />
+          <div class="trlidt">
+            <p>Photos</p>
+          </div>
+          <div class="trlidt">
+            <p>Facilities</p>
+          </div>
+          <div class="trlidt">
+            <p>Location</p>
+          </div>
+          <div class="trlidt bdrgt">
+            <p>Get a room</p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="bstoff">
+          <!-- <div class="bsoftxt">
+            <h2>ABOUT</h2>
+            <p>Check out our best promotion tours</p>
+          </div> -->
+          <div class="trdcdiv" id="trdesc">
+            <div class="trdctxt">
+              A city-centre château, in Paris? Mais oui… Saint James Paris has
+              always had lofty ambitions: in previous lives, it has been an
+              intellectual boot camp for budding French boffins, and site of the
+              first-ever hot-air balloon airfield. In the hotel's latest guise
+              as a grandiose, cultured, country estate-style hotel, it’s still
+              flying high. Nature reigns in this inner-city sanctuary, where
+              Parisian art de Vivre is infused with the soul of an English
+              country club, reconciling paradoxes with a feather-light touch.
+              The restaurant Bellefeuille whips up flavours of bohemian fancy,
+              from the organic gardens of Saint James, straight to your plate.
+              For those who want old-school Gallic romance of grand staircases,
+              neoclassic frescos, swagged velvet drapes, buttery florals, and
+              gardens galore, Saint James will sweep you off your feet.
             </div>
-            <div class="htltxts">
-              <div class="httwrp">
-                <div class="htlnp dflex jbtw" width="100%">
-                  <p>Saint James Paris</p>
-                  <p>$500</p>
+            <div class="trcrmgdiv">
+              <div class="trcrinner">
+                <div class="trcrimg">
+                  <img src="../images/france-low.jpeg" alt="" />
                 </div>
-                <div class="htlstar dflex jbtw" width="100%">
-                  <div class="htlft dflex">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="24px"
-                      viewBox="0 -960 960 960"
-                      width="24px"
-                      fill="#222"
-                    >
-                      <path
-                        d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"
-                      />
-                    </svg>
-                    <span>5-star</span>
+                <div class="trcrimg">
+                  <img src="../images/amsterdam.jpeg" alt="" />
+                </div>
+                <div class="trcrimg">
+                  <img src="../images/lazio-low.jpeg" alt="" />
+                </div>
+              </div>
+              <button class="jstmv left" id="prlft">&#10094;</button>
+              <button class="jstmv right" id="nxrgt">&#10095;</button>
+            </div>
+            <div class="wtexp">
+              <div class="htlfac">
+                <div class="htlfatop">
+                  <h2>Facilities</h2>
+                </div>
+                <div class="htlfadtl">
+                  <div class="htlecfa">
+                    <ul>
+                      <li>Street packing</li>
+                      <li>Private packing</li>
+                      <li>Free wifi</li>
+                      <li>Pet friendly</li>
+                      <li>Air conditioning</li>
+                      <li>Non smoking rooms</li>
+                      <li>Private bathroom</li>
+                      <li>Free toiletries</li>
+                      <li>Bar/lounge</li>
+                      <li>Restaurant</li>
+                      <li>Room service</li>
+                      <li>Daily housekeeping</li>
+                      <li>CCTV outside property</li>
+                      <li>24 hour security</li>
+                      <li>Fire extinguishers</li>
+                      <li>Smoke alarm</li>
+                    </ul>
                   </div>
-                  <div class="htrgt">
-                    <span>per night</span>
-                  </div>
                 </div>
-              </div>
-              <div class="htamen dgrid">
-                <div class="htecam">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 -960 960 960"
-                    class="htlaic"
-                  >
-                    <path
-                      d="M240-120q-33 0-56.5-23.5T160-200v-342q-37-22-58.5-58.5T80-680q0-66 47-113t113-47h480q66 0 113 47t47 113q0 43-21.5 79.5T800-542v342q0 33-23.5 56.5T720-120H240Zm0-80h480v-388l40-24q18-11 29-29t11-39q0-33-23.5-56.5T720-760H240q-33 0-56.5 23.5T160-680q0 22 10.5 40.5T200-610l40 22v388Zm212-92q12 11 28.5 11t27.5-11l120-120q12-12 12-28.5T628-468L508-588q-11-12-27.5-12T452-588L332-468q-11 11-11 27.5t11 28.5l120 120Zm28-84-64-64 64-64 64 64-64 64Zm0-104Z"
-                    />
-                  </svg>
-                  <span>Free breakfast</span>
-                </div>
-                <div class="htecam">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 -960 960 960"
-                    class="htlaic"
-                  >
-                    <path
-                      d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM254-346l-84-86q59-59 138.5-93.5T480-560q92 0 171.5 35T790-430l-84 84q-44-44-102-69t-124-25q-66 0-124 25t-102 69ZM84-516 0-600q92-94 215-147t265-53q142 0 265 53t215 147l-84 84q-77-77-178.5-120.5T480-680q-116 0-217.5 43.5T84-516Z"
-                    />
-                  </svg>
-                  <span>Free wifi</span>
-                </div>
-                <div class="htecam">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 -960 960 960"
-                    class="htlaic"
-                  >
-                    <path
-                      d="M240-120v-720h280q100 0 170 70t70 170q0 100-70 170t-170 70H400v240H240Zm160-400h128q33 0 56.5-23.5T608-600q0-33-23.5-56.5T528-680H400v160Z"
-                    />
-                  </svg>
-                  <span>Free parking</span>
-                </div>
-                <div class="htecam">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 -960 960 960"
-                    class="htlaic"
-                  >
-                    <path
-                      d="M80-120v-80q38 0 57-20t75-20q56 0 77 20t57 20q36 0 57-20t77-20q56 0 77 20t57 20q36 0 57-20t77-20q56 0 75 20t57 20v80q-59 0-77.5-20T748-160q-36 0-57 20t-77 20q-56 0-77-20t-57-20q-36 0-57 20t-77 20q-56 0-77-20t-57-20q-36 0-54.5 20T80-120Zm0-180v-80q38 0 57-20t75-20q56 0 77.5 20t56.5 20q36 0 57-20t77-20q56 0 77 20t57 20q36 0 57-20t77-20q56 0 75 20t57 20v80q-59 0-77.5-20T748-340q-36 0-55.5 20T614-300q-57 0-77.5-20T480-340q-38 0-56.5 20T346-300q-59 0-78.5-20T212-340q-36 0-54.5 20T80-300Zm196-204 133-133-40-40q-33-33-70-48t-91-15v-100q75 0 124 16.5t96 63.5l256 256q-17 11-33 17.5t-37 6.5q-36 0-57-20t-77-20q-56 0-77 20t-57 20q-21 0-37-6.5T276-504Zm392-336q42 0 71 29.5t29 70.5q0 42-29 71t-71 29q-42 0-71-29t-29-71q0-41 29-70.5t71-29.5Z"
-                    />
-                  </svg>
-                  <span>Outdoor pool</span>
-                </div>
-                <div class="htecam">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 -960 960 960"
-                    class="htlaic"
-                  >
-                    <path
-                      d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z"
-                    />
-                  </svg>
-                  <span>Bar</span>
-                </div>
-                <div class="htecam">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 -960 960 960"
-                    class="htlaic"
-                  >
-                    <path
-                      d="m536-84-56-56 142-142-340-340-142 142-56-56 56-58-56-56 84-84-56-58 56-56 58 56 84-84 56 56 58-56 56 56-142 142 340 340 142-142 56 56-56 58 56 56-84 84 56 58-56 56-58-56-84 84-56-56-58 56Z"
-                    />
-                  </svg>
-                  <span>Fitnes center </span>
-                </div>
-              </div>
-              <div class="htlros" style="text-align: end">
-                <button>Select room</button>
               </div>
             </div>
           </div>
         </div>
+        <!-- <div class="flightdiv"></div> -->
       </section>
+
       <footer>
         <div class="ftovdiv">
           <div class="fttop">
@@ -303,7 +257,6 @@
         </div>
       </footer>
     </div>
-    <!-- sign-in modal -->
     <div class="stpp dnone">
       <div class="mod">
         <div class="sign-in">
@@ -415,6 +368,6 @@
       </div>
     </div>
   </body>
-  <script type="module" src="../scripts/hotel.js"></script>
+  <script type="module" src="../scripts/singletour.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
 </html>

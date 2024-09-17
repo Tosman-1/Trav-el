@@ -36,7 +36,7 @@ nav{
   right: 0;
   transition: background-color 0.2s ease-in-out;
 }
-.tnav.bgcsc{
+.bgcsc{
   backdrop-filter: blur(8px);
   background-color: #323957c5;
 }
@@ -61,8 +61,9 @@ nav{
   width: 30px;
   height: 30px;
   fill: #000;
+  transition: all 0.3s linear;
 }
-.dwop{
+.updw.dwop{
   transform: rotateX(180deg);
 }
 
@@ -90,10 +91,11 @@ nav{
 .sfinp{
   flex: 1 1;
   max-width: 422px;
-  /* background-color: #303347; */
 }
-
-.sfinp input{
+.sfinpp{
+  flex: 1 1;
+}
+.sfinpp input, .sfinp input{
   flex: 1 1;
   width: auto;
   font-size: 1rem;
@@ -466,7 +468,6 @@ label{
 
 .mmimgsdiv{
   display: flex;
-  /* grid-template-columns: 11.25rem 11.25rem 11.25rem 11.25rem; */
   align-items: center;
   justify-content: center;
   gap: 5%;
@@ -478,8 +479,8 @@ label{
   /* width: 180px; */
   flex: 0 0 11rem;
   border-radius: 10px;
-  max-width: 385px;
-  height: 400px;
+  max-width: 340px;
+  height: 380px;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 8px 2px #27233b7e;
   position: relative;
@@ -507,7 +508,7 @@ label{
   right: 0;
   left: 0;
   padding: 25px 15px;
-  background-color: #5e6388a8;
+  background-color: #9ba3e0a8;
   transition: all 0.3s linear;
 }
 
@@ -516,16 +517,22 @@ label{
 }
 
 .bocon{
-  font-size: 15px;
+  font-size: 0.81rem;
   font-style: italic;
 }
 .boturn{
-  font-size: 25px;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 .leftc{
   text-align: left;
-  
+}
+.leftc p{
+  /* background-color: #dbdae0; */
+  white-space: nowrap;       
+  overflow: hidden;     
+  text-overflow: ellipsis; 
+  width: 250px;
 }
 .rightc{
   text-align: right;
@@ -593,12 +600,6 @@ h2{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-
-/* .wcbx{
-  max-width: 18.75rem;
-  height: auto;
-  mar
-} */
 
 .wcsg{
   background-color: #fefeff;

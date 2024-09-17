@@ -235,7 +235,9 @@ function showDrop() {
 window.addEventListener("scroll", () => {
   const nav = document.querySelector(".tnav");
   if (window.scrollY > 150) {
-    nav.classList.add("bgcsc");
+    if (!nav.classList.contains("bgcsc")) {
+      nav.classList.add("bgcsc");
+    }
   } else {
     if (nav.classList.contains("bgcsc")) {
       nav.classList.remove("bgcsc");

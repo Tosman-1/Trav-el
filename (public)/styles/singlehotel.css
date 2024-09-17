@@ -1,6 +1,6 @@
 .trfsec{
   overflow: hidden;
-  height: 765.6px;
+  height: 600px;
 }
 
 .trtpimg{
@@ -12,11 +12,29 @@
   background-repeat: no-repeat;
 }
 
-/* .trssec{
-  display: grid;
-  place-items: center;
-} */
-
+.htlltpd{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 50px 30px;
+  max-width: 1300px;
+  margin: auto;
+}
+.htlltpd span{
+  font-size: 1rem;
+  color: #eaebfcbb;
+}
+.htlname p{
+  font-size: 2.7rem;
+}
+.htlprice{
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: rgba(65, 74, 97, 0.541);
+  padding: 10px;
+}
 .ssecdiv{
   color: #000;
   display: flex;
@@ -25,40 +43,40 @@
   text-align: center;
 }
 
-.bsoftxt h2{
-  font-size: 1.6rem;
-}
-
 .trlidt{
   width: 12.5rem;
-  height: 89px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  height: 60px;
+  text-align: center;
   padding: 10px 0;
   border-left: 1px solid #000;
+  cursor: pointer;
+}
+.trlidt:hover{
+  background-color: #68739480;
+}
+.trlidt p{
+  font-size: 1.1rem;
+  font-weight: 600;
+  height: 100%;
+  text-align: center;
 }
 .bdrgt{
   border-right: 1px solid #000;
 }
 .trdcdiv{
-  /* background-color: aquamarine; */
   display: grid;
-  /* align-items: center;
-  justify-content: center; */
   place-items: center;
   padding: 0 20px;
-  margin-top: 10px;
+  /* margin-top: 30px; */
 }
 
 .trdctxt{
   text-align: start;
   max-width: 62.5rem;
+  line-height: 30px;
+  font-size: 1.07rem;
   overflow-wrap: break-word;
-  line-height: 25px;
-  /* word-break: break-all; */
+  /* word-break: keep-all; */
 }
 
 .trcrmgdiv {
@@ -118,44 +136,17 @@
   width: 100%;
   max-width: 62.5rem;
   margin: 40px 0 0 0;
+  background-color: #d7dff34b;
+  /* height: 200px; */
+  padding: 20px;
 }
 
-.whte{
-  border-top: 1px solid #23293d83;
-  padding: 15px;
-  height: auto;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.3s linear;
-  cursor: pointer;
-}
-.whte.bbtn{
-  border-bottom: 1px solid #23293d83;
-}
-.wteict{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.wtetxt p{
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.wtecnt{
-  padding: 15px 0;
-}
-.wtecnt ul{
-  padding: 0 20px;
+.htlecfa ul{
+  padding: 10px 30px;
   line-height: 30px;
 }
 
-.whte span{
-  color: #1a1c25cb;
-}
-.whte.whhgt{
-  height: 60px;
-}
+
 
 
 

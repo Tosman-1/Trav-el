@@ -2,8 +2,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import {
   getFirestore,
   collection,
+  collectionGroup,
   addDoc,
   getDocs,
+  getDoc,
+  query,
+  where,
+  doc,
+  setDoc,
+  and,
+  or,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -24,28 +32,215 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 const sFligt = document.getElementById("sflgt");
+const returnDate = document.getElementById("whcmbk");
+const depatDate = document.getElementById("whlv");
+const whereTo = document.getElementById("towh");
+const whereFro = document.getElementById("fromwh");
+const clasType = document.getElementById("clastpy");
+const totalPass = document.querySelector(".tolnum");
+const tripType = document.getElementById("trtpy");
+const fliWrap = document.getElementById("fliwrp");
+const fliHead = document.getElementById("flihd");
+
+let allTrv = parseInt(totalPass.innerText);
 
 const testing = async () => {
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      first: "matt",
-      middle: "son",
-      last: "Turing",
-      born: 1932,
+    const flightRef = await addDoc(collection(db, "flights"), {
+      alogo: "../images/turks-logo.png",
+      airline: "Turkish Airlines",
+      airplane: "Airbus A350",
+      depature: {
+        city: "Abuja",
+        airport: "Nnamdi Azikiwe International Airport",
+        id: "ABV",
+        time: "9:00 PM",
+      },
+      arrival: {
+        city: "Paris",
+        airport: "Paris Charles de Gaulle Airport",
+        id: "CDG",
+        time: "5:25 AM",
+      },
+      travel_class: "Economy",
+      flight_num: "AA 101",
+      duration: "6 hr 25 min",
+      date: "5/12/2024",
+      price: "721",
     });
 
-    console.log("Document written with ID: ", docRef.id);
+    // const citiesRef = collection(db, "cities");
+
+    // await setDoc(doc(citiesRef, "SF"), {
+    //   name: "San Francisco",
+    //   state: "CA",
+    //   country: "USA",
+    //   capital: false,
+    //   population: 860000,
+    //   regions: ["west_coast", "norcal"],
+    // });
+
+    console.log("success");
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
 
 const test = async () => {
-  const querySnapshot = await getDocs(collection(db, "users"));
-  querySnapshot.forEach((doc) => {
-    console.log(doc.data().born);
-  });
+  try {
+    const flightRef = collection(db, "flights");
+    const fliQuery = query(
+      flightRef,
+      and(
+        where("travel_class", "==", clasType.innerText),
+        or(
+          where("arrival.city", "==", whereTo.value.trim()),
+          where("arrival.id", "==", whereTo.value.trim())
+        ),
+        or(
+          where("depature.city", "==", whereFro.value.trim()),
+          where("depature.id", "==", whereFro.value.trim())
+        )
+      )
+    );
+
+    const querSnapshot = await getDocs(fliQuery);
+    querSnapshot.forEach((doc) => {
+      if (tripType.innerText == "Round trip") {
+        fliHead.innerText = "Departing flights";
+        const rtrFli = "shwrtfl";
+
+        let flight = doc.data();
+        let fliPrice = parseInt(flight.price);
+
+        let tolPrice = fliPrice * allTrv * 2;
+
+        console.log("success");
+
+        displayFli(flight, tolPrice, rtrFli);
+        console.log(doc.data());
+      } else {
+        console.log("condition crap");
+      }
+    });
+  } catch (e) {
+    console.error("Error fetchig document: ", e);
+  }
+
+  // const docRef = doc(db, "flights", "2KNroxoaIK0xGt23ZK3I");
+  // const docSnap = await getDoc(docRef);
+
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // docSnap.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
 };
+
+function displayFli(flight, tolPrice, rtrFli) {
+  fliWrap.innerHTML += `
+            <div class="flianod flihg">
+              <div class="flidcon dflex">
+                <div class="flileft dflex">
+                  <div class="arlogo">
+                    <img src="${flight.alogo}" alt="" />
+                  </div>
+                  <div class="artinm">
+                    <span class="arrbig">${flight.depature.time} - ${flight.arrival.time}<sup>+1</sup></span>
+                    <p>${flight.airline}</p>
+                  </div>
+                </div>
+                <div class="fliright dflex">
+                  <div class="flidur">
+                    <span class="arrbig">${flight.duration}</span>
+                    <p>${flight.depature.id} - ${flight.arrival.id}</p>
+                  </div>
+                  <div class="flstps">
+                    <span class="arrbig">Nonstop</span>
+                  </div>
+                  <div class="fliprbu">
+                    <span class="arrbig flprc">$${tolPrice}</span>
+                    <button id="${rtrFli}">Select</button>
+                  </div>
+                  <div
+                    class="fliic"
+                    style="cursor: pointer"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="updw"
+                    >
+                      <path
+                        d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="flidconts">
+                <div class="aarprt">
+                  <span class="arrbig">${flight.depature.time}</span>
+                  <span class="fdot">&#8226; </span>
+                  <span class="arrbig">
+                    ${flight.depature.airport} (${flight.depature.id})</span
+                  >
+                  <div class="aaric">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#000"
+                    >
+                      <path
+                        d="M120-120v-80h720v80H120Zm70-200L40-570l96-26 112 94 140-37-207-276 116-31 299 251 170-46q32-9 60.5 7.5T864-585q9 32-7.5 60.5T808-487L190-320Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="aadur">
+                  <p>Travel time: ${flight.duration}</p>
+                </div>
+                <div class="aarprt">
+                  <span class="arrbig">${flight.arrival.time}<sup>+1</sup></span>
+                  <span class="fdot">&#8226; </span>
+                  <span class="arrbig">
+                    ${flight.arrival.airport} (${flight.arrival.id})</span
+                  >
+                  <div class="aaric">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#000"
+                    >
+                      <path
+                        d="M120-120v-80h720v80H120Zm622-202L120-499v-291l96 27 48 139 138 39-35-343 115 34 128 369 172 49q25 8 41.5 29t16.5 48q0 35-28.5 61.5T742-322Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="aardtl">
+                  <span>${flight.airline}</span>
+                  <span class="sdot">&#8226; </span>
+                  <span>${flight.travel_class}</span>
+                  <span class="sdot">&#8226; </span>
+                  <span>${flight.airplane}</span>
+                </div>
+                <div class="aarbtm">
+                  <span>1 checked bag up to 23 kg included</span>
+                  <span class="sdot">&#8226; </span>
+                  <span>Fare non-refundable, taxes may be refundable</span>
+                  <span class="sdot">&#8226; </span>
+                  <span>Ticket changes for a fee</span>
+                  <span class="sdot">&#8226; </span>
+                </div>
+              </div>
+            </div>`;
+}
 
 sFligt.addEventListener("click", test);
 
@@ -55,13 +250,13 @@ const fliClass = document.querySelectorAll(".flclass");
 const addPass = document.querySelectorAll(".plus");
 const remPass = document.querySelectorAll(".minus");
 const eachTotalPass = document.querySelectorAll(".ttnu");
-const totalPass = document.querySelector(".tolnum");
-const passTotal = document.querySelector(".alldn");
+const fliDetails = document.querySelectorAll(".fliic");
 let fliSvg;
 let fPicked;
 
 showflidrp.forEach((drop) => {
   drop.addEventListener("click", function (event) {
+    closeAllDrops();
     event.stopPropagation();
 
     picking(showflidrp, drop);
@@ -77,7 +272,7 @@ showflidrp.forEach((drop) => {
 
 window.addEventListener("click", function () {
   closeAllDrops();
-  getPassTotal();
+  // getPassTotal();
 });
 
 fliType.forEach((type) => {
@@ -143,6 +338,51 @@ addPass.forEach((pass) => {
   });
 });
 
+// function showFliDtls() {
+//   console.log(fliDetails);
+
+//   fliDetails.forEach((fliDel) => {
+//     let showFliDel = true;
+
+//     fliDel.addEventListener("click", () => {
+//       console.log("im inside");
+
+//       const flDelS = fliDel.querySelector("svg");
+//       const flExt = fliDel.closest(".flianod");
+
+//       if (showFliDel) {
+//         flDelS.classList.add("dwop");
+//         flExt.classList.remove("flihg");
+
+//         showFliDel = false;
+//       } else {
+//         flDelS.classList.remove("dwop");
+//         flExt.classList.add("flihg");
+
+//         showFliDel = true;
+//       }
+//     });
+//   });
+// }
+
+document.body.addEventListener("click", (event) => {
+  const fliDel = event.target.closest(".flianod");
+
+  if (fliDel) {
+    const flDelS = fliDel.querySelector("svg");
+    const flExt = fliDel.closest(".flianod");
+    let showFliDel = flDelS.classList.contains("dwop");
+
+    if (showFliDel) {
+      flDelS.classList.remove("dwop");
+      flExt.classList.add("flihg");
+    } else {
+      flDelS.classList.add("dwop");
+      flExt.classList.remove("flihg");
+    }
+  }
+});
+
 // passTotal.addEventListener("click", (event) => {
 //   event.stopPropagation();
 //   getPassTotal();
@@ -180,4 +420,5 @@ function closeAllDrops() {
   if (fliSvg) {
     fliSvg.classList.remove("dwop");
   }
+  getPassTotal();
 }

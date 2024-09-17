@@ -4,31 +4,38 @@
   background-image: url(../images/tour2.jpg);
 }
 .tbcl{
-  background-color: rgba(214, 212, 226, 0.664);
+  background-color: #d6d4e2a9;
 }
 
 .toursdiv{
   display: flex;
-  color: #252525;
+  color: #191e29;
   align-items: center;
-  /* justify-content: center; */
-  /* background-color: aqua; */
-  gap: 10px;
+  max-width: 72.4rem;
+  margin: auto;
+  gap: 30px;
   flex-wrap: wrap;
 }
 
 .trimg{
   flex: 0 1 23.5rem;
   border-radius: 10px;
-  max-width: 385px;
+  max-width: 340px;
+  height: auto;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 8px 2px #27233b7e;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+.torimg{
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
 }
 .trimg img{
   width: 100%;
-  height: 240px;
+  height: 230px;
   object-fit: cover;
   transition: all 0.3s ease-in-out;
 }
@@ -40,5 +47,5 @@
   display: flex;
   justify-content: space-between;
   padding: 25px 15px;
-  background-color: #5e6388a8;
+  background-color: #a1abd3d0;
 }
