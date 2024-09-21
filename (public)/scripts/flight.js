@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/fireba
 import {
   getFirestore,
   collection,
-  collectionGroup,
   addDoc,
   getDocs,
   getDoc,
@@ -41,6 +40,7 @@ const totalPass = document.querySelector(".tolnum");
 const tripType = document.getElementById("trtpy");
 const fliWrap = document.getElementById("fliwrp");
 const fliHead = document.getElementById("flihd");
+const franTxt = document.getElementById("flibot");
 
 let allTrv = parseInt(totalPass.innerText);
 
@@ -87,6 +87,11 @@ const testing = async () => {
 };
 
 const test = async () => {
+  let destination =
+    whereTo.value.charAt(0).toUpperCase() + whereTo.value.slice(1);
+
+  let depart = whereFro.value.charAt(0).toUpperCase() + whereFro.value.slice(1);
+
   try {
     const flightRef = collection(db, "flights");
     const fliQuery = query(
@@ -94,33 +99,49 @@ const test = async () => {
       and(
         where("travel_class", "==", clasType.innerText),
         or(
-          where("arrival.city", "==", whereTo.value.trim()),
-          where("arrival.id", "==", whereTo.value.trim())
+          where("arrival.city", "==", destination.trim()),
+          where("arrival.id", "==", whereTo.value.trim().toUpperCase())
         ),
         or(
-          where("depature.city", "==", whereFro.value.trim()),
-          where("depature.id", "==", whereFro.value.trim())
+          where("depature.city", "==", depart.trim()),
+          where("depature.id", "==", whereFro.value.trim().toUpperCase())
         )
       )
     );
 
-    const querSnapshot = await getDocs(fliQuery);
-    querSnapshot.forEach((doc) => {
+    console.log(whereTo.value);
+
+    const querySnapshot = await getDocs(fliQuery);
+    querySnapshot.forEach((doc) => {
+      let flight = doc.data();
+      let fliPrice = parseInt(flight.price);
+
+      let tolPrice = fliPrice * allTrv;
+      fliHead.innerText = "";
+
+      franTxt.innerText = ` Prices include required taxes + fees for ${allTrv} adult. Optional
+                charges and bag fees may apply. Passenger assistance info.`;
+
       if (tripType.innerText == "Round trip") {
         fliHead.innerText = "Departing flights";
         const rtrFli = "shwrtfl";
 
-        let flight = doc.data();
-        let fliPrice = parseInt(flight.price);
+        console.log("success");
 
-        let tolPrice = fliPrice * allTrv * 2;
+        displayFli(flight, tolPrice, rtrFli);
+
+        returnFlight(destination, depart);
+        console.log(doc.data());
+      } else {
+        fliHead.innerText = "All flights";
+        const rtrFli = "shwbkin";
 
         console.log("success");
 
         displayFli(flight, tolPrice, rtrFli);
+
+        // returnFlight(destination, depart);
         console.log(doc.data());
-      } else {
-        console.log("condition crap");
       }
     });
   } catch (e) {
@@ -138,7 +159,59 @@ const test = async () => {
   // }
 };
 
+function returnFlight(destination, depart) {
+  const showRtFli = document.querySelectorAll(".shwrtfl");
+
+  showRtFli.forEach((rtFlight) => {
+    rtFlight.addEventListener("click", () => {
+      try {
+        const flightRef = collection(db, "flights");
+        const fliQuery = query(
+          flightRef,
+          and(
+            where("travel_class", "==", clasType.innerText),
+            or(
+              where("arrival.city", "==", depart.trim()),
+              where("arrival.id", "==", whereFro.value.trim().toUpperCase())
+            ),
+            or(
+              where("depature.city", "==", destination.trim()),
+              where("depature.id", "==", whereTo.value.trim().toUpperCase())
+            )
+          )
+        );
+
+        getDocs(fliQuery).then((querSnapshot) => {
+          querSnapshot.forEach((doc) => {
+            let flight = doc.data();
+            let fliPrice = parseInt(flight.price);
+
+            let tolPrice = fliPrice * allTrv;
+            fliHead.innerText = "";
+
+            if (tripType.innerText == "Round trip") {
+              fliHead.innerText = "Returning flights";
+              const rtrFli = "shwbkin";
+
+              console.log("success");
+
+              displayFli(flight, tolPrice, rtrFli);
+              console.log(doc.data());
+            } else {
+              console.log("condition crap");
+            }
+          });
+        });
+      } catch (e) {
+        console.error("Error fetchig document: ", e);
+      }
+    });
+  });
+}
+
 function displayFli(flight, tolPrice, rtrFli) {
+  fliWrap.innerHTML = "";
+
   fliWrap.innerHTML += `
             <div class="flianod flihg">
               <div class="flidcon dflex">
@@ -161,7 +234,7 @@ function displayFli(flight, tolPrice, rtrFli) {
                   </div>
                   <div class="fliprbu">
                     <span class="arrbig flprc">$${tolPrice}</span>
-                    <button id="${rtrFli}">Select</button>
+                    <button class="${rtrFli}">Select</button>
                   </div>
                   <div
                     class="fliic"
@@ -366,7 +439,7 @@ addPass.forEach((pass) => {
 // }
 
 document.body.addEventListener("click", (event) => {
-  const fliDel = event.target.closest(".flianod");
+  const fliDel = event.target.closest(".fliic");
 
   if (fliDel) {
     const flDelS = fliDel.querySelector("svg");

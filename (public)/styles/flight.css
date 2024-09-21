@@ -54,6 +54,9 @@
 .fldan{
   width: 70px;
 }
+.chifnt{
+  font-size: 0.75rem;
+}
 .shfldp{
   cursor: pointer;
   padding: 3px 6px;
@@ -80,7 +83,7 @@
 .donebtn span{
   color: #1e619b;
   cursor: pointer;
-  background-color: #18181d;
+  /* background-color: #18181d; */
   padding: 4px;
 }
 .flidtls{

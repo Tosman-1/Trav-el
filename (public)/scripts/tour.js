@@ -4,8 +4,13 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
+  query,
+  where,
   doc,
   setDoc,
+  and,
+  or,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -25,7 +30,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+const whereGo = document.getElementById("trwhto");
 const sFligt = document.getElementById("sflgt");
+const tourWrap = document.getElementById("midovr");
 
 const testing = async () => {
   try {
@@ -34,10 +41,21 @@ const testing = async () => {
       city: "Rome",
       name: "Tour of the Vatican, Sistine Chapel & St. Peter's Basilica",
       duration: "2 hr",
-      Descrp: `Make the most of your valuable vacation time by skipping the line at the Vatican Museums.
-                  You save hours waiting by booking a group tour, and get engaging commentary from your guide as you explore. 
-                  Admission is included to the Sistine Chapel and St. Peter's Basilica; follow your guide on a carefully-crafted
-                   itinerary to ensure you don't miss a thing.`,
+      Descrp: `dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+              quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
+              aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet,
+              consectetuer adipiscing elit, sed diam nonummy nibh euismod
+              tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
+              enim ad minim veniam, quis nostrud exerci tation ulla.Lorem ipsum
+              dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+              nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+              volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+              ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+              consequat. Duis autem vel eum iriure dolor in hendrerit in
+              vulputate velit esse molestie consequat, vel illum dolore eu
+              feugiat nulla facilisis at vero eros et accumsan et iusto odio
+              dignissim qui blandit praesent luptatum zzril delenit augue duis
+              dolore te feugait nulla.`,
       Price: "80",
       whats_in: [
         "An expert tour guide with over 10 years of experience. Excellent story teller.",
@@ -67,7 +85,75 @@ const testing = async () => {
   }
 };
 
-sFligt.addEventListener("click", testing);
+// let depart = whereFro.value.charAt(0).toUpperCase() + whereFro.value.slice(1);
+
+const test = async () => {
+  let destination =
+    whereGo.value.charAt(0).toUpperCase() + whereGo.value.slice(1);
+
+  try {
+    const tourRef = collection(db, "tours");
+    const turQuery = query(
+      tourRef,
+      or(where("country", "==", destination), where("city", "==", destination))
+    );
+
+    console.log(turQuery);
+
+    const querySnapshot = await getDocs(turQuery);
+
+    if (!querySnapshot.empty) {
+      querySnapshot.forEach((doc) => {
+        let tour = doc.data();
+        let tourId = doc.id;
+
+        displayTours(tour, tourId);
+
+        console.log("good job");
+      });
+    } else {
+      const docSnap = await getDocs(tourRef);
+      docSnap.forEach((doc) => {
+        let tour = doc.data();
+        let tourId = doc.id;
+
+        let checkWord = tour.name.toLowerCase();
+        let keyWord = whereGo.value.trim().toLowerCase();
+
+        console.log(checkWord);
+        console.log(keyWord);
+
+        if (checkWordheckWord.includes(keyWord)) {
+          displayTours(tour, tourId);
+          console.log("heloooo");
+        } else {
+          console.error("can't find any matching document");
+        }
+      });
+      console.log("thank God");
+    }
+  } catch (e) {
+    console.error("Error fetchig document: ", e);
+  }
+
+  // const docRef = doc(db, "flights", "2KNroxoaIK0xGt23ZK3I");
+  // const docSnap = await getDoc(docRef);
+
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // docSnap.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+};
+
+addClickListener();
+
+function addClickListener() {
+  if (sFligt) {
+    sFligt.addEventListener("click", test);
+  }
+}
 
 let tours = [
   {
@@ -102,255 +188,38 @@ let tours = [
     space: "25",
     bestOffer: true,
   },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/moro-low.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: true,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/lond-low.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: true,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/france-low.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: true,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/korea-low.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: true,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/amsterdam.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: false,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/amsterdam.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: false,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/amsterdam.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: false,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/amsterdam.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: false,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/amsterdam.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: false,
-  },
-  {
-    country: "Italy",
-    city: "Venice",
-    tourName: "Grand italy",
-    tourDuration: "6Days",
-    tourDescrip: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-                eligendi numquam praesentium laborum repellat explicabo sunt
-                consequatur dignissimos perferendis? Tenetur, veritatis quae
-                maiores labore consequuntur quam atque.`,
-    tourPrice: "$4000",
-    tourAm: [
-      "5 star hotels",
-      "Boat riding",
-      "Horse riding",
-      "100% satisfaction",
-    ],
-    tourImage: "../images/amsterdam.jpeg",
-    tourImages: {},
-    tourDate: "05-08-2024 - 10-08-2024",
-    tourBkdn: "",
-    space: "",
-    bestOffer: false,
-  },
 ];
 
-tours.forEach((tour) => {
-  // if (tour.bestOffer) {
+function displayTours(tour, tourId) {
+  tourWrap.innerHTML = "";
   const imgDiv = document.createElement("div");
   imgDiv.classList.add("trimg");
   imgDiv.innerHTML = `<div class="torimg">
-                          <img src="${tour.tourImage}" alt="" />
+                          <img src="${tour.image}" alt="" />
                         </div>
                         <div class="boictr">
                           <div class="leftc">
                             <p class="bocon">${tour.city}</p>
-                            <p class="boturn">${tour.tourName}</p>
+                            <p class="boturn">${tour.name}</p>
                           </div>
                           <div class="rightc">
-                            <p class="bocon">${tour.tourDuration}</p>
-                            <p class="boturn">$${tour.tourPrice}</p>
+                            <p class="bocon">${tour.duration}</p>
+                            <p class="boturn">$${tour.Price}</p>
                           </div>
                         </div>`;
-  document.getElementById("midovr").appendChild(imgDiv);
-  // }
-});
+  tourWrap.appendChild(imgDiv);
+
+  tourDetails(tourId);
+}
+
+function tourDetails(tourId) {
+  const shwTrdtl = document.querySelectorAll(".trimg");
+
+  shwTrdtl.forEach((dtls) => {
+    dtls.addEventListener("click", () => {
+      console.log(tourId);
+      sessionStorage.setItem("tourId", tourId);
+      window.location.href = "singletour.html";
+    });
+  });
+}

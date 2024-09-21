@@ -90,10 +90,13 @@ nav{
 
 .sfinp{
   flex: 1 1;
-  max-width: 422px;
+  /* max-width: 422px; */
 }
 .sfinpp{
   flex: 1 1;
+}
+.sfirng{
+  width: 100px;
 }
 .sfinpp input, .sfinp input{
   flex: 1 1;
@@ -102,6 +105,7 @@ nav{
   padding: 15px 20px;
   margin: 0 10px;
   border: 3px solid #6571999d;
+  color: #13141a;
 }
 input::placeholder{
   font-family: myfont;
