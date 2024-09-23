@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../styles/singlehotel.css" />
+    <link rel="stylesheet" href="../styles/hotel.css" />
     <link rel="stylesheet" href="../styles/landpage.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
     <link
@@ -57,16 +58,10 @@
         </div>
       </nav>
       <section class="trfsec">
-        <div class="trtpimg">
+        <div class="trtpimg" id="bigimg">
           <div class="htlltpd">
-            <div class="htlname">
-              <span>Paris, france</span>
-              <p>Saint lama depre</p>
-            </div>
-            <div class="htlprice">
-              <span>Price per night from</span>
-              <p>$661</p>
-            </div>
+            <div class="htlname" id="citry"></div>
+            <div class="htlprice" id="htprc"></div>
           </div>
         </div>
       </section>
@@ -91,38 +86,10 @@
       </section>
       <section>
         <div class="bstoff">
-          <!-- <div class="bsoftxt">
-            <h2>ABOUT</h2>
-            <p>Check out our best promotion tours</p>
-          </div> -->
           <div class="trdcdiv" id="trdesc">
-            <div class="trdctxt">
-              A city-centre château, in Paris? Mais oui… Saint James Paris has
-              always had lofty ambitions: in previous lives, it has been an
-              intellectual boot camp for budding French boffins, and site of the
-              first-ever hot-air balloon airfield. In the hotel's latest guise
-              as a grandiose, cultured, country estate-style hotel, it’s still
-              flying high. Nature reigns in this inner-city sanctuary, where
-              Parisian art de Vivre is infused with the soul of an English
-              country club, reconciling paradoxes with a feather-light touch.
-              The restaurant Bellefeuille whips up flavours of bohemian fancy,
-              from the organic gardens of Saint James, straight to your plate.
-              For those who want old-school Gallic romance of grand staircases,
-              neoclassic frescos, swagged velvet drapes, buttery florals, and
-              gardens galore, Saint James will sweep you off your feet.
-            </div>
-            <div class="trcrmgdiv">
-              <div class="trcrinner">
-                <div class="trcrimg">
-                  <img src="../images/france-low.jpeg" alt="" />
-                </div>
-                <div class="trcrimg">
-                  <img src="../images/amsterdam.jpeg" alt="" />
-                </div>
-                <div class="trcrimg">
-                  <img src="../images/lazio-low.jpeg" alt="" />
-                </div>
-              </div>
+            <div class="trdctxt" id="decrpt"></div>
+            <div class="trcrmgdiv" id="topcarcon">
+              <div class="trcrinner" id="imgSld"></div>
               <button class="jstmv left" id="prlft">&#10094;</button>
               <button class="jstmv right" id="nxrgt">&#10095;</button>
             </div>
@@ -132,26 +99,210 @@
                   <h2>Facilities</h2>
                 </div>
                 <div class="htlfadtl">
-                  <div class="htlecfa">
-                    <ul>
-                      <li>Street packing</li>
-                      <li>Private packing</li>
-                      <li>Free wifi</li>
-                      <li>Pet friendly</li>
-                      <li>Air conditioning</li>
-                      <li>Non smoking rooms</li>
-                      <li>Private bathroom</li>
-                      <li>Free toiletries</li>
-                      <li>Bar/lounge</li>
-                      <li>Restaurant</li>
-                      <li>Room service</li>
-                      <li>Daily housekeeping</li>
-                      <li>CCTV outside property</li>
-                      <li>24 hour security</li>
-                      <li>Fire extinguishers</li>
-                      <li>Smoke alarm</li>
-                    </ul>
+                  <div class="htlecfa" id="facwrp"></div>
+                </div>
+              </div>
+            </div>
+            <div class="turrevs">
+              <div class="ctrhead">
+                <p>Reviews</p>
+              </div>
+              <div class="revcont dflex">
+                <div class="resrcu">
+                  <div class="revcount">
+                    <h3>0</h3>
                   </div>
+                  <div class="revstr">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="stars"
+                      fill=""
+                    >
+                      <path
+                        d="M331.46-256.15 480-345.54l148.54 90.39-39.31-169.16 130.69-113.46L547.54-553 480-712.15 412.46-554l-172.38 15.23 130.69 113.85-39.31 168.77ZM263-161.54l57.31-246.77-191.46-165.92 252.61-21.92L480-828.84l98.54 232.69 252.61 21.92-191.46 165.92L697-161.54 480-292.46 263-161.54Zm217-312.31Z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="stars"
+                      fill=""
+                    >
+                      <path
+                        d="M331.46-256.15 480-345.54l148.54 90.39-39.31-169.16 130.69-113.46L547.54-553 480-712.15 412.46-554l-172.38 15.23 130.69 113.85-39.31 168.77ZM263-161.54l57.31-246.77-191.46-165.92 252.61-21.92L480-828.84l98.54 232.69 252.61 21.92-191.46 165.92L697-161.54 480-292.46 263-161.54Zm217-312.31Z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="stars"
+                      fill=""
+                    >
+                      <path
+                        d="M331.46-256.15 480-345.54l148.54 90.39-39.31-169.16 130.69-113.46L547.54-553 480-712.15 412.46-554l-172.38 15.23 130.69 113.85-39.31 168.77ZM263-161.54l57.31-246.77-191.46-165.92 252.61-21.92L480-828.84l98.54 232.69 252.61 21.92-191.46 165.92L697-161.54 480-292.46 263-161.54Zm217-312.31Z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="stars"
+                      fill=""
+                    >
+                      <path
+                        d="M331.46-256.15 480-345.54l148.54 90.39-39.31-169.16 130.69-113.46L547.54-553 480-712.15 412.46-554l-172.38 15.23 130.69 113.85-39.31 168.77ZM263-161.54l57.31-246.77-191.46-165.92 252.61-21.92L480-828.84l98.54 232.69 252.61 21.92-191.46 165.92L697-161.54 480-292.46 263-161.54Zm217-312.31Z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="stars"
+                      fill=""
+                    >
+                      <path
+                        d="M331.46-256.15 480-345.54l148.54 90.39-39.31-169.16 130.69-113.46L547.54-553 480-712.15 412.46-554l-172.38 15.23 130.69 113.85-39.31 168.77ZM263-161.54l57.31-246.77-191.46-165.92 252.61-21.92L480-828.84l98.54 232.69 252.61 21.92-191.46 165.92L697-161.54 480-292.46 263-161.54Zm217-312.31Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="revrgt">
+                  <span>Total review count and overall rating</span>
+                  <div class="ovallrd">
+                    <div class="ovatxt">Excellent</div>
+                    <div class="ovacount">
+                      <div class="incount"></div>
+                    </div>
+                  </div>
+                  <div class="ovallrd">
+                    <div class="ovatxt">Average</div>
+                    <div class="ovacount">
+                      <div class="incount"></div>
+                    </div>
+                  </div>
+                  <div class="ovallrd">
+                    <div class="ovatxt">Poor</div>
+                    <div class="ovacount">
+                      <div class="incount"></div>
+                    </div>
+                  </div>
+                  <div class="ovallrd">
+                    <div class="ovatxt">Terrible</div>
+                    <div class="ovacount">
+                      <div class="incount"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="txtrevs">
+                <span>No reviews yet</span>
+              </div>
+            </div>
+          </div>
+          <div class="garmdiiv">
+            <div class="htpodiv dflex">
+              <div class="htlpos" id="smalldwcar">
+                <div class="trcrinner" id="">
+                  <div class="romimg">
+                    <img src="../images/rooms12.webp" alt="" />
+                  </div>
+                  <div class="romImg">
+                    <img src="../images/rooms1.webp" alt="" />
+                  </div>
+                </div>
+                <button class="jstmv left" id="dwlft">&#10094;</button>
+                <button class="jstmv right" id="dwrgt">&#10095;</button>
+              </div>
+              <div class="htltxts">
+                <div class="httwrp">
+                  <div class="htlnp dflex jbtw" width="100%">
+                    <p>Premium Room</p>
+                    <p>$60</p>
+                  </div>
+                  <div class="htlstar dflex jbtw" width="100%">
+                    <div class="htlft dflex">
+                      <span>.2 guests</span>
+                    </div>
+                    <div class="htrgt">
+                      <span>per night</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="htamen dgrid">
+                  <div class="htecam">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="htlaic"
+                    >
+                      <path
+                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                      />
+                    </svg>
+                    <span>King-size bed</span>
+                  </div>
+                  <div class="htecam">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="htlaic"
+                    >
+                      <path
+                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                      />
+                    </svg>
+                    <span>Free wifi</span>
+                  </div>
+                  <div class="htecam">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="htlaic"
+                    >
+                      <path
+                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                      />
+                    </svg>
+                    <span>Bathtub</span>
+                  </div>
+                  <div class="htecam">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="htlaic"
+                    >
+                      <path
+                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                      />
+                    </svg>
+                    <span>Air conditioning</span>
+                  </div>
+                  <div class="htecam">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="htlaic"
+                    >
+                      <path
+                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                      />
+                    </svg>
+                    <span>340sq ft</span>
+                  </div>
+                  <div class="htecam">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 -960 960 960"
+                      class="htlaic"
+                    >
+                      <path
+                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                      />
+                    </svg>
+                    <span>Minibar </span>
+                  </div>
+                </div>
+                <div class="htlros" style="text-align: end">
+                  <button>Select room</button>
                 </div>
               </div>
             </div>

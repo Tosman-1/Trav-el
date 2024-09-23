@@ -411,33 +411,6 @@ addPass.forEach((pass) => {
   });
 });
 
-// function showFliDtls() {
-//   console.log(fliDetails);
-
-//   fliDetails.forEach((fliDel) => {
-//     let showFliDel = true;
-
-//     fliDel.addEventListener("click", () => {
-//       console.log("im inside");
-
-//       const flDelS = fliDel.querySelector("svg");
-//       const flExt = fliDel.closest(".flianod");
-
-//       if (showFliDel) {
-//         flDelS.classList.add("dwop");
-//         flExt.classList.remove("flihg");
-
-//         showFliDel = false;
-//       } else {
-//         flDelS.classList.remove("dwop");
-//         flExt.classList.add("flihg");
-
-//         showFliDel = true;
-//       }
-//     });
-//   });
-// }
-
 document.body.addEventListener("click", (event) => {
   const fliDel = event.target.closest(".fliic");
 
