@@ -1,0 +1,129 @@
+.navspac{
+  width: 100%;
+  height: 79px;
+}
+
+.ovawrap{
+  padding: 40px 80px;
+}
+
+.lftsdiv{
+  padding: 20px 30px 0;
+  width: 25%;
+  height: fit-content;
+  border: 1px solid #141316d5 ;
+
+}
+
+.prfpich{
+  text-align: center;
+}
+.prpic{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 10px 0;
+  background-color: #48425e2d;
+  margin: auto;
+}
+.prch input{
+  width: 100px;
+  margin: 10px 0;
+}
+
+.prfinfs{
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #141316d5;
+  padding: 20px 0;
+  border-top: 1px solid #19191d56;
+  cursor: pointer;
+}
+.prfinfs.cactive{
+  color: #1c1b22;
+  font-weight: 600;
+  background-color: #1d1c221e;
+}
+.prfinfs:hover{
+  background-color: #19191d34;
+}
+.pfrica{
+  width: 26px;
+  height: 26px;
+  fill: #24222c;
+  margin: 0 20px 0 0;
+}
+
+.rgtsdiv{
+  width: 75%;
+  padding: 20px 50px;
+}
+
+.pepfhd{
+  margin: 0 0 10px;
+}
+
+.pepfcon{
+  padding: 20px 0;
+  border-top: 1px solid #19191d34;
+}
+.pepinner{
+  width: 100%;
+  font-size: 1.1rem;
+}
+.pepinner, .fllnm,.svfnw{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fllnm{
+  gap: 15px;
+}
+/* .rtnm{
+  flex: 1 1;
+  width: 100%;
+}
+.rtnm input{
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border: 1px solid #24222c;
+  border-radius: 5px;
+} */
+.nrmtw{
+  padding: 20px 0 0;
+}
+.pepoint{
+  cursor: pointer;
+}
+.pepoint:hover{
+  text-decoration: underline;
+}
+.svfnw{
+  padding: 8px 0 10px;
+}
+.svfnw button{
+  padding: 8px 11px;
+  font-size: 1.15rem;
+  background-color: #24222c;
+  color: #e5e8fc;
+  border: none;
+  border-radius: 5px;
+}
+.pepfcon p{
+  font-size: 1.25rem;
+}
+.pepfcon span{
+  display: inline-block;
+  padding: 7px 0 0;
+  color: #1d1e22b0;
+}
+/* #langs{
+  width: 220px;
+  font-size: 1.2rem;
+  font-family: myfont;
+  border: 1px solid #24222c;
+  padding: 5px;
+  border-radius: 5px;
+} */

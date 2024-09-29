@@ -31,7 +31,7 @@ const auth = getAuth();
 let isSignedIn = false;
 const showName = document.getElementById("whesin");
 const signDrp = document.querySelector(".signdrp");
-const signInWithG = document.getElementById("siwg");
+const signInWithG = document.querySelectorAll(".siwg");
 
 onAuthStateChanged(auth, (user) => {
   showName.innerHTML = "";
@@ -46,17 +46,18 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // showSignIn();
-
-signInWithG.addEventListener("click", () => {
-  signInWithPopup(auth, provider)
-    .then((response) => {
-      // console.log(response);
-      const user = auth.currentUser;
-      showMod();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+signInWithG.forEach((signInUp) => {
+  signInUp.addEventListener("click", () => {
+    signInWithPopup(auth, provider)
+      .then((response) => {
+        // console.log(response);
+        const user = auth.currentUser;
+        showMod();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 });
 
 const name = document.getElementById("usrn");

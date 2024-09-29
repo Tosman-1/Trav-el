@@ -5,6 +5,7 @@
 }
 .tbcl{
   background-color: #d6d4e2a9;
+  color: #e0e6ff;
 }
 
 .toursdiv{
@@ -48,4 +49,20 @@
   justify-content: space-between;
   padding: 25px 15px;
   background-color: #a1abd3d0;
+}
+
+.tpdest{
+  background-color: #868ca8;
+  max-width: 1200px;
+  margin: auto;
+}
+.tpdeswrp{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  padding: 10px;
+}
+.tpddiv{
+  height: 300px;
+  background-color: #26272c;
 }

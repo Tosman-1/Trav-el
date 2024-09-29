@@ -41,6 +41,7 @@ const tripType = document.getElementById("trtpy");
 const fliWrap = document.getElementById("fliwrp");
 const fliHead = document.getElementById("flihd");
 const franTxt = document.getElementById("flibot");
+const seatsDis = document.querySelector(".dsitdiv");
 
 let allTrv = parseInt(totalPass.innerText);
 
@@ -51,18 +52,19 @@ const testing = async () => {
       airline: "Turkish Airlines",
       airplane: "Airbus A350",
       depature: {
-        city: "Abuja",
-        airport: "Nnamdi Azikiwe International Airport",
-        id: "ABV",
-        time: "9:00 PM",
+        city: "Lagos",
+        airport: "Murtala Mohammed Airport",
+        id: "LOS",
+        time: "8:00 PM",
       },
       arrival: {
-        city: "Paris",
-        airport: "Paris Charles de Gaulle Airport",
-        id: "CDG",
-        time: "5:25 AM",
+        city: "London",
+        airport: "London City Airport",
+        id: "LCY",
+        time: "6:25 AM",
       },
       travel_class: "Economy",
+      seats: new Array(50).fill(false),
       flight_num: "AA 101",
       duration: "6 hr 25 min",
       date: "5/12/2024",
@@ -126,22 +128,24 @@ const test = async () => {
         fliHead.innerText = "Departing flights";
         const rtrFli = "shwrtfl";
 
-        console.log("success");
+        // console.log("success");
 
         displayFli(flight, tolPrice, rtrFli);
 
+        displaySeats(flight);
+
         returnFlight(destination, depart);
-        console.log(doc.data());
+        // console.log(doc.data());
       } else {
         fliHead.innerText = "All flights";
         const rtrFli = "shwbkin";
 
-        console.log("success");
+        // console.log("success");
 
         displayFli(flight, tolPrice, rtrFli);
 
         // returnFlight(destination, depart);
-        console.log(doc.data());
+        // console.log(doc.data());
       }
     });
   } catch (e) {
@@ -206,6 +210,93 @@ function returnFlight(destination, depart) {
         console.error("Error fetchig document: ", e);
       }
     });
+  });
+}
+
+// function pickSeat(flightId, seatNumber) {
+//   if (seats[seatNumber - 1]) {
+//     console.log(
+//       `Seat ${seatNumber} on flight ${flightId} is already taken. Please choose another seat.`
+//     );
+//   } else {
+//     // seats[seatNumber - 1] = true;
+//     // await updateDoc(doc(db, "flights", flightId), { seats });
+//     // console.log(
+//     //   `Seat ${seatNumber} on flight ${flightId} has been picked successfully.`
+//     // );
+//     // you are to just change the class of the div and update your database only after the booking has been complete
+//   }
+// }
+
+function displaySeats(flight, flightId) {
+  const seats = flight.seats;
+
+  seats.forEach((seat, index) => {
+    const echSeat = document.createElement("div");
+    const seatDtls = document.createElement("div");
+    seatDtls.classList.add("shstdt");
+    echSeat.classList.add("echsit");
+
+    // Apply a class based on seat availability
+    echSeat.classList.add(seat ? "taken" : "available");
+
+    //     // Generate letters from 'C' to 'G'
+    // const start = 'A'.charCodeAt(0); // Get the Unicode value for 'C'
+    // const end = 'J'.charCodeAt(0);   // Get the Unicode value for 'G'
+    // const letters = [];
+
+    // for (let i = start; i <= end; i++) {
+    //     letters.push(String.fromCharCode(i));
+    // }
+    // console.log(letters); // Output: ["C", "D", "E", "F", "G"]
+
+    // seatDtls.innerText = seat ? "Seat has been occupied" : index + 1;
+
+    echSeat.appendChild(seatDtls);
+
+    seatsDis.appendChild(echSeat);
+
+    generateRowCol();
+
+    // Set up the click event to handle seat picking
+    echSeat.addEventListener("click", () => {
+      if (echSeat.classList.contains("picked")) {
+        echSeat.classList.remove("picked");
+      } else {
+        echSeat.classList.add("picked");
+      }
+    });
+  });
+}
+
+function generateRowCol() {
+  // Select all the grid items
+  const gridItems = document.querySelectorAll(".dsitdiv .echsit");
+
+  // Variables to track the current row and column
+  const totalColumns = 6; // The number of columns defined in your CSS grid-template-columns
+  let rowIndex = 1;
+  let colIndex = 1;
+
+  // Loop through each grid item and set the innerText
+  gridItems.forEach((item, index) => {
+    // get the div that contains the item sit detial
+    const itemCont = item.querySelector(".shstdt");
+
+    // Set the innerText for the current item
+    itemCont.innerText = `Row ${rowIndex}, Col ${colIndex}`;
+
+    // Update column index
+    colIndex++;
+
+    console.log("this too ");
+
+    // If colIndex exceeds the total columns, reset it and move to the next row
+    if (colIndex > totalColumns) {
+      colIndex = 1;
+      rowIndex++;
+    }
+    console.log("function is workin");
   });
 }
 
@@ -329,7 +420,10 @@ let fPicked;
 
 showflidrp.forEach((drop) => {
   drop.addEventListener("click", function (event) {
+    // close all open dropdown first
     closeAllDrops();
+
+    // stops the current dropdown from closing when clicked
     event.stopPropagation();
 
     picking(showflidrp, drop);
