@@ -99,13 +99,14 @@ nav{
 .sfirng{
   width: 100px;
 }
-.sfinpp input, .sfinp input{
-  flex: 1 1;
-  width: auto;
+.sfinpp input, .sfinp input, .sfin input, .sfidiv{
+  /* flex: 1 1; */
+  width: 100%;
   font-size: 1rem;
   padding: 15px 20px;
   margin: 0 10px;
   border: 3px solid #6571999d;
+  border-radius: 10px;
   color: #13141a;
 }
 input::placeholder{
@@ -151,6 +152,7 @@ input::placeholder{
   z-index: 3;
   transition: color 0.3s ease;
   background-color: #13141a;
+  cursor: pointer;
 }
 .sfbtn button:hover {
   color: #000;
@@ -220,7 +222,7 @@ input::placeholder{
   left: -30px;
   font-size: 1.1rem;
   background-color: #ecedf1;
-  width: 250px;
+  width: 200px;
   text-align: center;
   padding: 10px;
   border-radius: 6px;
@@ -721,6 +723,10 @@ h2{
   text-decoration: none;
   color: #9ea5be;
 }
+.fddiv a:hover{
+  text-decoration: underline;
+  transition: 3s linear;
+}
 
 .label{
   margin: 0 0 0 0;
@@ -738,7 +744,7 @@ h2{
   padding: 10px 16px;
   border: 1px solid #24222c;
   border-radius: 5px;
-  outline: none;
+  /* outline: none; */
 }
 .select{
   width: 220px;
@@ -748,4 +754,36 @@ h2{
   padding: 7px;
   border-radius: 5px;
   outline: none;
+}
+
+.tpdtxt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #e9edff;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: #1b1e254d;
+  transition: .3s ease-in-out;
+}
+.tpdtxt:hover{
+  background-color: #0d0e138c;
+}
+.tpdhd{
+  margin: 0 0 15px;
+}
+.tpdhd p{
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 2px 0 5px;
+}
+.tpdhd span{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  color: #424349a9;
 }

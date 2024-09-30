@@ -166,6 +166,7 @@
   position: absolute;
   top: 0;
   right: 30px;
+  cursor: pointer;
 }
 
 .dnone{

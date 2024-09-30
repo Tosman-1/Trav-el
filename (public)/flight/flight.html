@@ -6,6 +6,7 @@
     <title>Book cheap flights</title>
     <link rel="stylesheet" href="../styles/flight.css" />
     <link rel="stylesheet" href="../styles/landpage.css" />
+    <link rel="stylesheet" href="../styles/bookin.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
     <link
       rel="shortcut icon"
@@ -192,11 +193,12 @@
       <!-- flight section -->
       <section class="thrdsec" style="color: black">
         <div class="flthsec">
-          <div class="flidtls" id="fliwrp">
+          <div class="flidtls" id="">
             <div class="flitit">
               <h3 id="flihd"></h3>
               <p id="flibot"></p>
             </div>
+            <div id="fliwrp"></div>
 
             <!-- <div class="flianod flihg">
               <div class="flidcon dflex">
@@ -299,7 +301,20 @@
         </div>
       </section>
 
-      <div class="bokmod">
+      <div class="bokmod dnone">
+        <div class="closvg clsbkin">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="28px"
+            viewBox="0 -960 960 960"
+            width="28px"
+            fill="#fff"
+          >
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+            />
+          </svg>
+        </div>
         <div class="bkminner">
           <div class="shwprg dflex jbtw">
             <div class="flsle">
@@ -322,7 +337,7 @@
               <span>Payment Method</span>
             </div>
           </div>
-          <div class="pasinf dnone">
+          <div class="pasinf">
             <div class="pssgdtl">
               <div class="pssghd">
                 <h3>Passenger</h3>
@@ -608,4 +623,5 @@
   </body>
   <script type="module" src="../scripts/flight.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
+  <script type="module" src="../scripts/bookin.js"></script>
 </html>

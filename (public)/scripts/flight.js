@@ -1,3 +1,6 @@
+// Your web app's Firebase configuration
+import { config } from "./key.js";
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import {
   getFirestore,
@@ -16,14 +19,13 @@ import {
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDWpkvivLx86EUo7q5ns2kym-O57p1Kfuk",
-  authDomain: "trav-el.firebaseapp.com",
-  projectId: "trav-el",
-  storageBucket: "trav-el.appspot.com",
-  messagingSenderId: "1068904333836",
-  appId: "1:1068904333836:web:054fca2e2d356619f0a429",
+  apiKey: config.apiKey,
+  authDomain: config.authDomain,
+  projectId: config.projectId,
+  storageBucket: config.storageBucket,
+  messagingSenderId: config.messagingSenderId,
+  appId: config.appId,
 };
 
 // Initialize Firebase
@@ -111,7 +113,7 @@ const test = async () => {
       )
     );
 
-    console.log(whereTo.value);
+    // console.log(whereTo.value);
 
     const querySnapshot = await getDocs(fliQuery);
     querySnapshot.forEach((doc) => {
@@ -121,8 +123,7 @@ const test = async () => {
       let tolPrice = fliPrice * allTrv;
       fliHead.innerText = "";
 
-      franTxt.innerText = ` Prices include required taxes + fees for ${allTrv} adult. Optional
-                charges and bag fees may apply. Passenger assistance info.`;
+      franTxt.innerText = ` Prices include required taxes + fees for ${allTrv} adult. Optional charges and bag fees may apply. Passenger assistance info.`;
 
       if (tripType.innerText == "Round trip") {
         fliHead.innerText = "Departing flights";
@@ -166,8 +167,11 @@ const test = async () => {
 function returnFlight(destination, depart) {
   const showRtFli = document.querySelectorAll(".shwrtfl");
 
+  // console.log("return is working");
+
   showRtFli.forEach((rtFlight) => {
     rtFlight.addEventListener("click", () => {
+      console.log("return is working");
       try {
         const flightRef = collection(db, "flights");
         const fliQuery = query(
@@ -289,14 +293,13 @@ function generateRowCol() {
     // Update column index
     colIndex++;
 
-    console.log("this too ");
+    // console.log("this too ");
 
     // If colIndex exceeds the total columns, reset it and move to the next row
     if (colIndex > totalColumns) {
       colIndex = 1;
       rowIndex++;
     }
-    console.log("function is workin");
   });
 }
 

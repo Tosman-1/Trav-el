@@ -94,10 +94,10 @@
 .nrmtw{
   padding: 20px 0 0;
 }
-.pepoint{
+.pepoint, .pepcan{
   cursor: pointer;
 }
-.pepoint:hover{
+.pepoint:hover, .pepcan:hover{
   text-decoration: underline;
 }
 .svfnw{
@@ -119,11 +119,3 @@
   padding: 7px 0 0;
   color: #1d1e22b0;
 }
-/* #langs{
-  width: 220px;
-  font-size: 1.2rem;
-  font-family: myfont;
-  border: 1px solid #24222c;
-  padding: 5px;
-  border-radius: 5px;
-} */
