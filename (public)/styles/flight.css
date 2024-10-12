@@ -168,7 +168,10 @@
   color: #2d2c36ce;
 }
 
-/* .flsle span{
-  display: inline-block;
-  padding: 4px;
-} */
+.whrtre{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}

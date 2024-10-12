@@ -45,7 +45,7 @@ const tourEnd = document.getElementById("trend");
 const imprt = document.querySelector(".depresp");
 const tourDel = document.querySelectorAll(".whte");
 
-console.log(tourId);
+// console.log(tourId);
 
 function getDetails() {
   const docRef = doc(db, "tours", tourId);

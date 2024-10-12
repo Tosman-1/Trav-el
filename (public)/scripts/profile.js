@@ -4,8 +4,10 @@ const bfrEdit = document.querySelectorAll(".pepfcon");
 
 picks.forEach((picked, index) => {
   picked.addEventListener("click", () => {
+    // remove the classname from the previously active div
     picks.forEach((pick) => pick.classList.remove("cactive"));
 
+    // adds the classname to the clicked div, making it the active div
     picked.classList.add("cactive");
 
     // this display none the current details and show the details of the clicked one
@@ -20,6 +22,8 @@ picks.forEach((picked, index) => {
     }
   });
 });
+
+console.log(window.location.pathname);
 
 bfrEdit.forEach((notEdit) => {
   const editCont = notEdit.querySelector(".pepinner");
@@ -52,3 +56,5 @@ bfrEdit.forEach((notEdit) => {
   }
   // console.log(cancelEdit);
 });
+
+export const profileLoc = window.location.href;

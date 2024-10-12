@@ -33,6 +33,9 @@
   justify-content: center;
   height: 100%;
 }
+.itli li{
+  cursor: pointer;
+}
 .sign-in, .sign-up{
   width: 50%;
   max-width: 378px;
@@ -195,3 +198,36 @@
   }
 }
 
+
+#loader-wrapper {
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 101;
+  /* background-color: #5c6997; */
+}
+
+.loader {
+  border: 4px solid #88878a69; 
+  border-top: 4px solid #363241; 
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+.errmg{
+  text-align: center;
+  color: #25222c7a;
+}
+
+/* Spin animation keyframes */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

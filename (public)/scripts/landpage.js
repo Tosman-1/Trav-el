@@ -3,6 +3,8 @@ const slides = document.querySelectorAll(".fsc-slide");
 const slideTxt = document.querySelectorAll(".sctxt");
 let currentSlide = 0;
 
+console.log(window.location.href);
+
 function showSlide(index) {
   const outgoingSlide = slides[currentSlide];
   const outTxt = slideTxt[currentSlide];

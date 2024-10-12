@@ -12,6 +12,19 @@ import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  query,
+  where,
+  doc,
+  setDoc,
+  and,
+  or,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const provider = new GoogleAuthProvider();
 // TODO: Add SDKs for Firebase products that you want to use
@@ -29,23 +42,51 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const auth = getAuth();
 let isSignedIn = false;
 const showName = document.getElementById("whesin");
 const signDrp = document.querySelector(".signdrp");
 const signInWithG = document.querySelectorAll(".siwg");
 
+let today = new Date();
+let year = today.getFullYear();
+let month = today.getMonth() + 1;
+let day = today.getDate();
+let presentDay = `${year} - ${month} - ${day}`;
+
 onAuthStateChanged(auth, (user) => {
   showName.innerHTML = "";
   if (user) {
     isSignedIn = true;
+    const name = user.displayName;
+    const email = user.email;
+    const userId = user.uid;
     showName.innerHTML = user.displayName;
+
+    sessionStorage.setItem("userId", userId);
+
+    saveUserDetails(name, email, userId);
   } else {
     isSignedIn = false;
     showName.innerHTML = "Account";
   }
   siDropDwn();
 });
+
+const saveUserDetails = async (name, email, userId) => {
+  try {
+    const userRef = collection(db, "users");
+
+    await setDoc(doc(userRef, userId), {
+      name,
+      email,
+      signupdate: presentDay,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // showSignIn();
 signInWithG.forEach((signInUp) => {
@@ -96,12 +137,16 @@ signUp.addEventListener("click", () => {
         // console.log("successfull");
         // console.log(usercredentials);
         const user = usercredentials.user;
-        showMod();
 
         updateProfile(usercredentials.user, { displayName: name.value }).then(
           (res) => {
+            console.log("entered");
+            console.log(res);
+
             if (res) {
               // showSignIn();
+              console.log("runing update");
+
               alert("success");
             }
           }
@@ -110,7 +155,9 @@ signUp.addEventListener("click", () => {
       .catch((error) => {
         console.log(error);
       });
+    showMod();
   }
+  // location.reload();
 });
 
 signIn.addEventListener("click", () => {
@@ -141,6 +188,9 @@ const fullmod = document.querySelector(".stpp");
 const shDrop = document.getElementById("whesin");
 let isShow = true;
 
+const profileLoc = "../profile/profile.html";
+const profPath = "/travel%20agency/(public)/profile/profile.html";
+
 slideLeft.addEventListener("click", () => {
   mSlide.classList.add("slide");
   signupTxt.classList.remove("dnone");
@@ -159,10 +209,9 @@ function siDropDwn() {
     signDrp.innerHTML = ` <div class="whsiin">
                             <div class="itli">
                               <ul>
-                                <li><a href="">Profile</a></li>
+                                <li id="prof">Profile</li>
                                 <li><a href="">Bookings</a></li>
                                 <li><a href="">Wishlists</a></li>
-                                <li><a href="">Become an admin</a></li>
                                 <li><a href="">Help</a></li>
                               </ul>
                             </div>
@@ -172,6 +221,7 @@ function siDropDwn() {
                           </div>`;
 
     setSignOut();
+    showProfile();
   } else {
     signDrp.innerHTML = ` <div class="siupin">
                             <span>sign in/ sign up</span>
@@ -179,6 +229,14 @@ function siDropDwn() {
 
     setMod();
   }
+}
+
+function showProfile() {
+  const refToProf = document.getElementById("prof");
+
+  refToProf.addEventListener("click", () => {
+    window.location.assign(profileLoc);
+  });
 }
 
 function setSignOut() {
@@ -189,6 +247,10 @@ function setSignOut() {
       signOut(auth)
         .then((res) => {
           alert("logout successful");
+          if (window.location.pathname == profPath) {
+            const homePage = "../homepage/index.html";
+            window.location.replace(homePage);
+          }
         })
         .catch((error) => {
           console.log(error);

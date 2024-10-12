@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/landpage.css" />
     <link rel="stylesheet" href="../styles/bookin.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
+    <link rel="stylesheet" href="../styles/flatpickr.min.css" />
     <link
       rel="shortcut icon"
       href="../images/trav-el-favicon-color.png"
@@ -22,7 +23,7 @@
         </div>
         <div class="mdtxt">
           <div class="hmm">
-            <a href="../index.html">
+            <a href="../homepage/index.html">
               <p>Home</p>
             </a>
           </div>
@@ -180,8 +181,8 @@
               <input type="text" placeholder="TO" id="towh" />
             </div>
             <div class="sfinp dflex">
-              <input type="date" name="Depature" id="whlv" />
-              <input type="date" name="Return" id="whcmbk" />
+              <input type="text" placeholder="Departure" id="whlv" />
+              <input type="text" placeholder="Return" id="whcmbk" />
             </div>
             <div class="sfbtn dflex">
               <button id="sflgt">Find flight</button>
@@ -318,7 +319,7 @@
         <div class="bkminner">
           <div class="shwprg dflex jbtw">
             <div class="flsle">
-              <span class="prgnum done">1</span>
+              <span class="prgn done">1</span>
               <span>Flight selected</span>
             </div>
             <div class="line"></div>
@@ -337,27 +338,34 @@
               <span>Payment Method</span>
             </div>
           </div>
-          <div class="pasinf">
+          <div class="pasinf flbkmod">
             <div class="pssgdtl">
               <div class="pssghd">
                 <h3>Passenger</h3>
               </div>
               <div class="pssgbd">
-                <div class="psbdwp">
-                  <p>Passenger 1 :</p>
-                  <div class="psgnm">
-                    <div class="rtn">
-                      <label class="label">Title*</label>
-                      <select name="title" class="select">
-                        <option value=""></option>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Miss">Miss</option>
-                      </select>
-                    </div>
-                    <div class="rtnm">
-                      <label class="label">Full-name*</label>
-                      <input type="text" placeholder="First name   Last name" />
+                <div class="pssinner">
+                  <div class="psbdwp">
+                    <p>Passenger 1 :</p>
+                    <div class="psgnm">
+                      <div class="rtn">
+                        <label class="label">Title*</label>
+                        <select name="title" class="select titlens" id="nmtitl">
+                          <option value=""></option>
+                          <option value="Mr">Mr</option>
+                          <option value="Mrs">Mrs</option>
+                          <option value="Miss">Miss</option>
+                        </select>
+                      </div>
+                      <div class="rtnm">
+                        <label class="label">Full-name*</label>
+                        <input
+                          type="text"
+                          placeholder="First name   Last name"
+                          class="fllname"
+                          id="flnm"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -387,12 +395,12 @@
                   </div>
                   <div class="rtnm">
                     <label class="label"> Phone numeber</label>
-                    <input type="tel" />
+                    <input type="tel" id="phnnum" />
                   </div>
                 </div>
                 <div class="rtnm rntsp">
                   <label class="label">Email</label>
-                  <input type="email" />
+                  <input type="email" id="mail" />
                 </div>
               </div>
               <div class="requrd">
@@ -400,12 +408,152 @@
               </div>
             </div>
             <div class="cntbtn">
-              <button type="button">Continue</button>
+              <button type="button" class="shwnxt">Continue</button>
             </div>
           </div>
-          <div class="chssit">
+
+          <div class="chssitd flbkmod dnone">
             <div class="chswrp dflex">
-              <div class="dsitdiv"></div>
+              <div class="dsitcont">
+                <div class="whrtre">
+                  <p class="wrfm"></p>
+                  <div class="line"></div>
+                  <p class="wrto"></p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#2a2a2c"
+                    id="shwto"
+                  >
+                    <path
+                      d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                    />
+                  </svg>
+                </div>
+                <div class="dsitdiv"></div>
+              </div>
+              <div class="rsitcont ntytn">
+                <div class="whrtre">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="#2a2a2c"
+                    id="shwfm"
+                  >
+                    <path
+                      d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"
+                    />
+                  </svg>
+                  <p class="wrto"></p>
+                  <div class="line"></div>
+                  <p class="wrfm"></p>
+                </div>
+                <div class="rsitdiv"></div>
+              </div>
+            </div>
+            <div class="cntbtn">
+              <button type="button" class="shwnxt">Continue</button>
+            </div>
+          </div>
+
+          <div class="paynt flbkmod dnone">
+            <div class="payinner">
+              <div class="pfldtls">
+                <div class="dprtfli">
+                  <div class="pssghd">
+                    <h3>Your Trip</h3>
+                    <span
+                      >Please check your booking and choose a payment
+                      method</span
+                    >
+                  </div>
+                  <div class="dpfhd">
+                    <h3>Departing flight</h3>
+                    <span>Thursday, 10 October 2024</span>
+                  </div>
+                  <div class="dpbxsd">
+                    <div class="dpdt dflex jbtw">
+                      <div class="flidconts">
+                        <div class="aarprt">
+                          <span class="arrbig">11:55 PM</span>
+                          <span class="fdot">&#8226; </span>
+                          <span class="arrbig"> Lagos (LOS)</span>
+                          <div class="aaric">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="24px"
+                              viewBox="0 -960 960 960"
+                              width="24px"
+                              fill="#000"
+                            >
+                              <path
+                                d="M120-120v-80h720v80H120Zm70-200L40-570l96-26 112 94 140-37-207-276 116-31 299 251 170-46q32-9 60.5 7.5T864-585q9 32-7.5 60.5T808-487L190-320Z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="dtlne"></div>
+                        <div class="aarprt">
+                          <span class="arrbig">7:25 AM<sup>+1</sup></span>
+                          <span class="fdot">&#8226; </span>
+                          <span class="arrbig"> Paris (CDG)</span>
+                          <div class="aaric">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="24px"
+                              viewBox="0 -960 960 960"
+                              width="24px"
+                              fill="#000"
+                            >
+                              <path
+                                d="M120-120v-80h720v80H120Zm622-202L120-499v-291l96 27 48 139 138 39-35-343 115 34 128 369 172 49q25 8 41.5 29t16.5 48q0 35-28.5 61.5T742-322Z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="arlogo">
+                        <img src="../images/arfrnce.jpg" alt="" />
+                      </div>
+                    </div>
+                    <div class="abtck">
+                      <p>Ticket: <span>changeable* - non-refundable*</span></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="cntbtn gvspc">
+                  <span>Total price for 1 passenger</span>
+                  <p class="arrbig">USD 920</p>
+                </div>
+              </div>
+              <div class="pymnt">
+                <div class="ttlprc dflex jbtw" id="detopr">
+                  <p>Total price</p>
+                </div>
+                <div class="cnfrmp">
+                  <p>Once your payment has been confirmed, we will send you:</p>
+                  <ul>
+                    <li>your booking confirmation e-mail</li>
+                    <li>your ticket</li>
+                  </ul>
+                </div>
+                <div class="agrmt">
+                  <input type="checkbox" name="" id="agree" />
+                  <span
+                    >I have read and accept <a href="">Legal information</a>,
+                    <a href="">General conditions of carriage</a>,
+                    <a href="">Special condition</a> and the
+                    <a href="">Fare conditions</a>
+                  </span>
+                </div>
+                <div class="cntbtn">
+                  <button type="button" id="bkndpy">Pay</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -624,4 +772,6 @@
   <script type="module" src="../scripts/flight.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
   <script type="module" src="../scripts/bookin.js"></script>
+  <script src="../scripts/flatpickr.min.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
 </html>

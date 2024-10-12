@@ -43,9 +43,30 @@ const tripType = document.getElementById("trtpy");
 const fliWrap = document.getElementById("fliwrp");
 const fliHead = document.getElementById("flihd");
 const franTxt = document.getElementById("flibot");
-const seatsDis = document.querySelector(".dsitdiv");
+const dprtSeats = document.querySelector(".dsitdiv");
+const rtrnSeats = document.querySelector(".rsitdiv");
+const agreeTerms = document.getElementById("agree");
+const payBtn = document.getElementById("bkndpy");
+let loaderTimeout;
+let flightType;
 
-let allTrv = parseInt(totalPass.innerText);
+flatpickr("#whcmbk", {
+  altInput: true,
+  altFormat: "j F, Y",
+  minDate: "today",
+  dateFormat: "d-m-Y",
+  onChange: function (selectedDates, dateStr, instance) {
+    const returnPicker = document.querySelector("#whlv")._flatpickr;
+    returnPicker.set("minDate", selectedDates[0]);
+    console.log(dateStr);
+  },
+});
+flatpickr("#whlv", {
+  altInput: true,
+  altFormat: "j F, Y",
+  dateFormat: "d-m-Y",
+  minDate: "today",
+});
 
 const testing = async () => {
   try {
@@ -65,24 +86,11 @@ const testing = async () => {
         id: "LCY",
         time: "6:25 AM",
       },
-      travel_class: "Economy",
-      seats: new Array(50).fill(false),
       flight_num: "AA 101",
       duration: "6 hr 25 min",
       date: "5/12/2024",
       price: "721",
     });
-
-    // const citiesRef = collection(db, "cities");
-
-    // await setDoc(doc(citiesRef, "SF"), {
-    //   name: "San Francisco",
-    //   state: "CA",
-    //   country: "USA",
-    //   capital: false,
-    //   population: 860000,
-    //   regions: ["west_coast", "norcal"],
-    // });
 
     console.log("success");
   } catch (e) {
@@ -96,12 +104,24 @@ const test = async () => {
 
   let depart = whereFro.value.charAt(0).toUpperCase() + whereFro.value.slice(1);
 
+  if (destination !== "" || depart !== "") {
+    fliWrap.innerHTML = "";
+
+    fliWrap.innerHTML = `<div id="loader-wrapper">
+                        <div class="loader"></div>
+                      </div>`;
+
+    loaderTimeout = setTimeout(() => {
+      fliWrap.innerHTML = "";
+      fliWrap.innerHTML = `<div class="errmg">Something is wrong</div>`;
+    }, 9000);
+  }
+
   try {
     const flightRef = collection(db, "flights");
     const fliQuery = query(
       flightRef,
       and(
-        where("travel_class", "==", clasType.innerText),
         or(
           where("arrival.city", "==", destination.trim()),
           where("arrival.id", "==", whereTo.value.trim().toUpperCase())
@@ -113,15 +133,18 @@ const test = async () => {
       )
     );
 
-    // console.log(whereTo.value);
-
     const querySnapshot = await getDocs(fliQuery);
     querySnapshot.forEach((doc) => {
       let flight = doc.data();
+      let flightId = doc.id;
       let fliPrice = parseInt(flight.price);
+      let allTrv = parseInt(totalPass.innerText);
+      flightType = "depart";
 
       let tolPrice = fliPrice * allTrv;
       fliHead.innerText = "";
+
+      destinationSeat(flight);
 
       franTxt.innerText = ` Prices include required taxes + fees for ${allTrv} adult. Optional charges and bag fees may apply. Passenger assistance info.`;
 
@@ -135,49 +158,44 @@ const test = async () => {
 
         displaySeats(flight);
 
-        returnFlight(destination, depart);
+        returnFlight(destination, depart, flightId);
+
         // console.log(doc.data());
       } else {
         fliHead.innerText = "All flights";
         const rtrFli = "shwbkin";
 
-        // console.log("success");
-
         displayFli(flight, tolPrice, rtrFli);
 
-        // returnFlight(destination, depart);
-        // console.log(doc.data());
+        displaySeats(flight);
+
+        ShowBookin(flightId);
       }
     });
   } catch (e) {
     console.error("Error fetchig document: ", e);
   }
-
-  // const docRef = doc(db, "flights", "2KNroxoaIK0xGt23ZK3I");
-  // const docSnap = await getDoc(docRef);
-
-  // if (docSnap.exists()) {
-  //   console.log("Document data:", docSnap.data());
-  // } else {
-  //   // docSnap.data() will be undefined in this case
-  //   console.log("No such document!");
-  // }
 };
 
-function returnFlight(destination, depart) {
+function returnFlight(destination, depart, flightId) {
   const showRtFli = document.querySelectorAll(".shwrtfl");
+  flightType = "return";
 
   // console.log("return is working");
 
   showRtFli.forEach((rtFlight) => {
     rtFlight.addEventListener("click", () => {
+      // console.log(flightId);
+
+      sessionStorage.setItem("departFlight", flightId);
+
       console.log("return is working");
       try {
         const flightRef = collection(db, "flights");
         const fliQuery = query(
           flightRef,
           and(
-            where("travel_class", "==", clasType.innerText),
+            // where("travel_class", "==", clasType.innerText),
             or(
               where("arrival.city", "==", depart.trim()),
               where("arrival.id", "==", whereFro.value.trim().toUpperCase())
@@ -192,7 +210,9 @@ function returnFlight(destination, depart) {
         getDocs(fliQuery).then((querSnapshot) => {
           querSnapshot.forEach((doc) => {
             let flight = doc.data();
+            let flightId = doc.id;
             let fliPrice = parseInt(flight.price);
+            let allTrv = parseInt(totalPass.innerText);
 
             let tolPrice = fliPrice * allTrv;
             fliHead.innerText = "";
@@ -201,10 +221,14 @@ function returnFlight(destination, depart) {
               fliHead.innerText = "Returning flights";
               const rtrFli = "shwbkin";
 
-              console.log("success");
+              // console.log("success");
 
               displayFli(flight, tolPrice, rtrFli);
-              console.log(doc.data());
+
+              displaySeats(flight);
+
+              ShowBookin(flightId);
+              // console.log(doc.data());
             } else {
               console.log("condition crap");
             }
@@ -217,25 +241,106 @@ function returnFlight(destination, depart) {
   });
 }
 
-// function pickSeat(flightId, seatNumber) {
-//   if (seats[seatNumber - 1]) {
-//     console.log(
-//       `Seat ${seatNumber} on flight ${flightId} is already taken. Please choose another seat.`
-//     );
-//   } else {
-//     // seats[seatNumber - 1] = true;
-//     // await updateDoc(doc(db, "flights", flightId), { seats });
-//     // console.log(
-//     //   `Seat ${seatNumber} on flight ${flightId} has been picked successfully.`
-//     // );
-//     // you are to just change the class of the div and update your database only after the booking has been complete
-//   }
-// }
+function ShowBookin(flightId) {
+  const bokinMod = document.querySelector(".bokmod");
+  const shBokBtn = document.querySelectorAll(".shwbkin");
+
+  shBokBtn.forEach((bokinBtn) => {
+    bokinBtn.addEventListener("click", () => {
+      // console.log(flightId);
+
+      sessionStorage.setItem(
+        flightType == "depart" ? "departFlight" : "returnFlight",
+        flightId
+      );
+
+      if (bokinMod.classList.contains("dnone")) {
+        bokinMod.classList.remove("dnone");
+      }
+      passengersDetails();
+    });
+  });
+}
+
+function updateSeats(flightId, seats) {
+  payBtn.addEventListener("click", () => {
+    if (agreeTerms.checked) {
+      updateDoc(doc(db, "flights", flightId), { seats })
+        .then(() => {
+          console.log("Document successfully updated!");
+          // Add any additional success logic here
+        })
+        .catch((error) => {
+          console.error("Error updating document: ", error);
+          // Add any error handling logic here
+        });
+    }
+  });
+}
+
+function saveBokin(params) {
+  const bokinDtls = {};
+
+  sessionStorage.setItem("bookindtls", JSON.stringify(myObject));
+}
+
+// function to add input for passenger details if there are more than one passenger
+function passengersDetails() {
+  const inputNum = totalPass.innerText;
+  console.log(inputNum);
+
+  if (inputNum > 1) {
+    const passInputDiv = document.querySelector(".pssinner");
+
+    // console.log("working");
+
+    for (let i = 2; i <= inputNum; i++) {
+      passInputDiv.innerHTML += `
+         <div class="psbdwp">
+                    <p>Passenger ${i} :</p>
+                    <div class="psgnm">
+                      <div class="rtn">
+                        <label class="label">Title*</label>
+                        <select name="title" class="select titlens">
+                          <option value=""></option>
+                          <option value="Mr">Mr</option>
+                          <option value="Mrs">Mrs</option>
+                          <option value="Miss">Miss</option>
+                        </select>
+                      </div>
+                      <div class="rtnm">
+                        <label class="label">Full-name*</label>
+                        <input
+                          type="text"
+                          placeholder="First name   Last name"
+                          class="fllname"
+                        />
+                      </div>
+                    </div>
+                  </div>
+      `;
+    }
+  }
+}
+
+function destinationSeat(flight) {
+  const whereToSeat = document.querySelectorAll(".wrto");
+  const whereFroSeat = document.querySelectorAll(".wrfm");
+
+  whereToSeat.forEach((toSeat) => {
+    toSeat.innerText = flight.arrival.id;
+  });
+
+  whereFroSeat.forEach((froSeat) => {
+    froSeat.innerText = flight.depature.id;
+  });
+}
 
 function displaySeats(flight, flightId) {
-  const seats = flight.seats;
+  let seats = flight.seats ?? new Array(90).fill(false);
 
   seats.forEach((seat, index) => {
+    const maxSeatNum = totalPass.innerText;
     const echSeat = document.createElement("div");
     const seatDtls = document.createElement("div");
     seatDtls.classList.add("shstdt");
@@ -244,44 +349,93 @@ function displaySeats(flight, flightId) {
     // Apply a class based on seat availability
     echSeat.classList.add(seat ? "taken" : "available");
 
-    //     // Generate letters from 'C' to 'G'
-    // const start = 'A'.charCodeAt(0); // Get the Unicode value for 'C'
-    // const end = 'J'.charCodeAt(0);   // Get the Unicode value for 'G'
-    // const letters = [];
-
-    // for (let i = start; i <= end; i++) {
-    //     letters.push(String.fromCharCode(i));
-    // }
-    // console.log(letters); // Output: ["C", "D", "E", "F", "G"]
-
-    // seatDtls.innerText = seat ? "Seat has been occupied" : index + 1;
-
     echSeat.appendChild(seatDtls);
 
-    seatsDis.appendChild(echSeat);
+    flightType == "return"
+      ? rtrnSeats.appendChild(echSeat)
+      : dprtSeats.appendChild(echSeat);
 
     generateRowCol();
 
     // Set up the click event to handle seat picking
     echSeat.addEventListener("click", () => {
-      if (echSeat.classList.contains("picked")) {
-        echSeat.classList.remove("picked");
+      echSeat.classList.toggle("selected");
+      const selectedSeats = document.querySelectorAll(".selected");
+
+      if (selectedSeats.length > maxSeatNum) {
+        alert(`You can only select up to ${maxSeatNum} seats.`);
+        echSeat.classList.remove("selected");
       } else {
-        echSeat.classList.add("picked");
+        if (echSeat.classList.contains("picked")) {
+          seats[index] = false;
+          echSeat.classList.remove("picked");
+          echSeat.classList.remove("selected");
+        } else {
+          echSeat.classList.add("picked");
+          seats[index] = true;
+        }
       }
     });
+
+    updateSeats(flightId, seats);
   });
 }
+
+function showSeats() {
+  const showRtrSeat = document.getElementById("shwto");
+  const showDprtSeat = document.getElementById("shwfm");
+
+  showRtrSeat.addEventListener("click", () => {
+    showDprtSeat.closest(".rsitcont").classList.remove("ntytn");
+    showRtrSeat.closest(".dsitcont").classList.add("ntytn");
+  });
+
+  showDprtSeat.addEventListener("click", () => {
+    showDprtSeat.closest(".rsitcont").classList.add("ntytn");
+    showRtrSeat.closest(".dsitcont").classList.remove("ntytn");
+  });
+}
+showSeats();
+
+// console.log(sessionStorage.getItem("paymentSuccessfull"));
 
 function generateRowCol() {
   // Select all the grid items
   const gridItems = document.querySelectorAll(".dsitdiv .echsit");
+  const rtrgridItems = document.querySelectorAll(".rsitdiv .echsit");
 
-  // Variables to track the current row and column
-  const totalColumns = 6; // The number of columns defined in your CSS grid-template-columns
-  let rowIndex = 1;
+  // Generate letters from 'A' to 'J'
+  const start = "A".charCodeAt(0); // Get the Unicode value for 'C'
+  const end = "J".charCodeAt(0); // Get the Unicode value for 'G'
+  const letters = [];
+
+  for (let i = start; i <= end; i++) {
+    letters.push(String.fromCharCode(i));
+  }
+
+  1; // Variables to track the current row and column
+  const totalColumns = 9;
+  let rowIndex;
   let colIndex = 1;
 
+  if (clasType == "First") {
+    rowIndex = 1;
+  } else if (clasType == "Business") {
+    rowIndex = 11;
+  } else if (clasType == "Premium") {
+    rowIndex = 21;
+  } else {
+    rowIndex = 31;
+  }
+
+  rowAndCol(gridItems, rowIndex, colIndex, totalColumns);
+
+  if (rtrgridItems) {
+    rowAndCol(rtrgridItems, rowIndex, colIndex), totalColumns;
+  }
+}
+
+function rowAndCol(gridItems, rowIndex, colIndex, totalColumns) {
   // Loop through each grid item and set the innerText
   gridItems.forEach((item, index) => {
     // get the div that contains the item sit detial
@@ -293,8 +447,6 @@ function generateRowCol() {
     // Update column index
     colIndex++;
 
-    // console.log("this too ");
-
     // If colIndex exceeds the total columns, reset it and move to the next row
     if (colIndex > totalColumns) {
       colIndex = 1;
@@ -303,7 +455,10 @@ function generateRowCol() {
   });
 }
 
+// function to display flights
 function displayFli(flight, tolPrice, rtrFli) {
+  clearTimeout(loaderTimeout);
+
   fliWrap.innerHTML = "";
 
   fliWrap.innerHTML += `
@@ -393,7 +548,7 @@ function displayFli(flight, tolPrice, rtrFli) {
                 <div class="aardtl">
                   <span>${flight.airline}</span>
                   <span class="sdot">&#8226; </span>
-                  <span>${flight.travel_class}</span>
+                  <span>${clasType.innerText}</span>
                   <span class="sdot">&#8226; </span>
                   <span>${flight.airplane}</span>
                 </div>
@@ -409,6 +564,7 @@ function displayFli(flight, tolPrice, rtrFli) {
             </div>`;
 }
 
+// the search button
 sFligt.addEventListener("click", test);
 
 const showflidrp = document.querySelectorAll(".shfldp");
@@ -421,6 +577,7 @@ const fliDetails = document.querySelectorAll(".fliic");
 let fliSvg;
 let fPicked;
 
+// drop down for the extra details to search for flights
 showflidrp.forEach((drop) => {
   drop.addEventListener("click", function (event) {
     // close all open dropdown first
@@ -440,11 +597,12 @@ showflidrp.forEach((drop) => {
   });
 });
 
+// this closes all dropdown if you click outside the dropdowns
 window.addEventListener("click", function () {
   closeAllDrops();
-  // getPassTotal();
 });
 
+// this updates the flight type once it's changed from the drop down
 fliType.forEach((type) => {
   type.addEventListener("click", () => {
     picking(fliType, type);
@@ -525,11 +683,6 @@ document.body.addEventListener("click", (event) => {
     }
   }
 });
-
-// passTotal.addEventListener("click", (event) => {
-//   event.stopPropagation();
-//   getPassTotal();
-// });
 
 fliClass.forEach((classes) => {
   classes.addEventListener("click", () => {

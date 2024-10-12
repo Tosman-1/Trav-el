@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/landpage.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
     <link rel="stylesheet" href="../styles/hotel.css" />
+    <link rel="stylesheet" href="../styles/flatpickr.min.css" />
     <link
       rel="shortcut icon"
       href="../images/trav-el-favicon-color.png"
@@ -21,7 +22,7 @@
         </div>
         <div class="mdtxt">
           <div class="hmm">
-            <a href="../index.html">
+            <a href="../homepage/index.html">
               <p>Home</p>
             </a>
           </div>
@@ -82,8 +83,18 @@
               <div class="sfidiv"><span>1 </span> <span>Guest(s)</span></div>
             </div>
             <div class="sfinp dflex">
-              <input type="date" name="Depature" id="" />
-              <input type="date" name="Return" id="" />
+              <input
+                type="text"
+                id="depature"
+                class="ckinout"
+                placeholder="Check-in"
+              />
+              <input
+                type="text"
+                id="return"
+                class="ckinout"
+                placeholder="Check-out"
+              />
             </div>
             <div class="sfbtn dflex">
               <button id="sflgt">Search</button>
@@ -470,6 +481,7 @@
       </div>
     </div>
   </body>
+  <script src="../scripts/flatpickr.min.js"></script>
   <script type="module" src="../scripts/hotel.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
 </html>

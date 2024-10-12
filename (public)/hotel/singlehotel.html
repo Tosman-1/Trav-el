@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="../styles/landpage.css" />
     <link rel="stylesheet" href="../styles/singlehotel.css" />
     <link rel="stylesheet" href="../styles/hotel.css" />
-    <link rel="stylesheet" href="../styles/landpage.css" />
+    <link rel="stylesheet" href="../styles/bookin.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
+    <link rel="stylesheet" href="../styles/flatpickr.min.css" />
     <link
       rel="shortcut icon"
       href="../images/trav-el-favicon-color.png"
@@ -22,7 +24,7 @@
         </div>
         <div class="mdtxt">
           <div class="hmm">
-            <a href="../index.html">
+            <a href="../homepage/index.html">
               <p>Home</p>
             </a>
           </div>
@@ -67,17 +69,17 @@
       </section>
       <section class="trssec">
         <div class="ssecdiv">
-          <div class="trlidt">
+          <div class="trlidt trdnrm">
             <p>Overview</p>
           </div>
-          <div class="trlidt">
+          <div class="trlidt trdnrm">
             <p>Photos</p>
           </div>
-          <div class="trlidt">
+          <div class="trlidt trdnrm">
             <p>Facilities</p>
           </div>
-          <div class="trlidt">
-            <p>Location</p>
+          <div class="trlidt trdnrm">
+            <p>Reviews</p>
           </div>
           <div class="trlidt bdrgt">
             <p>Get a room</p>
@@ -87,23 +89,23 @@
       <section>
         <div class="bstoff">
           <div class="trdcdiv" id="trdesc">
-            <div class="trdctxt" id="decrpt"></div>
-            <div class="trcrmgdiv" id="topcarcon">
+            <div class="trdctxt trdscrl" id="decrpt"></div>
+            <div class="trcrmgdiv trdscrl topcarcon">
               <div class="trcrinner" id="imgSld"></div>
-              <button class="jstmv left" id="prlft">&#10094;</button>
-              <button class="jstmv right" id="nxrgt">&#10095;</button>
+              <button class="jstmv left prlft">&#10094;</button>
+              <button class="jstmv right nxrgt">&#10095;</button>
             </div>
-            <div class="wtexp">
-              <div class="htlfac">
-                <div class="htlfatop">
-                  <h2>Facilities</h2>
-                </div>
-                <div class="htlfadtl">
-                  <div class="htlecfa" id="facwrp"></div>
-                </div>
+            <div class="wtexp trdscrl">
+              <!-- <div class="htlfac"> -->
+              <div class="htlfatop">
+                <h2>Facilities</h2>
               </div>
+              <div class="htlfadtl">
+                <div class="htlecfa" id="facwrp"></div>
+              </div>
+              <!-- </div> -->
             </div>
-            <div class="turrevs">
+            <div class="turrevs trdscrl">
               <div class="ctrhead">
                 <p>Reviews</p>
               </div>
@@ -198,117 +200,213 @@
               </div>
             </div>
           </div>
-          <div class="garmdiiv">
-            <div class="htpodiv dflex">
-              <div class="htlpos" id="smalldwcar">
-                <div class="trcrinner" id="">
-                  <div class="romimg">
-                    <img src="../images/rooms12.webp" alt="" />
-                  </div>
-                  <div class="romImg">
-                    <img src="../images/rooms1.webp" alt="" />
-                  </div>
-                </div>
-                <button class="jstmv left" id="dwlft">&#10094;</button>
-                <button class="jstmv right" id="dwrgt">&#10095;</button>
+          <div class="cdates">
+            <input type="text" id="comein" placeholder="Check-in" />
+            <input type="text" id="going" placeholder="Check-out" />
+          </div>
+          <div class="garmdiiv dnone" id="shwroms"></div>
+        </div>
+
+        <div class="bokmod dnone">
+          <div class="closvg clsbkin">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="28px"
+              viewBox="0 -960 960 960"
+              width="28px"
+              fill="#fff"
+            >
+              <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+              />
+            </svg>
+          </div>
+          <div class="bkminner">
+            <div class="shwprg dflex jbtw">
+              <div class="flsle">
+                <span class="prgn done">1</span>
+                <span>Hotel selected</span>
               </div>
-              <div class="htltxts">
-                <div class="httwrp">
-                  <div class="htlnp dflex jbtw" width="100%">
-                    <p>Premium Room</p>
-                    <p>$60</p>
+              <div class="line"></div>
+              <div class="flsle">
+                <span class="prgnum">2</span>
+                <span>Confirm booking</span>
+              </div>
+              <div class="line"></div>
+              <div class="flsle">
+                <span class="prgnum">3</span>
+                <span>Guest(s) info</span>
+              </div>
+              <div class="line"></div>
+              <div class="flsle">
+                <span class="prgnum">4</span>
+                <span>Payment method</span>
+              </div>
+            </div>
+
+            <div class="cnfrmbk flbkmod">
+              <div class="pssghd">
+                <h3 id="htname">Saint larme</h3>
+              </div>
+              <div class="otrcnt">
+                <div class="rdanot">
+                  <span class="smaones">Room:</span>
+                  <span id="rmname">Premium Room</span>
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Dates:</span>
+                  <span id="ckcodte">18 October 2024 - 07 November 2024</span>
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Guests:</span>
+                  <span id="gustnm">1 guest</span>
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Bed:</span>
+                  <span>1</span>
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Includes:</span>
+                  <span>This is a room only rate</span>
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Payment:</span>
+                  <span>Full prepayment is required when booking.</span>
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Tax:</span>
+                  <span>Tax 10% included</span>
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Additional info:</span>
+                  <span
+                    >Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                    nisi ex, sequi id ipsa beatae debitis.</span
+                  >
+                </div>
+                <div class="rdanot">
+                  <span class="smaones">Cancellation:</span>
+                  <span>
+                    Please be aware that any cancellation will incur a charge in
+                    full.</span
+                  >
+                </div>
+              </div>
+              <div class="ttlprcb dflex jbtw">
+                <p>Total price (inc. taxes and fees)</p>
+                <p class="bgprcb" id="alldyprc">$</p>
+              </div>
+              <div class="cntbtn">
+                <button type="button" class="shwnxt">Continue</button>
+              </div>
+            </div>
+
+            <div class="pasinf flbkmod dnone">
+              <div class="pssgdtl">
+                <div class="pssghd">
+                  <h3>Passenger</h3>
+                </div>
+                <div class="pssgbd">
+                  <div class="pssinner">
+                    <div class="psbdwp">
+                      <p>Passenger 1 :</p>
+                      <div class="psgnm">
+                        <div class="rtn">
+                          <label class="label">Title*</label>
+                          <select name="" class="select titlens">
+                            <option value=""></option>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                          </select>
+                        </div>
+                        <div class="rtnm">
+                          <label class="label">Full-name*</label>
+                          <input
+                            type="text"
+                            placeholder="First name   Last name"
+                            class="fllname"
+                            id="flnm"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="htlstar dflex jbtw" width="100%">
-                    <div class="htlft dflex">
-                      <span>.2 guests</span>
-                    </div>
-                    <div class="htrgt">
-                      <span>per night</span>
-                    </div>
+                  <div class="requrd">
+                    <span>Required*</span>
                   </div>
                 </div>
-                <div class="htamen dgrid">
-                  <div class="htecam">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                      class="htlaic"
-                    >
-                      <path
-                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                      />
-                    </svg>
-                    <span>King-size bed</span>
+              </div>
+              <div class="cnctdtls">
+                <div class="pssghd">
+                  <h3>Contact details</h3>
+                </div>
+                <div class="cnctwp">
+                  <span
+                    >Please provide the contact details of the person who will
+                    receive the booking confirmation and trip details.</span
+                  >
+                  <div class="psgnm">
+                    <div class="rtn">
+                      <label class="label">Country code*</label>
+                      <select name="country code" class="select">
+                        <option value="+234">Nigeria(+234)</option>
+                        <option value="+1">United states(+1)</option>
+                        <option value="+44">United kingdom(+44)</option>
+                        <option value="">Other options</option>
+                      </select>
+                    </div>
+                    <div class="rtnm">
+                      <label class="label"> Phone numeber</label>
+                      <input type="tel" id="phnnum" />
+                    </div>
                   </div>
-                  <div class="htecam">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                      class="htlaic"
-                    >
-                      <path
-                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                      />
-                    </svg>
-                    <span>Free wifi</span>
-                  </div>
-                  <div class="htecam">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                      class="htlaic"
-                    >
-                      <path
-                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                      />
-                    </svg>
-                    <span>Bathtub</span>
-                  </div>
-                  <div class="htecam">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                      class="htlaic"
-                    >
-                      <path
-                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                      />
-                    </svg>
-                    <span>Air conditioning</span>
-                  </div>
-                  <div class="htecam">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                      class="htlaic"
-                    >
-                      <path
-                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                      />
-                    </svg>
-                    <span>340sq ft</span>
-                  </div>
-                  <div class="htecam">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 -960 960 960"
-                      class="htlaic"
-                    >
-                      <path
-                        d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                      />
-                    </svg>
-                    <span>Minibar </span>
+                  <div class="rtnm rntsp">
+                    <label class="label">Email</label>
+                    <input type="email" id="mail" />
                   </div>
                 </div>
-                <div class="htlros" style="text-align: end">
-                  <button>Select room</button>
+                <div class="requrd">
+                  <span>Required*</span>
+                </div>
+              </div>
+              <div class="cntbtn">
+                <button type="button" class="shwnxt">Continue</button>
+              </div>
+            </div>
+
+            <div class="paynt flbkmod dnone">
+              <div class="payinner">
+                <div class="pymnt">
+                  <div class="ttlprc dflex jbtw" id="detopr">
+                    <p>Total price</p>
+                  </div>
+                  <div class="cnfrmp">
+                    <p>
+                      Once your payment has been confirmed, we will send you:
+                    </p>
+                    <ul>
+                      <li>your booking confirmation e-mail</li>
+                      <li>your ticket</li>
+                    </ul>
+                  </div>
+                  <div class="agrmt">
+                    <input type="checkbox" name="" id="agree" />
+                    <span
+                      >I have read and accept <a href="">Legal information</a>,
+                      <a href="">General conditions of carriage</a>,
+                      <a href="">Special condition</a> and the
+                      <a href="">Fare conditions</a>
+                    </span>
+                  </div>
+                  <div class="cntbtn">
+                    <button type="button" id="bkndpy">Pay</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="flightdiv"></div> -->
       </section>
 
       <footer>
@@ -521,6 +619,9 @@
       </div>
     </div>
   </body>
+  <script src="../scripts/flatpickr.min.js"></script>
   <script type="module" src="../scripts/singlehotel.js"></script>
+  <script type="module" src="../scripts/bookin.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
 </html>

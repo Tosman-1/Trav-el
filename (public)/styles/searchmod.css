@@ -1,0 +1,32 @@
+.htcontl{
+  background-color: #dddcdf;
+  width: 360px;
+  font-size: 1.25rem;
+}
+.htcontl span{
+  font-size: 1rem;
+  color: #323136c2;
+}
+.frimg{
+  width: 100%;
+  height: 250px;
+}
+.frimg img{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.frbtm{
+  padding: 0 16px 16px;
+}
+ .cithtl{
+  padding: 13px 0;
+}
+.vwhtlbtn button{
+  width: 100%;
+  font-size: 1rem;
+  padding: 12px 0;
+  background-color: #262430;
+  color: #e0dafc;
+  border: none;
+}

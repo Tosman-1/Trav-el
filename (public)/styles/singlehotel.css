@@ -1,9 +1,16 @@
-.trfsec{
+.trfsec {
   overflow: hidden;
   height: 600px;
 }
 
-.trtpimg{
+.trssec {
+  position: sticky;
+  top: 74px;
+  background-color: #9e9ea8;
+  z-index: 18;
+}
+
+.trtpimg {
   width: 100%;
   height: 100%;
   background-position: center;
@@ -11,7 +18,12 @@
   background-repeat: no-repeat;
 }
 
-.htlltpd{
+/* .flatpickr-calendar {
+  z-index: 9999; 
+  position: absolute;
+} */
+
+.htlltpd {
   width: 100%;
   height: 100%;
   display: flex;
@@ -21,20 +33,20 @@
   max-width: 1300px;
   margin: auto;
 }
-.htlltpd span{
+.htlltpd span {
   font-size: 1rem;
   color: #eaebfcbb;
 }
-.htlname p{
+.htlname p {
   font-size: 2.7rem;
 }
-.htlprice{
+.htlprice {
   text-align: center;
   font-size: 1.5rem;
-  background-color: rgba(65, 74, 97, 0.541);
+  background-color: #74767a67;
   padding: 10px;
 }
-.ssecdiv{
+.ssecdiv {
   color: #000;
   display: flex;
   align-items: center;
@@ -42,7 +54,7 @@
   text-align: center;
 }
 
-.trlidt{
+.trlidt {
   width: 12.5rem;
   height: 60px;
   text-align: center;
@@ -50,26 +62,26 @@
   border-left: 1px solid #000;
   cursor: pointer;
 }
-.trlidt:hover{
+.trlidt:hover {
   background-color: #68739480;
 }
-.trlidt p{
+.trlidt p {
   font-size: 1.1rem;
   font-weight: 600;
   height: 100%;
   text-align: center;
 }
-.bdrgt{
+.bdrgt {
   border-right: 1px solid #000;
 }
-.trdcdiv{
+.trdcdiv {
   display: grid;
   place-items: center;
   padding: 0 20px;
   /* margin-top: 30px; */
 }
 
-.trdctxt{
+.trdctxt {
   text-align: start;
   max-width: 62.5rem;
   line-height: 30px;
@@ -103,7 +115,7 @@
 }
 
 .trcrimg img {
-  width: 100%; 
+  width: 100%;
   height: 100%;
   object-fit: fill;
   object-position: center;
@@ -129,8 +141,7 @@
   right: 0;
 }
 
-
-.wtexp{
+.wtexp {
   text-align: start;
   width: 100%;
   max-width: 62.5rem;
@@ -140,89 +151,103 @@
   padding: 20px;
 }
 
-.htlecfa ul{
+.htlecfa ul {
   padding: 10px 30px;
   line-height: 30px;
 }
 
-.ctrhead p{
+.ctrhead p {
   font-size: 1.7rem;
   font-weight: 600;
 }
-.turrevs{
+.turrevs {
   text-align: left;
   max-width: 62.5rem;
   width: 100%;
   padding: 30px 0 5px;
 }
-.revcont{
+.revcont {
   align-items: flex-start;
   justify-content: space-between;
-  padding: 15px 0 ;
+  padding: 15px 0;
 }
-.revcount{
+.revcount {
   font-size: 1.4rem;
   margin-right: 15px;
 }
-.stars{
+.stars {
   width: 30px;
   height: 30px;
   color: #2e1c50;
 }
-.revrgt span, .txtrevs span{
+.revrgt span,
+.txtrevs span {
   color: #4f4f55;
 }
-.ovallrd, .resrcu{
+.ovallrd,
+.resrcu {
   display: flex;
   align-items: center;
 }
-.ovatxt{
+.ovatxt {
   width: 65px;
   margin: 10px 0;
 }
-.ovacount{
+.ovacount {
   background-color: #bbbbc09d;
   height: 15px;
   width: 400px;
   border-radius: 30px;
   margin: 0 10px;
 }
-.incount{
+.incount {
   background-color: #2e1c50;
   height: 13.5px;
   width: 0%;
   border-radius: 40px;
 }
-.txtrevs{
+.txtrevs {
   border-top: 1px solid #2d2b3d83;
   text-align: center;
   padding: 20px;
 }
 
-.romimg{
+.romimg {
   width: 100%;
   height: 100%;
 }
-.romimg img{
+.romimg img {
   width: 500px;
   height: 350px;
   object-fit: fill;
   object-position: center;
 }
-.htlpos{
+.htlpos {
   position: relative;
   width: 50%;
   height: 350px;
   overflow: hidden;
 }
-.htpodiv{
-  margin: auto;
+.htpodiv {
+  margin: 30px auto;
   max-width: 1000px;
   /* height: ; */
 }
 
-
-
-
-
-
+.cdates {
+  width: 100%;
+  height: auto;
+  max-width: 1000px;
+  padding: 5px 15px;
+  margin: auto;
+}
+.cdates input {
+  width: 45%;
+  font-size: 1rem;
+  padding: 15px 20px;
+  margin: 0 10px;
+  border: 3px solid #6571999d;
+  border-radius: 10px;
+  outline: none;
+  color: #1f2029;
+}

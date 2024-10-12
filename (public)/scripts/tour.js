@@ -89,6 +89,8 @@ const testing = async () => {
 
 // let depart = whereFro.value.charAt(0).toUpperCase() + whereFro.value.slice(1);
 
+// console.log(window.location.href);
+
 const test = async () => {
   let destination =
     whereGo.value.charAt(0).toUpperCase() + whereGo.value.slice(1);

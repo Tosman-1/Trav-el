@@ -36,16 +36,72 @@ const forWhere = document.getElementById("fowhere");
 const searchTitle = document.getElementById("srchead");
 const htlWrap = document.querySelector(".htlwrap");
 const sFligt = document.getElementById("sflgt");
+const checks = document.querySelectorAll("ckinout");
+
+flatpickr("#depature", {
+  altInput: true,
+  altFormat: "j F, Y",
+  minDate: "today",
+  dateFormat: "Y-m-d",
+  onChange: function (selectedDates, dateStr, instance) {
+    const returnPicker = document.querySelector("#return")._flatpickr;
+    returnPicker.set("minDate", selectedDates[0]);
+    sessionStorage.setItem("checkin", dateStr);
+  },
+});
+flatpickr("#return", {
+  altInput: true,
+  altFormat: "j F, Y",
+  dateFormat: "Y-m-d",
+  minDate: "today",
+  onChange: function (selectedDates, dateStr) {
+    sessionStorage.setItem("checkout", dateStr);
+  },
+});
 
 const testing = async () => {
   try {
     const hotelRef = await addDoc(collection(db, "hotels"), {
-      country: "France",
-      city: "Paris",
-      hotel_name: "Saint lama depre",
+      country: "Nigeria",
+      city: "Lagos",
+      hotel_name: "Blues hotel",
       rating: "5",
-      rooms: {},
-      Desp: "A city-centre château, in Paris? Mais oui… Saint James Paris has always had lofty ambitions: in previous lives, it has been an intellectual boot camp for budding French boffins, and site of the first-ever hot-air balloon airfield. In the hotel's latest guise as a grandiose, cultured, country estate-style hotel, it’s still flying high. Nature reigns in this inner-city sanctuary, where Parisian art de Vivre is infused with the soul of an English country club, reconciling paradoxes with a feather-light touch. The restaurant Bellefeuille whips up flavours of bohemian fancy, from the organic gardens of Saint James, straight to your plate. For those who want old-school Gallic romance of grand staircases, neoclassic frescos, swagged velvet drapes, buttery florals, and gardens galore, Saint James will sweep you off your feet.",
+      rooms: {
+        1: {
+          name: "Premium Room",
+          images: [
+            "../images/rooms1.webp",
+            "../images/rooms12.webp",
+            "../images/rooms1.webp",
+          ],
+          amenities: [
+            "King-size bed",
+            "Free wifi",
+            "Bathtub",
+            "Air conditioning",
+            "340sqft",
+            "Mini bar",
+          ],
+          price: "150",
+        },
+        2: {
+          name: "Standard Room",
+          images: ["../images/hotel1-1.jpg", "../images/hotel1-3.jpg"],
+          amenities: [
+            "Queen-size bed",
+            "Free wifi",
+            "Bathtub",
+            "Air conditioning",
+            "Water Heater",
+            "Coffee table",
+          ],
+          price: "100",
+        },
+      },
+      Desp: `Take advantage of recreation opportunities including an outdoor pool and a fitness center. Additional amenities at this hotel include complimentary wireless internet access, a hair salon, and tour/ticket assistance.
+            Grab a bite to eat at the hotel's buffet restaurant, which features a bar/lounge, or stay in and take advantage of the room service. Quench your thirst with your favorite drink at the poolside bar.
+            Featured amenities include a business center, express check-out, and complimentary newspapers in the lobby. Event facilities at this hotel consist of conference space and meeting rooms. A roundtrip airport shuttle is complimentary (available 24 hours).
+            Make yourself at home in one of the 165 guestrooms featuring refrigerators and minibars. LCD televisions with satellite programming provide entertainment, while complimentary wireless internet access keeps you connected. Private bathrooms with showers feature complimentary toiletries and hair dryers. Conveniences include phones, as well as safes and desks.`,
       Price: "661",
       facilities: [
         "Street packing",
@@ -66,7 +122,7 @@ const testing = async () => {
         "Smoke alarm",
         "Outdoor swimming pool",
       ],
-      Image: "../images/hotel-paris.webp",
+      Image: "../images/hotel1-3.jpg",
       Images: [],
       location: {
         address: "5 Place du Chancelier Adenauer Paris 75116 France",
