@@ -37,6 +37,7 @@ const searchTitle = document.getElementById("srchead");
 const htlWrap = document.querySelector(".htlwrap");
 const sFligt = document.getElementById("sflgt");
 const checks = document.querySelectorAll("ckinout");
+let loaderTimeout;
 
 flatpickr("#depature", {
   altInput: true,
@@ -140,6 +141,19 @@ const test = async () => {
   let destination =
     forWhere.value.charAt(0).toUpperCase() + forWhere.value.slice(1);
 
+  if (destination !== "") {
+    htlWrap.innerHTML = "";
+
+    htlWrap.innerHTML = `<div id="loader-wrapper">
+                          <div class="loader"></div>
+                        </div>`;
+
+    loaderTimeout = setTimeout(() => {
+      htlWrap.innerHTML = "";
+      htlWrap.innerHTML = `<div class="errmg">Something is wrong</div>`;
+    }, 9000);
+  }
+
   try {
     const hotelRef = collection(db, "hotels");
     const htlQuery = query(
@@ -155,14 +169,13 @@ const test = async () => {
 
     if (!querySnapshot.empty) {
       searchTitle.innerText = `Hotels in ${destination}`;
+      htlWrap.innerHTML = "";
 
       querySnapshot.forEach((doc) => {
         let hotel = doc.data();
         let hotelId = doc.id;
 
         displayHotels(hotel, hotelId);
-
-        console.log("good job");
       });
     }
   } catch (e) {
@@ -173,6 +186,8 @@ const test = async () => {
 sFligt.addEventListener("click", test);
 
 function displayHotels(hotel, hotelId) {
+  clearTimeout(loaderTimeout);
+
   htlWrap.innerHTML += `<div class="htcondiv dflex">
             <div class="htlimgs">
               <img src="${hotel.Image}" alt="" />
@@ -266,20 +281,20 @@ function displayHotels(hotel, hotelId) {
                 </div>
               </div>
               <div class="htlros" style="text-align: end">
-                <button class="selrom">View hotel</button>
+                <button data-id=${hotelId} class="selrom">View hotel</button>
               </div>
             </div>
           </div>`;
 
-  htlDetails(hotelId);
+  htlDetails();
 }
 
-function htlDetails(hotelId) {
+function htlDetails() {
   const shwTrdtl = document.querySelectorAll(".selrom");
 
   shwTrdtl.forEach((dtls) => {
-    dtls.addEventListener("click", () => {
-      console.log(hotelId);
+    dtls.addEventListener("click", (e) => {
+      const hotelId = e.target.getAttribute("data-id");
       sessionStorage.setItem("hotelId", hotelId);
       window.location.href = "singlehotel.html";
     });

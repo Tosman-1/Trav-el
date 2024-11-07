@@ -39,11 +39,13 @@
 }
 .htlname p {
   font-size: 2.7rem;
+  color: #63627e;
 }
 .htlprice {
   text-align: center;
   font-size: 1.5rem;
-  background-color: #74767a67;
+  background-color: #8a88917c;
+
   padding: 10px;
 }
 .ssecdiv {
@@ -232,22 +234,4 @@
   margin: 30px auto;
   max-width: 1000px;
   /* height: ; */
-}
-
-.cdates {
-  width: 100%;
-  height: auto;
-  max-width: 1000px;
-  padding: 5px 15px;
-  margin: auto;
-}
-.cdates input {
-  width: 45%;
-  font-size: 1rem;
-  padding: 15px 20px;
-  margin: 0 10px;
-  border: 3px solid #6571999d;
-  border-radius: 10px;
-  outline: none;
-  color: #1f2029;
 }

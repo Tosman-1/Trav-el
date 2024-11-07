@@ -2,10 +2,6 @@ import { config } from "./key.js";
 import { paystackKey } from "./key.js";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-// import {
-//   getAuth,
-//   onAuthStateChanged,
-// } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -36,8 +32,8 @@ const email = document.getElementById("mail");
 const fillname = document.getElementById("flnm");
 const userId = sessionStorage.getItem("userId");
 let userName;
-
-// console.log("useerid:", userId);
+let userEmail;
+let tolPrice;
 
 if (userId) {
   const docRef = doc(db, "users", userId);
@@ -47,10 +43,11 @@ if (userId) {
       if (docSnap.exists()) {
         const user = docSnap.data();
         userName = user.name;
+        // userEmail = user.email;
 
         fillname.value = user.name;
         email.value = user.email;
-        phoneNum.value = user.phone || "";
+        phoneNum.value = user.phone_num || "";
       }
     })
     .catch((error) => {
@@ -139,23 +136,39 @@ function nextStep(index) {
   bokinDtls[index + 1].classList.remove("dnone");
 }
 
+function getPrice() {
+  let bokinDet = JSON.parse(sessionStorage.getItem("bokin"));
+
+  tolPrice = bokinDet.price;
+}
+
 payBtn.addEventListener("click", (e) => {
   if (agreeTerms.checked) {
+    getPrice();
     payWithPaystack(e);
   } else {
-    alert("Read the terms and conditions");
+    Swal.fire({
+      toast: true,
+      position: "top",
+      timer: "3000",
+      icon: "info",
+      title: "Read the terms and condition",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
   }
 });
 
 function uploadBokin() {
   let bokinDetails = JSON.parse(sessionStorage.getItem("bokin"));
-  const totalInNgn = document.getElementById("detopr");
 
   console.log(bokinDetails);
 
   if (bokinDetails) {
-    console.log("passed condition");
-
     bokinDetails.status = "confirmed";
     bokinDetails.username = userName;
     bokinDetails.userid = userId;
@@ -170,33 +183,56 @@ function uploadBokin() {
   } else {
     alert("no bookin details");
   }
-  console.log("got to the end");
 }
 
 function confirmClose() {
-  let text = "Are you sure you don't want to pay";
-  if (confirm(text) == false) {
-    return;
-  } else {
-    closeModal();
-  }
+  Swal.fire({
+    position: "top",
+    title: "Are you sure you don't want to pay?",
+    showCancelButton: true,
+    confirmButtonText: "Yes",
+    cancelButtonText: `I want to pay`,
+    confirmButtonColor: "#6b6777",
+    cancelButtonColor: "#2a2a2c",
+    allowOutsideClick: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      closeModal();
+      window.location.reload();
+    }
+  });
 }
 
 function payWithPaystack(e) {
   e.preventDefault();
 
+  const tolPriceNgn = parseInt(tolPrice) * 100;
+  userEmail = email.value;
+
   const popup = PaystackPop.setup({
     key: paystackKey,
-    email: "rafiuhammed78@gmail.com",
-    amount: 23400 * 100,
+    email: userEmail,
+    amount: tolPriceNgn,
     onClose: () => {
       confirmClose();
     },
     callback: () => {
       uploadBokin();
 
+      Swal.fire({
+        toast: true,
+        position: "top",
+        timer: "3000",
+        icon: "success",
+        title: "Payment successful",
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
       closeModal();
-      alert("success");
+      // window.location.reload();
     },
     onError: (error) => {
       console.log("Error: ", error.message);

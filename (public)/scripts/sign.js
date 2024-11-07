@@ -7,6 +7,7 @@ import {
   getAuth,
   signInWithPopup,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateProfile,
   onAuthStateChanged,
@@ -15,15 +16,9 @@ import {
 import {
   getFirestore,
   collection,
-  addDoc,
-  getDocs,
   getDoc,
-  query,
-  where,
   doc,
   setDoc,
-  and,
-  or,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const provider = new GoogleAuthProvider();
@@ -50,10 +45,8 @@ const signDrp = document.querySelector(".signdrp");
 const signInWithG = document.querySelectorAll(".siwg");
 
 let today = new Date();
-let year = today.getFullYear();
-let month = today.getMonth() + 1;
-let day = today.getDate();
-let presentDay = `${year} - ${month} - ${day}`;
+let formattedDate = today.toLocaleDateString();
+let formattedTime = today.toLocaleTimeString();
 
 onAuthStateChanged(auth, (user) => {
   showName.innerHTML = "";
@@ -65,7 +58,6 @@ onAuthStateChanged(auth, (user) => {
     showName.innerHTML = user.displayName;
 
     sessionStorage.setItem("userId", userId);
-
     saveUserDetails(name, email, userId);
   } else {
     isSignedIn = false;
@@ -76,25 +68,38 @@ onAuthStateChanged(auth, (user) => {
 
 const saveUserDetails = async (name, email, userId) => {
   try {
-    const userRef = collection(db, "users");
+    const usersRef = doc(db, "users", userId);
 
-    await setDoc(doc(userRef, userId), {
-      name,
-      email,
-      signupdate: presentDay,
-    });
+    const docSnap = await getDoc(usersRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:");
+    } else {
+      const userRef = collection(db, "users");
+
+      await setDoc(doc(userRef, userId), {
+        name,
+        email,
+        signupdate: `${formattedDate} ${formattedTime}`,
+      });
+    }
   } catch (error) {
     console.log(error);
   }
 };
 
-// showSignIn();
+// sign in with google
 signInWithG.forEach((signInUp) => {
   signInUp.addEventListener("click", () => {
     signInWithPopup(auth, provider)
       .then((response) => {
-        // console.log(response);
         const user = auth.currentUser;
+        const name = user.displayName;
+        const email = user.email;
+        const userId = user.uid;
+
+        saveUserDetails(name, email, userId);
+
         showMod();
       })
       .catch((err) => {
@@ -111,6 +116,7 @@ const lgEmail = document.getElementById("lgemail");
 const lgPass = document.getElementById("lgpass");
 const signIn = document.getElementById("login");
 const signUp = document.getElementById("signup");
+const signLoader = document.getElementById("sigbtn");
 const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passReg =
   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*_^#?&]{8,}$/;
@@ -122,60 +128,137 @@ signUp.addEventListener("click", () => {
     password.value.trim() === "" ||
     confPass.value.trim() === ""
   ) {
-    alert("all fields are mandatory");
+    Swal.fire({
+      toast: true,
+      position: "top",
+      timer: "3000",
+      icon: "error",
+      title: "All field are mandatory",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
   } else if (!emailReg.test(email.value.trim())) {
-    alert("Input a valid email");
+    Swal.fire({
+      toast: true,
+      position: "top",
+      timer: "3000",
+      icon: "error",
+      title: "Input a valid email",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
   } else if (!passReg.test(password.value.trim())) {
-    alert(
-      "password should be atleast 8 chars, with a special char, a number , a lowercase & uppercase letter"
-    );
+    Swal.fire({
+      toast: true,
+      position: "top",
+      timer: "4000",
+      icon: "error",
+      title:
+        "password should be atleast 8 chars, with a special char, a number , a lowercase & uppercase letter",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
   } else if (confPass.value.trim() !== password.value.trim()) {
-    alert("passwords do not match");
+    Swal.fire({
+      toast: true,
+      position: "top",
+      timer: "3000",
+      icon: "error",
+      title: "Password do not match",
+      showConfirmButton: false,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
   } else {
+    signUp.innerHTML = "";
+    signUp.innerHTML = `<div id="loader-wrapper">
+                            <div class="loader"></div>
+                          </div>`;
     createUserWithEmailAndPassword(auth, email.value, password.value)
       .then((usercredentials) => {
-        // console.log("successfull");
-        // console.log(usercredentials);
         const user = usercredentials.user;
-
+        signUp.innerHTML = "";
+        signUp.innerHTML = "SIGN UP";
         updateProfile(usercredentials.user, { displayName: name.value }).then(
-          (res) => {
-            console.log("entered");
-            console.log(res);
-
-            if (res) {
-              // showSignIn();
-              console.log("runing update");
-
-              alert("success");
-            }
+          () => {
+            Swal.fire({
+              toast: true,
+              position: "top",
+              timer: "3000",
+              icon: "error",
+              title: "Registration successfull",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            showMod();
           }
         );
       })
       .catch((error) => {
+        signUp.innerHTML = "";
+        signUp.innerHTML = "SIGN UP";
         console.log(error);
       });
-    showMod();
+    // showMod();
   }
-  // location.reload();
 });
 
 signIn.addEventListener("click", () => {
-  signInWithEmailAndPassword(auth, lgEmail.value, lgPass.value)
-    .then((userCredential) => {
-      // Signed in
-      const userCr = userCredential.user;
-      console.log(userCredential);
-      if (userCr) {
-        // console.log(userCr);
-        showMod();
-        lgEmail.value = "";
-        lgPass.value = "";
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  if (!lgEmail.value.trim() == "" && lgPass.value.trim()) {
+    signLoader.innerHTML = "";
+    signLoader.innerHTML = `<div id="loader-wrapper">
+                          <div class="loader"></div>
+                        </div>`;
+
+    signInWithEmailAndPassword(auth, lgEmail.value, lgPass.value)
+      .then((userCredential) => {
+        const userCr = userCredential.user;
+        signLoader.innerHTML = "";
+        signLoader.innerHTML = "SIGN IN";
+        if (userCr) {
+          Swal.fire({
+            toast: true,
+            position: "top",
+            timer: "3000",
+            icon: "success",
+            title: "Signed in successfully",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          showMod();
+          lgEmail.value = "";
+          lgPass.value = "";
+        }
+      })
+      .catch((error) => {
+        signLoader.innerHTML = "";
+        signLoader.innerHTML = "SIGN IN";
+        console.log(error);
+      });
+  }
 });
 
 const slideRight = document.getElementById("slirgt");
@@ -184,12 +267,46 @@ const signupTxt = document.querySelector(".siptxt");
 const mSlide = document.querySelector(".scover");
 const signinTxt = document.querySelector(".sintxt");
 const closmod = document.getElementById("clsmod");
+const frgPass = document.getElementById("frgps");
 const fullmod = document.querySelector(".stpp");
 const shDrop = document.getElementById("whesin");
 let isShow = true;
 
+const forgetPassword = async () => {
+  const { value: email } = await Swal.fire({
+    input: "email",
+    inputLabel: "Enter your email address",
+    showCancelButton: true,
+    confirmButtonColor: "#5c6997",
+    allowOutsideClick: false,
+  });
+  if (email) {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        Swal.fire({
+          toast: true,
+          position: "top",
+          timer: "3000",
+          icon: "success",
+          title: `Reset link has been sent to ${email}`,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
+};
+
+frgPass.addEventListener("click", forgetPassword);
+
 const profileLoc = "../profile/profile.html";
-const profPath = "/travel%20agency/(public)/profile/profile.html";
 
 slideLeft.addEventListener("click", () => {
   mSlide.classList.add("slide");
@@ -210,7 +327,7 @@ function siDropDwn() {
                             <div class="itli">
                               <ul>
                                 <li id="prof">Profile</li>
-                                <li><a href="">Bookings</a></li>
+                                <li><a href="../bookinpage/checkbokin.html">Bookings</a></li>
                                 <li><a href="">Wishlists</a></li>
                                 <li><a href="">Help</a></li>
                               </ul>
@@ -246,11 +363,19 @@ function setSignOut() {
     logOut.addEventListener("click", () => {
       signOut(auth)
         .then((res) => {
-          alert("logout successful");
-          if (window.location.pathname == profPath) {
-            const homePage = "../homepage/index.html";
-            window.location.replace(homePage);
-          }
+          Swal.fire({
+            toast: true,
+            position: "top",
+            timer: "3000",
+            icon: "success",
+            title: "Signed out successfully",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
         })
         .catch((error) => {
           console.log(error);

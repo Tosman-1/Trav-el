@@ -6,8 +6,6 @@ import {
   collection,
   getDocs,
   getDoc,
-  query,
-  where,
   doc,
   setDoc,
   and,
@@ -32,8 +30,9 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-// const tourId = sessionStorage.getItem("tourId");
-const tourId = "6Yz9967Z8TIrHJRHifqH";
+const tourId = sessionStorage.getItem("tourId");
+console.log(tourId);
+
 const bigImg = document.getElementById("bigimg");
 const topDtls = document.getElementById("topdtls");
 const descrip = document.getElementById("descrip");
@@ -44,17 +43,30 @@ const tourStart = document.getElementById("trstr");
 const tourEnd = document.getElementById("trend");
 const imprt = document.querySelector(".depresp");
 const tourDel = document.querySelectorAll(".whte");
+const toDate = document.getElementById("whentoo");
+const theDay = new Date();
+const day = theDay.getDate();
+const month = theDay.getMonth() + 1;
+const year = theDay.getFullYear();
+const today = `${year}-${month}-${day}`;
 
-// console.log(tourId);
+flatpickr("#whentoo", {
+  altInput: true,
+  altFormat: "j F, Y",
+  dateFormat: "Y-m-d",
+  minDate: "today",
+  defaultDate: sessionStorage.getItem("tourDate") ?? today,
+});
 
 function getDetails() {
   const docRef = doc(db, "tours", tourId);
+
   getDoc(docRef).then((docSnap) => {
     if (docSnap.exists()) {
       const singleTour = docSnap.data();
-      console.log("Document data:", singleTour);
+      document.title = document.title = `Trav-el/Tours/${singleTour.name}`;
 
-      bigImg.style.backgroundImage = `url(${singleTour.image})`;
+      bigImg.style.backgroundImage = `linear-gradient(#25252763, #25252763), url(${singleTour.image})`;
 
       const tourName = document.createElement("h3");
       tourName.innerText = singleTour.name;
@@ -64,7 +76,7 @@ function getDetails() {
       const date = document.createElement("div");
       date.classList.add("trlidt");
       date.innerHTML = `<p>Date</p>
-                        <h3>${shwDate()}</h3>`;
+                        <h3>${shwDate(toDate.value || today)}</h3>`;
 
       const duration = document.createElement("div");
       duration.classList.add("trlidt");
@@ -78,14 +90,14 @@ function getDetails() {
 
       const space = document.createElement("div");
       space.classList.add("trlidt");
-      space.innerHTML = `<p>Max per group</p>
-                         <h3>${singleTour.space}</h3>`;
+      space.innerHTML = `<p>Tourists</p>
+                         <input type="text" value="2" class="jststle">`;
 
       const bookNow = document.createElement("div");
       bookNow.classList.add("trlidt");
       bookNow.classList.add("bdrgt");
       bookNow.innerHTML = `<div class="buut">
-                             <button id="">BOOK NOW</button>
+                             <button class="shwbkin">BOOK NOW</button>
                            </div>`;
 
       topDtls.appendChild(date);
@@ -93,6 +105,8 @@ function getDetails() {
       topDtls.appendChild(price);
       topDtls.appendChild(space);
       topDtls.appendChild(bookNow);
+
+      ShowBookin(singleTour);
 
       descrip.innerText = singleTour.Descrp;
 
@@ -122,48 +136,85 @@ function getDetails() {
 
       tourStart.innerText += singleTour.location.start;
       tourEnd.innerText += singleTour.location.end;
-      imprt.innerText += `Please check your booking for the start time of the Vatican ENGLISH tour. Arrive 20 minutes before at the meeting point ( ${singleTour.location.start} ) for check-in. Thank you !`;
+      imprt.innerText += `Please check your booking for the start time of the tour. Arrive 20 minutes before at the meeting point ( ${singleTour.location.start} ) for check-in. Thank you !`;
     } else {
-      // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
   });
 }
 
+const formatPrice = Intl.NumberFormat("en-NG");
+
+function fillbkin(params) {
+  const tourName = document.getElementById("htname");
+  const tourDate = document.getElementById("ckcodte");
+  const tourists = document.getElementById("gustnm");
+  const toustNum = document.querySelector(".jststle");
+  const tourTime = document.getElementById("trtime");
+  const tourDur = document.getElementById("trdur");
+  const totalInNgn = document.getElementById("detopr");
+  const totalPrice = document.getElementById("alldyprc");
+
+  tourName.innerText = params.name;
+  tourists.innerText = toustNum.value;
+  tourDate.innerText = shwDate(toDate.value || today);
+  tourTime.innerText = params.time || "The time will be sent to your email ";
+  tourDur.innerText = params.duration;
+  totalPrice.innerText = "";
+  totalPrice.innerText = `$${
+    parseInt(params.Price) * parseInt(toustNum.value)
+  }`;
+
+  const theTolPrc = parseInt(params.Price) * parseInt(toustNum.value) * 1500;
+
+  totalInNgn.innerHTML += `<p id="deto">
+                            NGN ${formatPrice.format(theTolPrc)}
+                            <span id="prrte">@1500/$</span>
+                          </p>`;
+
+  let formattedDate = theDay.toLocaleDateString();
+  let formattedTime = theDay.toLocaleTimeString();
+
+  const bokin = {
+    id: tourId,
+    name: params.name,
+    tourist: toustNum,
+    date: toDate.value || today,
+    bookdate: `${formattedDate} ${formattedTime}`,
+    duration: `${params.duration}`,
+    type: "tour",
+    price: theTolPrc,
+  };
+
+  sessionStorage.setItem("bokin", JSON.stringify(bokin));
+}
+
 getDetails();
 
-function shwDate() {
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let day = today.getDate();
+function shwDate(dateStr) {
+  const [year, month, day] = dateStr.split("-");
 
-  month =
-    month == 1
-      ? "Jan"
-      : month == 2
-      ? "Feb"
-      : month == 3
-      ? "Mar"
-      : month == 4
-      ? "Apr"
-      : month == 5
-      ? "May"
-      : month == 6
-      ? "June"
-      : month == 7
-      ? "July"
-      : month == 8
-      ? "Aug"
-      : month == 9
-      ? "Sept"
-      : month == 10
-      ? "Oct"
-      : month == 11
-      ? "Nov"
-      : "Dec";
+  // Array of month names
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-  return `${day} ${month} ${year}`;
+  // Convert the month from num to the name
+  const monthName = months[parseInt(month, 10) - 1];
+
+  // Return the date in the new format
+  return `${day} ${monthName} ${year}`;
 }
 
 function runCarousel() {
@@ -216,3 +267,24 @@ tourDel.forEach((toDels) => {
     }
   });
 });
+
+function ShowBookin(params) {
+  const bokinMod = document.querySelector(".bokmod");
+  const shBokBtn = document.querySelectorAll(".shwbkin");
+
+  shBokBtn.forEach((bokinBtn, index) => {
+    bokinBtn.addEventListener("click", () => {
+      // if (checkIn.value == "" || checkOut.value == "") {
+      //   alert("Pick check-in and check-out date");
+      // } else {
+      //   const param = paramso[index + 1];
+
+      if (bokinMod.classList.contains("dnone")) {
+        bokinMod.classList.remove("dnone");
+      }
+
+      fillbkin(params);
+      // }
+    });
+  });
+}

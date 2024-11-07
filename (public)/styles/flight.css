@@ -1,26 +1,26 @@
-.fbgimg{
+.fbgimg {
   background-image: url(../images/flight2.1.jpg);
 }
 
-.tbcl{
+.tbcl {
   background-color: #3b3e4791;
   color: #dfe0ec;
 }
 
-.flthsec{
+.flthsec {
   border-top: 1px solid #6571997e;
   width: 100%;
   min-height: 200px;
   padding: 20px;
 }
 
-.srciddv{
+.srciddv {
   position: relative;
 }
-.flidrp span{
+.flidrp span {
   color: #18181d;
 }
-.flidrp{
+.flidrp {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -34,68 +34,77 @@
   box-shadow: 0 0 10px 0 #50506357;
   transition: all 0.3s ease-in-out;
 }
-.fltype, .flclass{
+.fltype,
+.flclass {
   padding: 6px;
   cursor: pointer;
 }
-.factive{
+.factive {
   background-color: #4f4f5f83;
 }
-.fdaci{
+.fdaci {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.fladmi span{
+.fladmi span {
   margin: 0 5px;
 }
-.fladmi{
+.fladmi {
   width: 100px;
 }
-.fldan{
+.fldan {
   width: 70px;
 }
-.chifnt{
+.chifnt {
   font-size: 0.75rem;
 }
-.shfldp{
+.shfldp {
   cursor: pointer;
   padding: 3px 6px;
 }
-.shfldp:hover{
+.shfldp:hover {
   background-color: #cfcfee60;
 }
 
-.num, .anum{
+.fliprbu button {
+  background-color: #686870d0;
+  border: none;
+  padding: 3px 5px;
+}
+
+.num,
+.anum {
   display: inline-block;
   text-align: center;
   width: 10px;
 }
-.plus, .minus{
+.plus,
+.minus {
   font-size: 1.2rem;
   padding: 3px 8px;
-  background-color: #b3dafd; 
+  background-color: #b3dafd;
   cursor: pointer;
 }
-.donebtn{
+.donebtn {
   text-align: end;
   padding: 5px;
 }
-.donebtn span{
+.donebtn span {
   color: #1e619b;
   cursor: pointer;
   /* background-color: #18181d; */
   padding: 4px;
 }
-.flidtls{
+.flidtls {
   max-width: 1050px;
   margin: auto;
   padding: 10px 25px;
 }
-.flitit{
+.flitit {
   margin: 0 0 20px;
 }
-.flianod{
+.flianod {
   border-bottom: 1px solid #3b3e4791;
   padding: 10px 15px;
   background-color: #e9e7ffad;
@@ -103,72 +112,75 @@
   height: auto;
   transition: all 0.5s linear;
 }
-.flianod.flihg{
+.flianod.flihg {
   height: 74px;
 }
-.flianod, .flitit p{
+.flianod,
+.flitit p {
   font-size: 0.9rem;
   color: #2d2c36ce;
 }
-.arrbig{
+.arrbig {
   font-size: 1.1rem;
   color: #18181d;
 }
-.flprc{
+.flprc {
   display: inline-block;
   padding: 0 5px;
   width: 122px;
 }
-.flidcon{
+.flidcon {
   justify-content: space-between;
 }
-.flileft, .fliright{
+.flileft,
+.fliright {
   flex: 1 1;
   align-items: center;
   justify-content: space-between;
 }
-.flileft{
+.flileft {
   max-width: 300px;
 }
-.fliright{
+.fliright {
   max-width: 550px;
 }
 
-.arlogo img{
+.arlogo img {
   width: 50px;
   height: 50px;
 }
 
-.flidconts{
+.flidconts {
   padding: 16px 50px;
 }
-.fdot{
+.fdot {
   font-size: 17px;
   margin: 0 4px;
 }
-.aarprt{
+.aarprt {
   position: relative;
 }
-.aaric{
+.aaric {
   position: absolute;
   top: 0;
   left: -35px;
 }
-.aadur{
+.aadur {
   margin: 10px 0;
 }
-.aardtl{
+.aardtl {
   padding: 14px 0 0 0;
 }
-.aarbtm{
+.aarbtm {
   padding: 20px 0 0 0;
 }
-.aarbtm, .aardtl span{
+.aarbtm,
+.aardtl span {
   font-size: 0.9rem;
   color: #2d2c36ce;
 }
 
-.whrtre{
+.whrtre {
   display: flex;
   align-items: center;
   justify-content: center;

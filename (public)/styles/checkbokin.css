@@ -1,0 +1,41 @@
+.bkshwn {
+  padding: 15px 15px 15px 55px;
+  border-bottom: #2a2a2c 1px solid;
+}
+.bkhtfwp {
+  padding: 10px 20px;
+}
+.bktop,
+.bbbcnt {
+  width: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 5px 10px;
+  margin: auto;
+}
+.fffdg {
+  background-color: #c2c2c2bb;
+}
+.bbbcnt {
+  padding: 17px 10px;
+}
+.fffgd {
+  background-color: #575758d3;
+}
+.llione {
+  width: 200px;
+  max-width: 200px;
+  margin: 0 5px;
+  overflow: hidden;
+}
+.toobg {
+  width: 100px;
+  max-width: 100px;
+}
+.nobki {
+  color: #1f202757;
+  text-align: center;
+  margin: 20px 0;
+}

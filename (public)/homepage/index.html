@@ -41,11 +41,11 @@
               <p>Hotels</p>
             </a>
           </div>
-          <div class="blg">
+          <!-- <div class="blg">
             <a href="../blog/blog.html">
               <p>Blog</p>
             </a>
-          </div>
+          </div> -->
           <div class="cntc">
             <a href="../contact/contact.html">
               <p>Contact us</p>
@@ -486,7 +486,7 @@
         </div>
       </footer>
 
-      <div class="srchdiv">
+      <div class="srchdiv dnone">
         <div class="sercinner">
           <div class="tohtfl">
             <div class="allsrc">Hotels</div>
@@ -502,6 +502,7 @@
                 <div class="frbtm">
                   <div class="cithtl">
                     <span>the city</span>
+
                     <p>Hotel name</p>
                   </div>
                   <div class="prnght dflex jbtw">
@@ -544,10 +545,10 @@
           <div class="sin-inp">
             <input type="email" id="lgemail" placeholder="Email" />
             <input type="password" id="lgpass" placeholder="Password" />
-            <span>Forgot your password?</span>
+            <span id="frgps">Forgot your password?</span>
           </div>
           <div class="snbtn" id="login">
-            <button>SIGN IN</button>
+            <button id="sigbtn">SIGN IN</button>
           </div>
         </div>
         <div class="sign-up">
@@ -634,4 +635,5 @@
   </body>
   <script type="module" src="../scripts/landpage.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

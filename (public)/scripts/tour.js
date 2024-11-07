@@ -35,61 +35,55 @@ const db = getFirestore(app);
 const whereGo = document.getElementById("trwhto");
 const sFligt = document.getElementById("sflgt");
 const tourWrap = document.getElementById("midovr");
+let loaderTimeout;
+
+flatpickr("#when", {
+  altInput: true,
+  altFormat: "j F, Y",
+  dateFormat: "Y-m-d",
+  minDate: "today",
+  onChange: function (selectedDates, dateStr) {
+    sessionStorage.setItem("tourDate", dateStr);
+  },
+});
 
 const testing = async () => {
   try {
     const tourRef = await addDoc(collection(db, "tours"), {
-      country: "Italy",
-      city: "Rome",
-      name: "Tour of the Vatican, Sistine Chapel & St. Peter's Basilica",
-      duration: "2 hr",
-      Descrp: `dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-              quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-              aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet,
-              consectetuer adipiscing elit, sed diam nonummy nibh euismod
-              tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-              enim ad minim veniam, quis nostrud exerci tation ulla.Lorem ipsum
-              dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-              nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-              volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-              ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-              consequat. Duis autem vel eum iriure dolor in hendrerit in
-              vulputate velit esse molestie consequat, vel illum dolore eu
-              feugiat nulla facilisis at vero eros et accumsan et iusto odio
-              dignissim qui blandit praesent luptatum zzril delenit augue duis
-              dolore te feugait nulla.`,
-      Price: "80",
+      country: "South korea",
+      city: "South-korea",
+      name: "Busan Private Tour with licensed tour guide + private vehicle",
+      duration: "11 hr",
+      Descrp: `dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ulla.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
+             .`,
+      Price: "26",
       whats_in: [
-        "An expert tour guide with over 10 years of experience. Excellent story teller.",
-        "Guaranteed skip-the-line access to the Vatican Museums",
-        "Admission tickets to the Vatican Museums, Sistine Chapel and St. Peter's Basilica",
-        "Entry/Admission - Vatican Museums",
-        "Entry/Admission - Sistine Chapel",
-        "Entry/Admission - St. Peter's Basilica",
-        "Guaranteed to skip the lines",
+        "Entry to Stonehenge (with entry option selected)",
+        "Entry to Roman Baths (with option selected)",
+        "Entry to Jane Austen Museum (with option selected)",
+        "Professional Guide",
+        "Transportation by Air-Conditioned Coach",
       ],
-      what_exp: `Meet your guide and group in the Borgo neighborhood, a short walk away from the St. Peter's Square, for an introductory briefing for this Vatican Museums skip-the-line tour. Then, head to the square as a group, passing along the Via della Conciliazione along the way, while your guide provides commentary about the Vatican and its history. 
-
-                    Arrive at St. Peter's Square and head into the Vatican Museums, taking advantage of your special skip-the-line admission ticket to speed your tour along. Once inside, listen to your guide provide commentary as you take in the sculptures, paintings, and tapestries that flank the main halls.`,
-      image: "../images/lazio-low.jpeg",
-      images: [],
-      date: "05-10-2024 - 20-10-2024",
+      what_exp: `Depart central London by air-conditioned coach and venture into the English countryside. As you travel, hear interesting facts about the region and your first destination — the prehistoric monument of Stonehenge on Salisbury Plain.On arrival, enjoy time to explore this atmospheric site at leisure. Head inside, collect an informative audio guide, and ride the shuttle or follow the pathways to the UNESCO-listed stones that date back some 4,500 years.`,
+      image: "../images/korea-low.jpeg",
+      images: [
+        "../images/f0.jpg",
+        "../images/korea-low.jpeg",
+        "../images/f0.jpg",
+        "../images/korea-low.jpeg",
+      ],
       location: {
-        start: "Via Plauto, 17, 00193 Roma RM, Italy",
-        end: "St. Peter's Basilica, Piazza San Pietro, 00120 Città del Vaticano, Vatican City",
+        start: "Victoria Coach Station, 164 Buckingham Palace Rd, south korea",
+        end: "Gloucester Road Station, Gloucester Rd, South Kensington, south korea",
       },
-      space: "25",
-      bestOffer: true,
+      space: "16",
+      bestOffer: false,
     });
-    console.log("success");
+    // console.log("success");
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
-
-// let depart = whereFro.value.charAt(0).toUpperCase() + whereFro.value.slice(1);
-
-// console.log(window.location.href);
 
 const test = async () => {
   let destination =
@@ -102,21 +96,31 @@ const test = async () => {
       or(where("country", "==", destination), where("city", "==", destination))
     );
 
-    console.log(turQuery);
+    if (destination !== "") {
+      tourWrap.innerHTML = "";
 
+      tourWrap.innerHTML = `<div id="loader-wrapper">
+                            <div class="loader"></div>
+                          </div>`;
+
+      loaderTimeout = setTimeout(() => {
+        tourWrap.innerHTML = "";
+        tourWrap.innerHTML = `<div class="errmg">Something is wrong</div>`;
+      }, 20000);
+    }
     const querySnapshot = await getDocs(turQuery);
-
     if (!querySnapshot.empty) {
+      tourWrap.innerHTML = "";
+
       querySnapshot.forEach((doc) => {
         let tour = doc.data();
         let tourId = doc.id;
 
         displayTours(tour, tourId);
-
-        console.log("good job");
       });
     } else {
       const docSnap = await getDocs(tourRef);
+      tourWrap.innerHTML = "";
       docSnap.forEach((doc) => {
         let tour = doc.data();
         let tourId = doc.id;
@@ -124,38 +128,25 @@ const test = async () => {
         let checkWord = tour.name.toLowerCase();
         let keyWord = whereGo.value.trim().toLowerCase();
 
-        console.log(checkWord);
-        console.log(keyWord);
-
-        if (checkWordheckWord.includes(keyWord)) {
+        if (checkWord.includes(keyWord)) {
           displayTours(tour, tourId);
-          console.log("heloooo");
         } else {
-          console.error("can't find any matching document");
+          clearTimeout(loaderTimeout);
+          tourWrap.innerHTML = "";
+          tourWrap.innerHTML = `<div class="errmg">Uh-oh! Looks like we couldn't find anything. Maybe try a different search?</div>`;
         }
       });
-      console.log("thank God");
     }
   } catch (e) {
     console.error("Error fetchig document: ", e);
   }
-
-  // const docRef = doc(db, "flights", "2KNroxoaIK0xGt23ZK3I");
-  // const docSnap = await getDoc(docRef);
-
-  // if (docSnap.exists()) {
-  //   console.log("Document data:", docSnap.data());
-  // } else {
-  //   // docSnap.data() will be undefined in this case
-  //   console.log("No such document!");
-  // }
 };
 
 addClickListener();
 
 function addClickListener() {
   if (sFligt) {
-    sFligt.addEventListener("click", test);
+    sFligt.addEventListener("click", testing);
   }
 }
 
@@ -195,11 +186,14 @@ let tours = [
 ];
 
 function displayTours(tour, tourId) {
-  tourWrap.innerHTML = "";
+  clearTimeout(loaderTimeout);
+
+  console.log(tourId);
+
   const imgDiv = document.createElement("div");
   imgDiv.classList.add("trimg");
-  imgDiv.innerHTML = `<div class="torimg">
-                          <img src="${tour.image}" alt="" />
+  imgDiv.innerHTML = `<div class="torimg" >
+                          <img src="${tour.image}" alt="" tourid = "${tourId}" class="rrtim"/>
                         </div>
                         <div class="boictr">
                           <div class="leftc">
@@ -213,16 +207,19 @@ function displayTours(tour, tourId) {
                         </div>`;
   tourWrap.appendChild(imgDiv);
 
-  tourDetails(tourId);
+  tourDetails();
 }
 
-function tourDetails(tourId) {
-  const shwTrdtl = document.querySelectorAll(".trimg");
+function tourDetails() {
+  const shwTrdtl = document.querySelectorAll(".rrtim");
 
   shwTrdtl.forEach((dtls) => {
-    dtls.addEventListener("click", () => {
-      console.log(tourId);
+    dtls.addEventListener("click", (e) => {
+      const tourId = e.target.getAttribute("tourid");
+      console.log(e.target);
+
       sessionStorage.setItem("tourId", tourId);
+
       window.location.href = "singletour.html";
     });
   });

@@ -278,16 +278,20 @@ input::placeholder {
 }
 
 .bg-div1 {
-  background-image: url(../images/venice.jpeg);
+  background-image: linear-gradient(#25252763, #25252763),
+    url(../images/venice.jpeg);
 }
 .bg-div2 {
-  background-image: url(../images/tokyo2.jpeg);
+  background-image: linear-gradient(#25252763, #25252763),
+    url(../images/tokyo2.jpeg);
 }
 .bg-div3 {
-  background-image: url(../images/paris2.jpg);
+  background-image: linear-gradient(#25252763, #25252763),
+    url(../images/paris2.jpg);
 }
 .bg-div4 {
-  background-image: url(../images/barca2.jpeg);
+  background-image: linear-gradient(#25252763, #25252763),
+    url(../images/barca2.jpeg);
 }
 
 .fsc-slide {

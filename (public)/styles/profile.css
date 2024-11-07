@@ -1,37 +1,54 @@
-.navspac{
+.navspac {
   width: 100%;
   height: 79px;
 }
 
-.ovawrap{
+.ovawrap {
   padding: 40px 80px;
 }
 
-.lftsdiv{
+.lftsdiv {
   padding: 20px 30px 0;
   width: 25%;
   height: fit-content;
-  border: 1px solid #141316d5 ;
-
+  border: 1px solid #141316d5;
 }
 
-.prfpich{
+.prfpich {
   text-align: center;
 }
-.prpic{
+.prpic {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  padding: 10px 0;
+  /* padding: 7px 0; */
   background-color: #48425e2d;
   margin: auto;
 }
-.prch input{
-  width: 100px;
-  margin: 10px 0;
+.prpic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
 }
 
-.prfinfs{
+.prch {
+  position: relative;
+  background-color: #24232b;
+  width: 30%;
+  margin: 4px auto;
+  padding: 3px 0;
+  border-radius: 10px;
+}
+.prch input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.prfinfs {
   display: flex;
   align-items: center;
   font-size: 1.1rem;
@@ -40,44 +57,46 @@
   border-top: 1px solid #19191d56;
   cursor: pointer;
 }
-.prfinfs.cactive{
+.prfinfs.cactive {
   color: #1c1b22;
   font-weight: 600;
   background-color: #1d1c221e;
 }
-.prfinfs:hover{
+.prfinfs:hover {
   background-color: #19191d34;
 }
-.pfrica{
+.pfrica {
   width: 26px;
   height: 26px;
   fill: #24222c;
   margin: 0 20px 0 0;
 }
 
-.rgtsdiv{
+.rgtsdiv {
   width: 75%;
   padding: 20px 50px;
 }
 
-.pepfhd{
+.pepfhd {
   margin: 0 0 10px;
 }
 
-.pepfcon{
+.pepfcon {
   padding: 20px 0;
   border-top: 1px solid #19191d34;
 }
-.pepinner{
+.pepinner {
   width: 100%;
   font-size: 1.1rem;
 }
-.pepinner, .fllnm,.svfnw{
+.pepinner,
+.fllnm,
+.svfnw {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.fllnm{
+.fllnm {
   gap: 15px;
 }
 /* .rtnm{
@@ -91,19 +110,21 @@
   border: 1px solid #24222c;
   border-radius: 5px;
 } */
-.nrmtw{
+.nrmtw {
   padding: 20px 0 0;
 }
-.pepoint, .pepcan{
+.pepoint,
+.pepcan {
   cursor: pointer;
 }
-.pepoint:hover, .pepcan:hover{
+.pepoint:hover,
+.pepcan:hover {
   text-decoration: underline;
 }
-.svfnw{
+.svfnw {
   padding: 8px 0 10px;
 }
-.svfnw button{
+.svfnw button {
   padding: 8px 11px;
   font-size: 1.15rem;
   background-color: #24222c;
@@ -111,10 +132,10 @@
   border: none;
   border-radius: 5px;
 }
-.pepfcon p{
+.pepfcon p {
   font-size: 1.25rem;
 }
-.pepfcon span{
+.pepfcon span {
   display: inline-block;
   padding: 7px 0 0;
   color: #1d1e22b0;

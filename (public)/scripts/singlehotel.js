@@ -75,9 +75,9 @@ function getHotelDocs() {
       if (docSnap.exists()) {
         const singleHotel = docSnap.data();
         const rooms = singleHotel.rooms;
-        // console.log("Document data:", singleHotel);
+        document.title = `Trav-el/hotels/${singleHotel.hotel_name}`;
 
-        bigImg.style.backgroundImage = `url(${singleHotel.Image})`;
+        bigImg.style.backgroundImage = `linear-gradient(#25252763, #25252763), url(${singleHotel.Image})`;
         htlName.innerHTML = `<span>${
           singleHotel.city
         }, ${singleHotel.country.toLowerCase()}</span>
@@ -273,7 +273,7 @@ function stillDisplay(param) {
 
 function convertDate(dateStr) {
   // Split the input date string by the dash (-)
-  const [day, month, year] = dateStr.split("-");
+  const [year, month, day] = dateStr.split("-");
 
   // Array of month names
   const months = [
@@ -298,6 +298,8 @@ function convertDate(dateStr) {
   return `${day} ${monthName} ${year}`;
 }
 
+const formatPrice = Intl.NumberFormat("en-NG");
+
 function fillCnfrBokin(paramtoo, param, index) {
   const hotelName = document.getElementById("htname");
   const roomName = document.getElementById("rmname");
@@ -316,30 +318,36 @@ function fillCnfrBokin(paramtoo, param, index) {
   let theTolPrc = parseInt(diffInDays) * price * 1500;
 
   if (diffInDays > 0) {
-    totalPrice.innerText += parseInt(diffInDays) * price;
+    totalPrice.innerText = "";
+    totalPrice.innerText = `$${parseInt(diffInDays) * price}`;
   }
 
   hotelName.innerText = paramtoo.hotel_name;
   roomName.innerText = param.name;
   checkInOut.innerText = `${convertDate(checkIn.value)} - ${convertDate(
     checkOut.value
-  )} (${diffInDays}nights)`;
+  )} (${diffInDays} nights)`;
 
   totalInNgn.innerHTML += `<p id="deto">
-                            NGN ${theTolPrc}
+                            NGN ${formatPrice.format(theTolPrc)}
                             <span id="prrte">@1500/$</span>
                           </p>`;
+
+  let currentDate = new Date();
+
+  let formattedDate = currentDate.toLocaleDateString();
+  let formattedTime = currentDate.toLocaleTimeString();
 
   const bokin = {
     id: hotelId,
     name: paramtoo.hotel_name,
-    roomname: param.name,
     roomId: index + 1,
     date: {
       in: checkIn.value,
       out: checkOut.value,
     },
-    duration: diffInDays,
+    bookdate: `${formattedDate} ${formattedTime}`,
+    duration: `${diffInDays} days`,
     type: "hotel",
     price: theTolPrc,
   };

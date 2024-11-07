@@ -1,28 +1,30 @@
-.trfsec{
+.trfsec {
   overflow: hidden;
   height: 765.6px;
 }
 
-.trtpimg{
+.trtpimg {
   width: 100%;
   height: 100%;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   text-align: end;
+  position: relative;
 }
-#bigimg{
+
+#bigimg {
   display: flex;
   /* justify-content: ; */
   align-items: flex-end;
 }
-.trtpimg h3{
+.trtpimg h3 {
   font-size: 2rem;
   padding: 50px 20px;
   color: #ddddfc;
 }
 
-.ssecdiv{
+.ssecdiv {
   color: #000;
   display: flex;
   align-items: center;
@@ -30,11 +32,11 @@
   text-align: center;
 }
 
-.bsoftxt h2{
+.bsoftxt h2 {
   font-size: 1.6rem;
 }
 
-.trlidt{
+.trlidt {
   width: 12.5rem;
   height: 89px;
   display: flex;
@@ -45,10 +47,10 @@
   padding: 10px 0;
   border-left: 1px solid #000;
 }
-.bdrgt{
+.bdrgt {
   border-right: 1px solid #000;
 }
-.trdcdiv{
+.trdcdiv {
   /* background-color: aquamarine; */
   display: grid;
   /* align-items: center;
@@ -59,7 +61,7 @@
   /* background-color: #000; */
 }
 
-.trdctxt{
+.trdctxt {
   text-align: start;
   font-size: 1.2rem;
   max-width: 62.5rem;
@@ -94,7 +96,7 @@
 }
 
 .trcrimg img {
-  width: 100%; 
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -120,15 +122,14 @@
   right: 0;
 }
 
-
-.wtexp{
+.wtexp {
   text-align: start;
   width: 100%;
   max-width: 62.5rem;
   margin: 40px 0 0 0;
 }
 
-.whte{
+.whte {
   border-top: 1px solid #23293d83;
   padding: 15px;
   height: auto;
@@ -137,103 +138,126 @@
   transition: all 0.3s linear;
   cursor: pointer;
 }
-.whte.bbtn{
+.whte.bbtn {
   border-bottom: 1px solid #23293d83;
 }
-.wteict{
+.wteict {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.wtetxt p{
+.wtetxt p {
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-.wtecnt, .depresp{
+.wtecnt,
+.depresp {
   padding: 15px 0;
 }
-.depresp{
+.depresp {
   display: inline-block;
 }
-.wtecnt ul{
+.wtecnt ul {
   padding: 0 20px;
   line-height: 30px;
 }
 
-.whte span{
+.whte span {
   color: #1a1c25cb;
 }
-.whte.whhgt{
+.whte.whhgt {
   height: 60px;
 }
 
-.contrdiv{
+.contrdiv {
   margin: 20px 3px 10px;
   padding: 15px 0 10px;
 }
-.ctrhead p{
+.ctrhead p {
   font-size: 1.7rem;
   font-weight: 600;
 }
-.trwrarev{
+.trwrarev {
   padding: 20px 10px;
 }
-.wrirev{
- cursor: pointer;
+.wrirev {
+  cursor: pointer;
   width: fit-content;
   font-size: 1.2rem;
   padding: 10px 20px;
   border-radius: 40px;
   border: 2px solid #2d2d30;
 }
-.wrirev:hover{
+.wrirev:hover {
   background-color: #d5d5f5;
 }
 
-.revcont{
+.revcont {
   align-items: flex-start;
   justify-content: space-between;
-  padding: 15px 0 ;
+  padding: 15px 0;
 }
-.revcount{
+.revcount {
   font-size: 1.4rem;
   margin-right: 15px;
 }
-.stars{
+.stars {
   width: 30px;
   height: 30px;
   color: #2e1c50;
 }
-.revrgt span, .txtrevs span{
+.revrgt span,
+.txtrevs span {
   color: #4f4f55;
 }
-.ovallrd, .resrcu{
+.ovallrd,
+.resrcu {
   display: flex;
   align-items: center;
 }
-.ovatxt{
+.ovatxt {
   width: 65px;
   margin: 10px 0;
 }
-.ovacount{
+.ovacount {
   background-color: #bbbbc09d;
   height: 15px;
   width: 400px;
   border-radius: 30px;
   margin: 0 10px;
 }
-.incount{
+.incount {
   background-color: #2e1c50;
   height: 13.5px;
   width: 0%;
   border-radius: 40px;
 }
-.txtrevs{
+.txtrevs {
   border-top: 1px solid #2d2b3d83;
   text-align: center;
   padding: 20px;
 }
 
+.frbtn {
+  width: 100%;
+}
+.mxwdh {
+  max-width: 50%;
+  margin: 10px;
+}
+.mxwdh input {
+  width: 100%;
+}
+.btmrow {
+  align-items: center;
+  justify-content: center;
+}
 
-
+.jststle {
+  width: 40px;
+  border: white;
+  font-size: 19px;
+  font-weight: 600;
+  padding: 10px;
+}

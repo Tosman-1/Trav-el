@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/tour.css" />
     <link rel="stylesheet" href="../styles/landpage.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
+    <link rel="stylesheet" href="../styles/flatpickr.min.css" />
     <link
       rel="shortcut icon"
       href="../images/trav-el-favicon-color.png"
@@ -40,11 +41,11 @@
               <p>Hotels</p>
             </a>
           </div>
-          <div class="blg">
+          <!-- <div class="blg">
             <a href="../blog/blog.html">
               <p>Blog</p>
             </a>
-          </div>
+          </div> -->
           <div class="cntc">
             <a href="../contact/contact.html">
               <p>Contact us</p>
@@ -78,11 +79,8 @@
                 id="trwhto"
               />
             </div>
-            <!-- <div class="sfinp dflex">
-              <input type="text" placeholder="" />
-            </div> -->
             <div class="sfin dflex">
-              <input type="date" name="Depature" id="" />
+              <input type="text" id="when" placeholder="Selecet date" />
             </div>
             <div class="sfbtn dflex">
               <button id="sflgt">Search</button>
@@ -281,10 +279,10 @@
           <div class="sin-inp">
             <input type="email" id="lgemail" placeholder="Email" />
             <input type="password" id="lgpass" placeholder="Password" />
-            <span>Forgot your password?</span>
+            <span id="frgps">Forgot your password?</span>
           </div>
           <div class="snbtn" id="login">
-            <button>SIGN IN</button>
+            <button id="sigbtn">SIGN IN</button>
           </div>
         </div>
         <div class="sign-up">
@@ -369,6 +367,8 @@
       </div>
     </div>
   </body>
+  <script src="../scripts/flatpickr.min.js"></script>
   <script type="module" src="../scripts/tour.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

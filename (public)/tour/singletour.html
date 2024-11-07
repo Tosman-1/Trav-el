@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/singletour.css" />
     <link rel="stylesheet" href="../styles/landpage.css" />
     <link rel="stylesheet" href="../styles/bookin.css" />
+    <link rel="stylesheet" href="../styles/singletour.css" />
     <link rel="stylesheet" href="../styles/sign.css" />
+    <link rel="stylesheet" href="../styles/flatpickr.min.css" />
     <link
       rel="shortcut icon"
       href="../images/trav-el-favicon-color.png"
@@ -41,11 +42,11 @@
               <p>Hotels</p>
             </a>
           </div>
-          <div class="blg">
+          <!-- <div class="blg">
             <a href="../blog/blog.html">
               <p>Blog</p>
             </a>
-          </div>
+          </div> -->
           <div class="cntc">
             <a href="../contact/contact.html">
               <p>Contact us</p>
@@ -71,17 +72,7 @@
           <div class="trdcdiv" id="trdesc">
             <div class="trdctxt" id="descrip"></div>
             <div class="trcrmgdiv">
-              <div class="trcrinner" id="imgslide">
-                <!-- <div class="trcrimg">
-                  <img src="../images/france-low.jpeg" alt="" />
-                </div>
-                <div class="trcrimg">
-                  <img src="../images/vatican1.jpg" alt="" />
-                </div>
-                <div class="trcrimg">
-                  <img src="../images/vatican.jpg" alt="" />
-                </div> -->
-              </div>
+              <div class="trcrinner" id="imgslide"></div>
               <button class="jstmv left" id="prlft">&#10094;</button>
               <button class="jstmv right" id="nxrgt">&#10095;</button>
             </div>
@@ -210,7 +201,7 @@
                 </div>
                 <div class="trwrarev">
                   <div class="wrirev">
-                    <span>Write a review</span>
+                    <span class="">Write a review</span>
                   </div>
                 </div>
               </div>
@@ -308,6 +299,14 @@
                   <span>No reviews yet</span>
                 </div>
               </div>
+              <div class="btmrow dflex">
+                <div class="cdates mxwdh">
+                  <input type="text" id="whentoo" placeholder="Select date" />
+                </div>
+                <div class="sfbtn frbtn">
+                  <button class="shwbkin">Book now</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -340,7 +339,7 @@
               <div class="line"></div>
               <div class="flsle">
                 <span class="prgnum">3</span>
-                <span>Guest(s) info</span>
+                <span>Tourist info</span>
               </div>
               <div class="line"></div>
               <div class="flsle">
@@ -351,28 +350,24 @@
 
             <div class="cnfrmbk flbkmod">
               <div class="pssghd">
-                <h3 id="htname">Saint larme</h3>
+                <h3 id="htname">Tour name</h3>
               </div>
               <div class="otrcnt">
                 <div class="rdanot">
-                  <span class="smaones">Room:</span>
-                  <span id="rmname">Premium Room</span>
-                </div>
-                <div class="rdanot">
                   <span class="smaones">Dates:</span>
-                  <span id="ckcodte">18 October 2024 - 07 November 2024</span>
+                  <span id="ckcodte"> </span>
                 </div>
                 <div class="rdanot">
-                  <span class="smaones">Guests:</span>
-                  <span id="gustnm">1 guest</span>
+                  <span class="smaones">Tourists:</span>
+                  <span id="gustnm"></span>
                 </div>
                 <div class="rdanot">
-                  <span class="smaones">Bed:</span>
-                  <span>1</span>
+                  <span class="smaones">Time:</span>
+                  <span id="trtime"></span>
                 </div>
                 <div class="rdanot">
-                  <span class="smaones">Includes:</span>
-                  <span>This is a room only rate</span>
+                  <span class="smaones">Duration:</span>
+                  <span id="trdur"></span>
                 </div>
                 <div class="rdanot">
                   <span class="smaones">Payment:</span>
@@ -392,14 +387,14 @@
                 <div class="rdanot">
                   <span class="smaones">Cancellation:</span>
                   <span>
-                    Please be aware that any cancellation will incur a charge in
-                    full.</span
+                    Free cancellation 1 hour before the tour begins (local
+                    time).</span
                   >
                 </div>
               </div>
               <div class="ttlprcb dflex jbtw">
                 <p>Total price (inc. taxes and fees)</p>
-                <p class="bgprcb" id="alldyprc">$3600</p>
+                <p class="bgprcb" id="alldyprc">$</p>
               </div>
               <div class="cntbtn">
                 <button type="button" class="shwnxt">Continue</button>
@@ -431,6 +426,7 @@
                             type="text"
                             placeholder="First name   Last name"
                             class="fllname"
+                            id="flnm"
                           />
                         </div>
                       </div>
@@ -482,12 +478,8 @@
             <div class="paynt flbkmod dnone">
               <div class="payinner">
                 <div class="pymnt">
-                  <div class="ttlprc dflex jbtw">
+                  <div class="ttlprc dflex jbtw" id="detopr">
                     <p>Total price</p>
-                    <p id="detopr">
-                      NGN400000
-                      <span id="prrte">@1500/$</span>
-                    </p>
                   </div>
                   <div class="cnfrmp">
                     <p>
@@ -495,16 +487,11 @@
                     </p>
                     <ul>
                       <li>your booking confirmation e-mail</li>
-                      <li>your ticket</li>
+                      <!-- <li>your ticket</li> -->
                     </ul>
                   </div>
-                  <div class="agrmt" id="agree">
-                    <input
-                      type="checkbox"
-                      name="
-                    "
-                      id=""
-                    />
+                  <div class="agrmt">
+                    <input type="checkbox" name="" id="agree" />
                     <span
                       >I have read and accept <a href="">Legal information</a>,
                       <a href="">General conditions of carriage</a>,
@@ -644,10 +631,10 @@
           <div class="sin-inp">
             <input type="email" id="lgemail" placeholder="Email" />
             <input type="password" id="lgpass" placeholder="Password" />
-            <span>Forgot your password?</span>
+            <span id="frgps">Forgot your password?</span>
           </div>
           <div class="snbtn" id="login">
-            <button>SIGN IN</button>
+            <button id="sigbtn">SIGN IN</button>
           </div>
         </div>
         <div class="sign-up">
@@ -732,7 +719,10 @@
       </div>
     </div>
   </body>
+  <script src="../scripts/flatpickr.min.js"></script>
   <script type="module" src="../scripts/singletour.js"></script>
   <script type="module" src="../scripts/bookin.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <script type="module" src="../scripts/sign.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
