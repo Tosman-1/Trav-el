@@ -1,35 +1,36 @@
-.hbgimg{
+.hbgimg {
   background-image: url(../images/hotel.jpg);
 }
-.tbcl{
-  background-color:  #5e59536e;
+.tbcl {
+  background-color: #5e59536e;
   color: #f0f3ff;
 }
 
-.htlwrap{
+.htlwrap {
   border-top: 1px solid #6571997e;
   width: 100%;
   min-height: 100px;
   padding: 20px;
 }
 
-.htcondiv, .flitit{
+.htcondiv,
+.flitit {
   max-width: 1250px;
   padding: 10px 0;
   margin: auto;
 }
 
-.htlimgs{
+.htlimgs {
   width: 50%;
   height: 400px;
 }
-.htlimgs img{
+.htlimgs img {
   width: 100%;
   height: 400px;
   object-fit: cover;
 }
 
-.htltxts{
+.htltxts {
   background-color: #f0f3ff;
   display: flex;
   flex-direction: column;
@@ -38,37 +39,39 @@
   padding: 20px;
 }
 
-.htlnp p{
+.htlnp p {
   font-size: 1.5rem;
 }
-.htltxts span{
+.htltxts span {
   font-size: 1rem;
   color: #393a42dc;
 }
 
-.htlft, .htecam{
+.htlft,
+.htecam {
   align-items: center;
   gap: 7px;
 }
 
-.htamen{
-  grid-template-columns: 200px 200px;
+.htamen {
+  grid-template-columns: 1fr 1fr;
   row-gap: 20px;
-  width: 420px;
+  width: 100%;
+  max-width: 420px;
   padding: 20px 10px;
 }
 
-.htecam{
+.htecam {
   display: flex;
   background-color: #8d8d9136;
 }
-.htlaic{
+.htlaic {
   width: 16px;
   height: 16px;
   fill: #26272c;
 }
 
-.htlros button{
+.htlros button {
   font-size: 1rem;
   font-weight: 600;
   padding: 15px 30px;
@@ -76,38 +79,57 @@
   box-shadow: 0 0 15px 0 #26272c5e;
   background-color: #868ca8;
 }
-.htlros button:hover{
+.htlros button:hover {
   background-color: #a1a8c9;
 }
-.htlros button:active{
+.htlros button:active {
   transform: scale(0.96);
 }
 
-.ntempy{
+.ntempy {
   max-width: 1300px;
   margin: auto;
   padding: 5px 5px 40px;
 }
-.ntpycnt{
+.ntpycnt {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   padding: 10px;
 }
-.kepnt{
+.kepnt {
   height: 300px;
   position: relative;
   background-color: #26272c;
 }
-.kepnt img{
- width: 100%;
- height: 300px;
- object-fit: cover;
- object-position: center;
+.kepnt img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
 }
-.self{
-  grid-column: 1 /span 2;
+.self {
+  grid-column: 1 / span 2;
 }
-.self2{
+.self2 {
   grid-column: 2 / span 2;
+}
+
+@media (max-width: 1002px) {
+  .htcondiv {
+    flex-direction: column;
+  }
+  .htlimgs {
+    width: 100%;
+  }
+}
+
+@media (max-width: 545px) {
+  .htamen {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px 10px;
+  }
 }

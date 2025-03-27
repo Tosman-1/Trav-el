@@ -210,6 +210,24 @@
   }
 }
 
+@media (max-width: 480px) {
+  .trdctxt {
+    font-size: 0.8rem;
+  }
+
+  .revrgt {
+    width: 80%;
+  }
+
+  .trlidt p {
+    font-size: 0.9rem;
+  }
+
+  .trcrmgdiv {
+    height: 250px;
+  }
+}
+
 .swal2-icon.swal2-success {
   border-color: #6b6777 !important;
 }

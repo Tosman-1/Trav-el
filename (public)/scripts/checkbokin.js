@@ -12,6 +12,7 @@ import {
   getDocs,
   query,
   where,
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -46,7 +47,11 @@ onAuthStateChanged(auth, (user) => {
 const showBokins = async (params) => {
   try {
     const bookRef = collection(db, "bookings");
-    const bookQuery = query(bookRef, where("userid", "==", params.uid));
+    const bookQuery = query(
+      bookRef,
+      where("userid", "==", params.uid),
+      orderBy("bookdate")
+    );
     let num = 0;
 
     const querySnapshot = await getDocs(bookQuery);

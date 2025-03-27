@@ -140,3 +140,39 @@
   padding: 7px 0 0;
   color: #1d1e22b0;
 }
+
+@media (max-width: 800px) {
+  .ovawrap {
+    position: relative;
+    flex-direction: column;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .prfpich {
+    display: none;
+  }
+  .lftsdiv {
+    width: 100%;
+    padding: 20px 20px 0;
+  }
+  .rgtsdiv {
+    width: 100%;
+    padding: 20px 20px 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .ovawrap {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .lftsdiv {
+    width: 100%;
+    padding: 20px 10px 0;
+  }
+  .rgtsdiv {
+    width: 100%;
+    padding: 20px 10px 0;
+  }
+}

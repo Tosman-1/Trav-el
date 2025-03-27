@@ -217,13 +217,14 @@
   align-items: center;
 }
 .ovatxt {
-  width: 65px;
+  width: 26%;
   margin: 10px 0;
 }
 .ovacount {
   background-color: #bbbbc09d;
   height: 15px;
-  width: 400px;
+  width: 74%;
+  max-width: 400px;
   border-radius: 30px;
   margin: 0 10px;
 }
@@ -260,4 +261,15 @@
   font-size: 19px;
   font-weight: 600;
   padding: 10px;
+}
+
+@media (max-width: 480px) {
+  .trlidt h3 {
+    font-size: 0.8rem;
+  }
+
+  .jststle {
+    padding: 6px;
+    font-size: 1rem;
+  }
 }

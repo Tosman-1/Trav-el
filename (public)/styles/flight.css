@@ -187,3 +187,38 @@
   width: 100%;
   gap: 10px;
 }
+
+@media (max-width: 808px) {
+  .sfinp {
+    display: block;
+    width: 100%;
+  }
+  .sfbtn {
+    display: block;
+    width: 600px;
+  }
+  .sfbtn button {
+    width: 100%;
+  }
+  .flstps {
+    display: none;
+  }
+  .flidur {
+    margin-right: 8%;
+  }
+  .flidur span {
+    display: none;
+  }
+  .flileft {
+    justify-content: center;
+    gap: 5%;
+  }
+  .arrbig {
+    font-size: 0.9rem;
+  }
+  .flprc {
+    width: 80px;
+  }
+}
+@media (max-width: 620px) {
+}

@@ -270,7 +270,25 @@ const closmod = document.getElementById("clsmod");
 const frgPass = document.getElementById("frgps");
 const fullmod = document.querySelector(".stpp");
 const shDrop = document.getElementById("whesin");
+const sideMenu = document.querySelector(".sdmenu");
+const hamMenu = document.querySelector(".hambug");
+const closeMenu = document.querySelector(".clsdme");
 let isShow = true;
+
+if (hamMenu) {
+  hamMenu.addEventListener("click", () => {
+    if (sideMenu.classList.contains("hdsd")) {
+      sideMenu.classList.remove("hdsd");
+    }
+  });
+}
+if (closeMenu) {
+  closeMenu.addEventListener("click", () => {
+    if (!sideMenu.classList.contains("hdsd")) {
+      sideMenu.classList.add("hdsd");
+    }
+  });
+}
 
 const forgetPassword = async () => {
   const { value: email } = await Swal.fire({
@@ -306,7 +324,7 @@ const forgetPassword = async () => {
 
 frgPass.addEventListener("click", forgetPassword);
 
-const profileLoc = "../profile/profile.html";
+// const profileLoc = "../profile/profile.html";
 
 slideLeft.addEventListener("click", () => {
   mSlide.classList.add("slide");
@@ -326,7 +344,7 @@ function siDropDwn() {
     signDrp.innerHTML = ` <div class="whsiin">
                             <div class="itli">
                               <ul>
-                                <li id="prof">Profile</li>
+                                <li><a href="../profile/profile.html">Profile</a></li>
                                 <li><a href="../bookinpage/checkbokin.html">Bookings</a></li>
                                 <li><a href="">Wishlists</a></li>
                                 <li><a href="">Help</a></li>
@@ -338,7 +356,7 @@ function siDropDwn() {
                           </div>`;
 
     setSignOut();
-    showProfile();
+    // showProfile();
   } else {
     signDrp.innerHTML = ` <div class="siupin">
                             <span>sign in/ sign up</span>
@@ -348,13 +366,13 @@ function siDropDwn() {
   }
 }
 
-function showProfile() {
-  const refToProf = document.getElementById("prof");
+// function showProfile() {
+//   const refToProf = document.getElementById("prof");
 
-  refToProf.addEventListener("click", () => {
-    window.location.assign(profileLoc);
-  });
-}
+//   refToProf.addEventListener("click", () => {
+//     window.location.assign(profileLoc);
+//   });
+// }
 
 function setSignOut() {
   const logOut = document.querySelector(".siupou");
@@ -415,7 +433,7 @@ function showDrop() {
     signDrp.classList.remove("dnone");
     isShow = false;
   } else {
-    if (!shDrop.classList.contains("dnone")) {
+    if (!isShow) {
       signDrp.classList.add("dnone");
       isShow = true;
     }

@@ -1,6 +1,6 @@
 .bkshwn {
   padding: 15px 15px 15px 55px;
-  border-bottom: #2a2a2c 1px solid;
+  border-bottom: #7777ee 1px solid;
 }
 .bkhtfwp {
   padding: 10px 20px;
@@ -38,4 +38,28 @@
   color: #1f202757;
   text-align: center;
   margin: 20px 0;
+}
+
+.book {
+  min-height: 500px;
+  color: #222;
+  padding: 70px;
+}
+
+/* Media queries */
+
+@media (max-width: 700px) {
+  .bkhtfwp {
+    padding: 10px 5px;
+  }
+
+  .book {
+    padding: 70px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bkhtfwp {
+    font-size: 0.5rem;
+  }
 }

@@ -106,17 +106,17 @@ const testing = async () => {
       alogo: "../images/turks-logo.png",
       airline: "Turkish Airlines",
       airplane: "Airbus A350",
-      depature: {
+      arrival: {
         city: "Lagos",
         airport: "Murtala Mohammed Airport",
         id: "LOS",
-        time: "8:00 PM",
+        time: "10:00 AM",
       },
-      arrival: {
+      depature: {
         city: "London",
         airport: "London City Airport",
         id: "LCY",
-        time: "6:25 AM",
+        time: "9:25 PM",
       },
       flight_num: "AA 101",
       duration: "6 hr 25 min",
@@ -467,7 +467,9 @@ function saveBokin() {
 function passengersDetails() {
   const inputNum = totalPass.innerText;
 
-  if (inputNum > 1) {
+  let checkAdded = document.querySelectorAll(".ckad");
+
+  if (inputNum > 1 && checkAdded.length + 1 < inputNum) {
     const passInputDiv = document.querySelector(".pssinner");
 
     for (let i = 2; i <= inputNum; i++) {
@@ -484,7 +486,7 @@ function passengersDetails() {
                           <option value="Miss">Miss</option>
                         </select>
                       </div>
-                      <div class="rtnm">
+                      <div class="rtnm ckad">
                         <label class="label">Full-name*</label>
                         <input
                           type="text"
@@ -528,7 +530,7 @@ function displaySeats(flight, flightId) {
     echSeat.appendChild(seatDtls);
 
     flightType == "return"
-      ? rtrnSeats.appendChild(echSeat)
+      ? (rtrnSeats.appendChild(echSeat), echSeat.classList.add("rs"))
       : dprtSeats.appendChild(echSeat);
 
     generateRowCol();

@@ -22,12 +22,33 @@ body {
   position: relative;
   width: inherit;
 }
+.sdmenu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding: 20px;
+  width: 45%;
+  z-index: 300;
+  top: 0;
+  bottom: 0;
+  background-color: #4f5268f5;
+  transition: all 0.6s linear 0.2s;
+}
+.hdsd {
+  right: -100%;
+  transition: all 0.6s linear 0.2s;
+}
+.sdmenu a {
+  text-decoration: none;
+  color: #fff;
+}
 
 nav {
-  z-index: 20;
+  z-index: 200;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 20px;
   position: fixed;
 
@@ -35,6 +56,13 @@ nav {
   left: 0;
   right: 0;
   transition: background-color 0.2s ease-in-out;
+}
+.tnav {
+  padding: 20px 50px;
+  /* z-index: 200; */
+}
+.hamenu {
+  width: 50px;
 }
 .bgcsc {
   backdrop-filter: blur(8px);
@@ -72,7 +100,7 @@ nav {
   height: fit-content;
   align-self: center;
   justify-self: center;
-  padding: 30px 0;
+  padding: 30px 20px;
 }
 
 .srcinpdiv {
@@ -90,7 +118,7 @@ nav {
 
 .sfinp {
   flex: 1 1;
-  /* max-width: 422px; */
+  width: 100%;
 }
 .sfinpp {
   flex: 1 1;
@@ -98,6 +126,7 @@ nav {
 .sfirng {
   width: 100px;
 }
+
 .sfinpp input,
 .sfinp input,
 .sfin input,
@@ -126,9 +155,6 @@ input::placeholder {
   margin: 0 10px;
 }
 
-/* .srciddv{
-  background-color: aqua;
-} */
 .srciddv p {
   font-size: 1rem;
   font-weight: 600;
@@ -188,6 +214,9 @@ input::placeholder {
   width: 80px;
   height: 35px;
 }
+.medvw {
+  display: none;
+}
 .mdtxt {
   display: inherit;
   align-items: inherit;
@@ -200,7 +229,6 @@ input::placeholder {
   color: #f8f8f8;
 }
 .mdtxt div {
-  /* background-color: aqua; */
   padding: 3px 0 5px 0;
 }
 
@@ -226,10 +254,10 @@ input::placeholder {
   position: absolute;
   top: 36px;
   right: 0;
-  left: -30px;
+  left: -40px;
   font-size: 1.1rem;
   background-color: #ecedf1;
-  width: 200px;
+  width: 180px;
   text-align: center;
   padding: 10px;
   border-radius: 6px;
@@ -298,6 +326,7 @@ input::placeholder {
   position: absolute;
   color: #fff;
   width: 100%;
+  padding: 0 30px;
   height: inherit;
   opacity: 1;
   transform: scale(1);
@@ -311,10 +340,6 @@ input::placeholder {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-/* .bgprop{
-
-} */
 
 .fsc-slide.active {
   opacity: 0;
@@ -485,13 +510,21 @@ label {
 }
 
 .mmimgsdiv {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5%;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-top: 50px;
-  padding: 0 30px;
+  padding: 0 20px;
+  overflow: auto;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.mmimgsdiv::-webkit-scrollbar {
+  display: none;
 }
 .imgdiv {
   /* width: 180px; */
@@ -576,10 +609,10 @@ label {
   text-align: right;
 }
 
-.low,
 .whchus {
   width: auto;
-  height: 25rem;
+  padding: 60px 0;
+  height: fit-content;
 }
 
 .cusrev {
@@ -805,4 +838,133 @@ h2 {
   text-align: center;
   font-size: 1.3rem;
   margin-bottom: 15px;
+}
+
+.whedoc {
+  display: flex;
+}
+
+/* mediaquery */
+@media (max-width: 1139px) {
+  .imgdiv {
+    flex: 1 1 17rem;
+  }
+  .mmimgsdiv {
+    justify-content: unset;
+  }
+}
+
+@media (max-width: 808px) {
+  .srciinp {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .tbitxt h2 {
+    font-size: x-large;
+  }
+  .sign button {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .signdrp {
+    left: -60px;
+    width: 160px;
+  }
+  .tnav {
+    padding: 20px 30px;
+    background-color: #323957c5;
+  }
+  .inact {
+    display: none;
+  }
+  .medvw {
+    display: block;
+  }
+  .gmsub {
+    flex-direction: column;
+  }
+  .whedoc {
+    display: block;
+  }
+}
+@media (max-width: 620px) {
+  .tbitxt h2 {
+    font-size: large;
+  }
+  .tbitxt p {
+    font-size: small;
+  }
+  .rgt {
+    right: 23px;
+  }
+  .lft {
+    left: 23px;
+  }
+
+  .con {
+    font-size: 1.1rem;
+  }
+  .city {
+    font-size: 2.16rem;
+    font-weight: 500;
+  }
+  .cctxt {
+    font-size: 0.8rem;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .sctxt {
+    padding: 0 30px;
+  }
+
+  .imgdiv {
+    flex: 1 0 25rem;
+  }
+
+  .boic {
+    bottom: 0;
+  }
+
+  .toursdiv {
+    justify-content: center;
+  }
+
+  .sfin {
+    flex: 1 1;
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sctxt {
+    padding: 0 65px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .wcusbx {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tbitxt {
+    width: 80%;
+  }
+
+  .tpdeswrp {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ckinout {
+    width: 50%;
+  }
+
+  .buut button {
+    font-size: 0.7rem;
+    padding: 10px;
+  }
 }

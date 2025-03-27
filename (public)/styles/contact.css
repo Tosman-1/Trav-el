@@ -1,38 +1,50 @@
-.cbgimg{
+.cbgimg {
   background-image: url(../images/contact.jpg);
 }
 
-.cnctdtls{
+.cnctdtls {
   display: flex;
   align-items: top;
   justify-content: space-evenly;
   padding: 30px 10px;
   color: #232327;
 }
-.cdhead{
+.tbitxt {
+  color: #b2acc7;
+  background-color: #232327c7;
+}
+.cdhead {
   padding: 2px 0 7px;
 }
-.cdcont div{
+.cdcont div {
   padding: 13px 0 0;
 }
-.cdcont span{
+.cdcont span {
   font-weight: 700;
 }
-.cdcont a{
+.cdcont a {
   text-decoration: none;
   color: rgb(70, 70, 121);
 }
-.cdcont ul{
+.cdcont ul {
   margin: 8px 0 5px 20px;
 }
-.cdcont input{
+.cdcont input {
   display: block;
   width: 100%;
   margin: 10px 0;
   padding: 10px 20px;
   font-size: 1rem;
 }
-.cdmsg{
-  display: block;
+.cdmsg {
+  /* display: block; */
+  width: 100%;
   padding: 10px 20px;
+}
+
+@media (max-width: 808px) {
+  .cnctdtls {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

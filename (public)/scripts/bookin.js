@@ -86,12 +86,8 @@ function showNextStep() {
     /^\+?(\d{1,3})?[-. ]?\(?\d{1,4}\)?[-. ]?\d{1,4}[-. ]?\d{1,4}[-. ]?\d{1,9}$/;
 
   function checkAllNames(fullNames) {
-    for (let i = 0; i < fullNames.length; i++) {
-      if (fullNames[i].value.trim() !== "") {
-        return true;
-      }
-    }
-    return false;
+    const namesArray = Array.from(fullNames);
+    return namesArray.every((names) => names.value.trim() !== "");
   }
 
   nextBtn.forEach((next, index) => {
@@ -105,6 +101,10 @@ function showNextStep() {
         if (hasSelect && hasInput) {
           const nameTitles = document.querySelectorAll(".titlens");
           const fullNames = document.querySelectorAll(".fllname");
+
+          console.log(checkAllNames(nameTitles));
+          console.log(checkAllNames(fullNames));
+          console.log(fullNames);
 
           if (
             !checkAllNames(nameTitles) ||
@@ -166,7 +166,7 @@ payBtn.addEventListener("click", (e) => {
 function uploadBokin() {
   let bokinDetails = JSON.parse(sessionStorage.getItem("bokin"));
 
-  console.log(bokinDetails);
+  // console.log(bokinDetails);
 
   if (bokinDetails) {
     bokinDetails.status = "confirmed";
@@ -175,7 +175,19 @@ function uploadBokin() {
 
     addDoc(collection(db, "bookings"), bokinDetails)
       .then((docRef) => {
-        console.log("Your bookin id", docRef.id);
+        Swal.fire({
+          toast: true,
+          position: "top",
+          timer: "4000",
+          icon: "success",
+          title: `Your booking id is ${docRef.id}`,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        // console.log("Your bookin id", docRef.id);
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -219,20 +231,8 @@ function payWithPaystack(e) {
     callback: () => {
       uploadBokin();
 
-      Swal.fire({
-        toast: true,
-        position: "top",
-        timer: "3000",
-        icon: "success",
-        title: "Payment successful",
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
       closeModal();
-      // window.location.reload();
+      window.location.reload();
     },
     onError: (error) => {
       console.log("Error: ", error.message);

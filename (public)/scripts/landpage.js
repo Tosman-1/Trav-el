@@ -113,7 +113,7 @@ function displayTours(tour, tourId) {
                           </div>
                           <div class="rightc">
                             <p class="bocon">${tour.duration}</p>
-                            <p class="boturn">${tour.Price}</p>
+                            <p class="boturn">$${tour.Price}</p>
                           </div>
                         </div>`;
   document.getElementById("midovr").appendChild(imgDiv);
